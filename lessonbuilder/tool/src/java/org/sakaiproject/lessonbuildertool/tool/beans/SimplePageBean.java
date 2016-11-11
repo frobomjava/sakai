@@ -97,6 +97,14 @@ import org.sakaiproject.lti.api.LTIService;
 import org.sakaiproject.basiclti.util.SakaiBLTIUtil;
 import org.tsugi.lti2.ContentItem;
 
+import java.nio.file.*;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.StandardCopyOption;
+import io.swagger.client.ApiException;
+import io.swagger.client.model.*;
+import io.swagger.client.api.*
+
 /**
  * Backing bean for Simple pages
  * 
@@ -5926,6 +5934,98 @@ public class SimplePageBean {
 		}
 		
 	}
+	
+	
+	// using online-convert.com api (ppt to swf)
+	private MultipartFile onlineConvertConverter(String tempFilePath, String fileName, String targetExtension) {
+
+		MultipartFile result = null;
+
+		try {
+
+			final String API_KEY = "74e6a443b28d866c3bc4c5b7a9eea36c";
+			System.out.println("Sample2: Uploading files");
+
+			Job param = new Job();
+
+			// API Post call to create new job as per parameters
+			JobsApi jobsApi = new JobsApi();
+			Job job = jobsApi.jobsPost(API_KEY, param);
+
+			System.out.println("New created job object:");
+			System.out.println(job.toString());
+
+			UploadApi uploadApi = new UploadApi();
+			System.out.println("created UploadApi");
+
+			InputFile inputFile = uploadApi.filePost(job.getServer(), job.getToken(), job.getId(), tempFilePath);
+			System.out.println("New created InputFile object:");
+			System.out.println(inputFile.toString());
+
+			job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+			System.out.println("After file upload job object:");
+			System.out.println(job.toString());
+
+			// Create conversion object parameter
+			Conversion conversionParam = new Conversion();
+			conversionParam.setTarget(targetExtension);
+
+			// API call to assign conversion object to created job
+			ConversionApi conversionApi = new ConversionApi();
+			Conversion conversion = conversionApi.jobsJobIdConversionsPost(conversionParam, null, API_KEY, job.getId());
+
+			System.out.println("New created Conversion object:");
+			System.out.println(conversion.toString());
+
+			job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+			System.out.println("After add conversion job object:");
+			System.out.println(job.toString());
+
+			loop: while (true) {
+				switch (job.getStatus().getCode()) {
+				case "queued":
+				case "downloading":
+				case "pending":
+				case "processing":
+					job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+					System.out.println(job.toString());
+					break;
+				case "completed":
+					OutputApi outputApi = new OutputApi();
+					List<OutputFile> output = outputApi.jobsJobIdOutputGet(null, null, null, API_KEY, job.getId());
+					System.out.println("File converted successfully.");
+					System.out.println("Dowonload File Path: " + output.get(0).getUri());
+
+					URL website = new URL(output.get(0).getUri());
+					String destinationPath = "/usr/local/etc/" + fileName + "." + targetExtension;
+					java.nio.file.Path target = new File(destinationPath).toPath();
+					InputStream in = website.openStream();
+					Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
+
+					// java.nio.file.Path path = Paths.get(destinationPath);
+					String name = fileName + "."+targetExtension;
+					String originalFileName = fileName + "." + targetExtension;
+					String contentType = "application/x-shockwave-flash";
+					byte[] content = null;
+					content = Files.readAllBytes(target);
+
+					result = new MockMultipartFile(name, originalFileName, contentType, content);
+					Files.delete(target);
+					Files.delete(Paths.get(tempFilePath));
+
+					break loop;
+				default:
+					System.out.println("Failed: job status " + job.getStatus().getCode());
+					break loop;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
 
 	public void addMultimediaFile(MultipartFile file, boolean first, String name){
 		try{
@@ -5955,6 +6055,15 @@ public class SimplePageBean {
 				if (i > 0) {
 					base = fname.substring(0, i);
 					extension = fname.substring(i+1);
+					
+					if (extension.equals("ppt") || extension.equals("pptx")) {
+
+						String tempFilePath = "/usr/local/etc/" + base + ".pptx";
+						file.transferTo(new File(tempFilePath));
+						file = onlineConvertConverter(tempFilePath, base, "swf");
+						extension = "swf";
+						fname = base + ".swf";
+					}
 				}
 				
 				mimeType = file.getContentType();
