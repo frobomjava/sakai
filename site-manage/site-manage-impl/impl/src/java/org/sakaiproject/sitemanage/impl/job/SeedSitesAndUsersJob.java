@@ -253,7 +253,7 @@ public class SeedSitesAndUsersJob implements Job {
 			String lastName = faker.name().lastName();
 			String eid = faker.numerify("#########");
 			try {
-	            user = userDirectoryService.addUser(null, eid, faker.name().firstName(), lastName, eid + "@nowhere.com", faker.letterify("???????"), userType, null);
+	            user = userDirectoryService.addUser(null, eid, faker.name().firstName(), lastName, eid + "@nowhere.com", faker.letterify("???????"), userType, null, "");
             } catch (UserIdInvalidException uiue) {
             	log.error("createUsers, invalid userId: ", uiue);
             } catch (UserAlreadyDefinedException uade) {

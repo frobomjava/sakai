@@ -66,7 +66,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 	/** All fields. */
 	protected String[] m_fieldNames = {"USER_ID", "EMAIL", "EMAIL_LC", "FIRST_NAME", "LAST_NAME", "TYPE", "PW", "CREATEDBY", "MODIFIEDBY",
-			"CREATEDON", "MODIFIEDON"};
+			"CREATEDON", "MODIFIEDON", "UNIVERSITY"};//thin
 
 	/*************************************************************************************************************************************************
 	 * Dependencies
@@ -261,6 +261,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 		public UserEdit put(String id, String eid)
 		{
+			System.out.println("DbUserService.java, UserEdit put(),line 264");
 			// check for already exists
 			if (check(id)) return null;
 
@@ -274,6 +275,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 		public UserEdit edit(String id)
 		{
+			System.out.println("DbUserService.java, UserEdit edit(),line 278");
 			BaseUserEdit rv = (BaseUserEdit) super.editResource(id);
 
 			if (rv != null) rv.activate();
@@ -373,7 +375,16 @@ public abstract class DbUserService extends BaseUserDirectoryService
 		protected Object[] fields(String id, UserEdit edit, boolean idAgain)
 		{
 			Object[] rv = new Object[idAgain ? 12 : 11];
+			System.out.println("DbUserService.java, Object fields,line 378");
+			System.out.println("object field size="+rv.length);
 			rv[0] = caseId(id);
+			System.out.println("rv 0 "+rv[0]);
+			System.out.println("rv 1 "+rv[1]);
+			System.out.println("rv 2 "+rv[2]);
+			System.out.println("rv 3 "+rv[3]);
+			System.out.println("rv 4 "+rv[4]);
+			System.out.println("rv 5 "+rv[5]);
+			System.out.println("rv 6 "+rv[6]);
 			if (idAgain)
 			{
 				rv[11] = rv[0];
@@ -401,6 +412,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 			else
 			{
+				System.out.println("DbUserService line 415, else ..");
 				rv[1] = StringUtils.trimToEmpty(edit.getEmail());
 				rv[2] = StringUtils.trimToEmpty(edit.getEmail().toLowerCase());
 				rv[3] = StringUtils.trimToEmpty(edit.getFirstName());
@@ -438,6 +450,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 		{
 			try
 			{
+				System.out.println("readSqlResultRecord super() DbUserService.java line 441");
 				String id = result.getString(1);
 				String email = result.getString(2);
 				String email_lc = result.getString(3);
@@ -449,7 +462,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				String modifiedBy = result.getString(9);
 				Time createdOn = timeService().newTime(result.getTimestamp(10, sqlService().getCal()).getTime());
 				Time modifiedOn = timeService().newTime(result.getTimestamp(11, sqlService().getCal()).getTime());
-
+				String university="";
 				// find the eid from the mapping
 				String eid = checkMapForEid(id);
 				if (eid == null)
@@ -458,7 +471,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				}
 
 				// create the Resource from these fields
-				return new BaseUserEdit(id, eid, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn);
+				return new BaseUserEdit(id, eid, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn, university);
 			}
 			catch (SQLException e)
 			{
@@ -838,6 +851,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				BaseUserEdit userEdit = null;
 				try
 				{
+					System.out.println("readSqlResultRecord method in DbUserService.java line 841");
 					String idFromMap = result.getString(1);
 					String eidFromMap = cleanEid(result.getString(2));
 
@@ -852,9 +866,9 @@ public abstract class DbUserService extends BaseUserDirectoryService
 					String modifiedBy = result.getString(10);
 					Time createdOn = (result.getObject(11) != null) ? timeService().newTime(result.getTimestamp(11, sqlService().getCal()).getTime()) : null;
 					Time modifiedOn = (result.getObject(12) != null) ? timeService().newTime(result.getTimestamp(12, sqlService().getCal()).getTime()) : null;
-
+					String university="";
 					// create the Resource from these fields
-					userEdit = new BaseUserEdit(idFromMap, eidFromMap, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn);
+					userEdit = new BaseUserEdit(idFromMap, eidFromMap, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn, university);
 
 					if (idFromSakaiUser != null)
 					{

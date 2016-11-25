@@ -68,6 +68,13 @@ public interface UserEdit extends User, Edit
 	 * @param name
 	 *        The user's last name.
 	 */
+	void setUniversity(String university);
+	/**
+	 * Set the user's university.
+	 * 
+	 * @param name
+	 *        The user's university.
+	 */
 	void setLastName(String name);
 
 	/**
@@ -76,6 +83,7 @@ public interface UserEdit extends User, Edit
 	 * @param pw
 	 *        The user's new password.
 	 */
+	
 	void setPassword(String pw);
 
 	/**
@@ -97,6 +105,11 @@ public interface UserEdit extends User, Edit
 	 *    
 	 */
 	void restrictEditLastName();
+	/**
+	 * Make the user's last name unchangable during this edit
+	 *    
+	 */
+	void restrictEditUniversity();//thin
 	
 	/**
 	 * Make the user's email address unchangable during this edit

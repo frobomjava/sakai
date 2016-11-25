@@ -147,7 +147,7 @@ public class SakaiPortalLogin extends AbstractWebService {
             try {
                 // Set password to something unguessable - they can set a new PW once they are logged in
                 String hiddenPW = idManager.createUuid();
-                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null);
+                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null, null);//thin
                             LOG.debug("User Created...");
             } catch(Exception e) {
                 LOG.error("Unable to create user...");

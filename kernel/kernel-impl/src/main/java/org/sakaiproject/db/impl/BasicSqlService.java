@@ -875,6 +875,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public boolean dbWrite(String sql)
 	{
+		System.out.println("");
+		System.out.println("1, dbwrite");
 		if (LOG.isDebugEnabled())
 		{
 			LOG.debug("dbWrite(String " + sql + ")");
@@ -895,6 +897,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public boolean dbWrite(String sql, String var)
 	{
+		System.out.println("");
+		System.out.println("2, dbwrite");
 		if (LOG.isDebugEnabled())
 		{
 			LOG.debug("dbWrite(String " + sql + ", String " + var + ")");
@@ -1051,6 +1055,9 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public boolean dbWrite(String sql, Object[] fields)
 	{
+		System.out.println("dbWrite in BasicSqlService.java line 1054");
+		System.out.println("sql="+sql);
+		System.out.println("size of fields="+fields.length);
 		if (LOG.isDebugEnabled())
 		{
 			LOG.debug("dbWrite(String " + sql + ", Object[] " + Arrays.toString(fields) + ")");
@@ -1072,6 +1079,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public boolean dbWrite(Connection connection, String sql, Object[] fields)
 	{
+		System.out.println("");
+		System.out.println("4, dbWrite");
 		if (LOG.isDebugEnabled())
 		{
 			LOG.debug("dbWrite(Connection " + connection + ", String " + sql + ", Object[] " + Arrays.toString(fields) + ")");
@@ -1114,6 +1123,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public boolean dbWrite(String sql, Object[] fields, String lastField)
 	{
+		System.out.println("");
+		System.out.println("5, dbwrite");
 		if (LOG.isDebugEnabled())
 		{
 			LOG.debug("dbWrite(String " + sql + ", Object[] " + Arrays.toString(fields) + ", String " + lastField + ")");
@@ -1127,6 +1138,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	protected boolean dbWrite(String sql, Object[] fields, String lastField, Connection callerConnection, boolean failQuiet)
 	{
+		System.out.println("");
+		System.out.println("6, dbwrite");
  		return ( dbWriteCount(sql, fields, lastField, callerConnection, failQuiet) >= 0 ) ;
 	}
 
@@ -1135,6 +1148,8 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	protected boolean dbWrite(String sql, Object[] fields, String lastField, Connection callerConnection, int failQuiet)
 	{
+		System.out.println("");
+		System.out.println("7, dbwrite");
  		return ( dbWriteCount(sql, fields, lastField, callerConnection, failQuiet) >= 0 ) ;
 	}
 
@@ -1150,6 +1165,9 @@ public abstract class BasicSqlService implements SqlService
 	 */
 	public int dbWriteCount(String sql, Object[] fields, String lastField, Connection callerConnection, int failQuiet)
 	{
+		System.out.println("dbWriteCount in BasicSqlService.java line 1156");
+		System.out.println("sql="+sql);
+		System.out.println("fields size="+fields.length);
 		int retval = -1;
 		// check for a transaction connection
 		if (callerConnection == null)
@@ -1229,6 +1247,7 @@ public abstract class BasicSqlService implements SqlService
 			// last, put in the string value
 			if (lastField != null)
 			{
+				System.out.println("line 1238"+lastField);
 				sqlServiceSql.setBytes(pstmt, lastField, pos);
 				pos++;
 			}

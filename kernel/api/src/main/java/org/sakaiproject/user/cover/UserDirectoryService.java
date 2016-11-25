@@ -242,21 +242,33 @@ public class UserDirectoryService
 			throws org.sakaiproject.user.api.UserIdInvalidException, org.sakaiproject.user.api.UserAlreadyDefinedException,
 			org.sakaiproject.user.api.UserPermissionException
 	{
+		System.out.println("UserDirectoryService.java, line 245, came from addUser UsersAction.java");
 		org.sakaiproject.user.api.UserDirectoryService service = getInstance();
 		if (service == null) return null;
 
 		return service.addUser(param0, param1);
 	}
-
+	
+	//thin
 	public static org.sakaiproject.user.api.User addUser(java.lang.String param0, java.lang.String param1, java.lang.String param2,
 			java.lang.String param3, java.lang.String param4, java.lang.String param5, java.lang.String param6,
-			org.sakaiproject.entity.api.ResourceProperties param7) throws org.sakaiproject.user.api.UserIdInvalidException,
+			org.sakaiproject.entity.api.ResourceProperties param7, java.lang.String param8) throws org.sakaiproject.user.api.UserIdInvalidException,
 			org.sakaiproject.user.api.UserAlreadyDefinedException, org.sakaiproject.user.api.UserPermissionException
 	{
+		System.out.println("UserDirectoryService.java, line 258, came from addUser UsersAction.java");
 		org.sakaiproject.user.api.UserDirectoryService service = getInstance();
 		if (service == null) return null;
-
-		return service.addUser(param0, param1, param2, param3, param4, param5, param6, param7);
+		System.out.println("UserDirectoryService.java, line 261");
+		System.out.println("param0="+param0);
+		System.out.println("param1="+param1);
+		System.out.println("param2="+param2);
+		System.out.println("param3="+param3);
+		System.out.println("param4="+param4);
+		System.out.println("param5="+param5);
+		System.out.println("param6="+param6);
+		System.out.println("param7="+param7);
+		System.out.println("param8="+param8);
+		return service.addUser(param0, param1, param2, param3, param4, param5, param6, param7, param8);
 	}
 
 	public static org.sakaiproject.user.api.UserEdit mergeUser(org.w3c.dom.Element param0)

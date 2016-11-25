@@ -101,13 +101,18 @@ public interface User extends Entity, Comparable
 	 * @return The user's last name.
 	 */
 	String getLastName();
+	
+	/**
+	 * Access the user's last name.
+	 * 
+	 * @return The user's last name.
+	 */
+	String getUniversity();//thin
 
 	/**
-	 * Check if this is the user's password.
+	 * Access the user's university.
 	 * 
-	 * @param pw
-	 *        The clear text password to check.
-	 * @return true if the password matches, false if not.
+	 * @return The user's university.
 	 */
 	boolean checkPassword(String pw);
 

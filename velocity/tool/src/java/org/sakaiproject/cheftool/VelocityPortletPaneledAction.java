@@ -188,7 +188,10 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 	{
 		HttpServletRequest req = rundata.getRequest();
 		Session session = SessionManager.getCurrentSession();
-		
+		System.out.println("VelocityPortletPaneledAction.java/ initState method");
+		System.out.println("servlet request= "+req);
+		System.out.println("session= "+session);
+		System.out.println();
 		if (getVmReference("is_wireless_device", req) == null)
 		{
 			Object c = session.getAttribute("is_wireless_device");
@@ -334,7 +337,14 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 		// call the old initState:
 		VelocityPortlet portlet = (VelocityPortlet) req.getAttribute(ATTR_PORTLET);
 		JetspeedRunData rundata = (JetspeedRunData) req.getAttribute(ATTR_RUNDATA);
-
+		System.out.println();
+		System.out.println("VelocityPortletPaneledAction.java (line 341)");
+		System.out.println("velocity portlet="+portlet);
+		System.out.println("jetspeed run data="+rundata);
+		System.out.println("session state="+state);
+		System.out.println("servlet request="+req);
+		System.out.println("servlet response="+res);
+		System.out.println();
 		initState(state, portlet, rundata);
 
 	} // initState
@@ -606,6 +616,7 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 		// process the action if present
 		if (action != null)
 		{
+			System.out.println("velopcity class, line 619, action="+action);
 			if (!checkCSRFToken(req, rundata, action)) return;
 				
 			// if we have an active helper, send the action there
@@ -628,8 +639,10 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 			if (HELPER_MODE_DONE.equals(toolSession.getAttribute(HELPER_LINK_MODE)))
 			{
 				Tool tool = ToolManager.getCurrentTool();
+				System.out.println("current tool line 636="+tool);
 	
 				String url = (String) toolSession.getAttribute(tool.getId() + Tool.HELPER_DONE_URL);
+				System.out.println("url of tool line 639="+url);
 				toolSession.removeAttribute(tool.getId() + Tool.HELPER_DONE_URL);
 				toolSession.removeAttribute(HELPER_LINK_MODE);
 	
@@ -666,7 +679,7 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 				panel = panel.replaceAll("[\r\n]","");
 			}
 			String redirect = url + "?" + ActionURL.PARAM_PANEL + "=" + panel;
-
+			System.out.println("redirect url line 676="+redirect);
 			try
 			{
 				res.sendRedirect(redirect);
@@ -761,7 +774,8 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 	 *         IOException, just like the "do" methods.
 	 */
 	protected void actionDispatch(String methodBase, String methodExt, HttpServletRequest req, HttpServletResponse res)
-	{
+	{System.out.println();
+	System.out.println("VelocityPortletPaneledAction.java/ actionDispatch()/ line 778");
 		String methodName = null;
 		try
 		{
@@ -769,18 +783,20 @@ public abstract class VelocityPortletPaneledAction extends ToolServlet
 			Class[] signature = new Class[2];
 			signature[0] = RunData.class;
 			signature[1] = Context.class;
-
+			System.out.println("RunData.class is "+signature[0]);
+			System.out.println("Context.class is "+signature[1]);
 			// the method name
 			methodName = methodBase + methodExt;
-
+			System.out.println("Method Name is "+methodName);
 			// find a method of this class with this name and signature
 			Method method = getClass().getMethod(methodName, signature);
-
+			System.out.println("method according to name and signature = "+method);
 			// parameters - the context for a "do" should not be used, so we will send in null
 			Object[] args = new Object[2];
 			args[0] = (JetspeedRunData) req.getAttribute(ATTR_RUNDATA);
 			args[1] = null;
-
+			System.out.println();
+			
 			// make the call
 			method.invoke(this, args);
 		}

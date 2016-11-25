@@ -48,6 +48,7 @@ class UserEditStub implements UserEdit {
 	private String firstName;
 	private String id;
 	private String lastName;
+	private String university;
 	private String type;
 	
 	// non-std user field, useful for caching test config
@@ -71,7 +72,10 @@ class UserEditStub implements UserEdit {
 
 	public void restrictEditLastName() {
 	}
-
+	
+	public void restrictEditUniversity() {
+	}
+	 
 	public void restrictEditPassword() {
 	}
 
@@ -98,6 +102,11 @@ class UserEditStub implements UserEdit {
 
 	public void setLastName(String name) {
 		this.lastName = name;
+		
+	}
+	
+	public void setUniversity(String university) {
+		this.university = university;
 		
 	}
 
@@ -139,6 +148,9 @@ class UserEditStub implements UserEdit {
 
 	public String getLastName() {
 		return this.lastName;
+	}
+	public String getUniversity() {//thin
+		return this.university;
 	}
 
 	public User getModifiedBy() {

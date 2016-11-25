@@ -1178,6 +1178,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_NAME)) {
 				user.restrictEditFirstName();
 			    user.restrictEditLastName();
+			   // user.restrictEditUniversity();//thin
 			}
 
 			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_EMAIL)) {
@@ -1435,6 +1436,8 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 	public UserEdit addUser(String id, String eid) throws UserIdInvalidException, UserAlreadyDefinedException,
 			UserPermissionException
 	{
+		System.out.println();
+		System.out.println("addUser is here in BaseUserDirectory.java, line 1440");
 		// clean the ids
 		id = cleanId(id);
 		eid = cleanEid(eid);
@@ -1466,9 +1469,15 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 	/**
 	 * @inheritDoc
 	 */
+	//thin
 	public User addUser(String id, String eid, String firstName, String lastName, String email, String pw, String type,
-			ResourceProperties properties) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException
+			ResourceProperties properties, String university) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException
 	{
+		System.out.println();
+		System.out.println("addUser method in BaseUserDirectory.java line 1474");
+		System.out.println("firstname="+firstName);
+		System.out.println("lastName="+lastName);
+		System.out.println("university="+university);
 		// get it added
 		UserEdit edit = addUser(id, eid);
 
@@ -1478,6 +1487,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		edit.setEmail(email);
 		edit.setPassword(pw);
 		edit.setType(type);
+		edit.setUniversity(university);
 
 		ResourcePropertiesEdit props = edit.getPropertiesEdit();
 		if (properties != null)
@@ -2027,6 +2037,10 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 
 		/** The user last name. */
 		protected String m_lastName = null;
+		
+		//thin
+		/** The user university. */
+		protected String m_university = null;
 
 		/** The user email address. */
 		protected String m_email = null;
@@ -2057,6 +2071,9 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 
 		/** If editing the last name is restricted **/
 		protected boolean m_restrictedLastName = false;
+		
+		/** If editing the last name is restricted **/
+		protected boolean m_restrictedUniversity = false;
 
 
 		/** If editing the email is restricted **/
@@ -2134,6 +2151,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_eid = cleanEid(el.getAttribute("eid"));
 			m_firstName = StringUtils.trimToNull(el.getAttribute("first-name"));
 			m_lastName = StringUtils.trimToNull(el.getAttribute("last-name"));
+			m_university = StringUtils.trimToNull(el.getAttribute("university"));
 			setEmail(StringUtils.trimToNull(el.getAttribute("email")));
 			m_pw = el.getAttribute("pw");
 			m_type = StringUtils.trimToNull(el.getAttribute("type"));
@@ -2231,12 +2249,13 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		 *        The modified on property.
 		 */
 		public BaseUserEdit(String id, String eid, String email, String firstName, String lastName, String type, String pw,
-				String createdBy, Time createdOn, String modifiedBy, Time modifiedOn)
+				String createdBy, Time createdOn, String modifiedBy, Time modifiedOn, String university)
 		{
 			m_id = id;
 			m_eid = eid;
 			m_firstName = firstName;
 			m_lastName = lastName;
+			m_university= university;
 			m_type = type;
 			setEmail(email);
 			m_pw = pw;
@@ -2262,6 +2281,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_id = user.getId();
 			m_eid = user.getEid();
 			m_firstName = user.getFirstName();
+			m_university= user.getUniversity();//thin
 			m_lastName = user.getLastName();
 			m_type = user.getType();
 			setEmail(user.getEmail());
@@ -2275,6 +2295,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_properties = new BaseResourcePropertiesEdit();
 			m_properties.addAll(user.getProperties());
 			((BaseResourcePropertiesEdit) m_properties).setLazy(((BaseResourceProperties) user.getProperties()).isLazy());
+			System.out.println();
+			System.out.println("setAll method in BaseUserDirectory.java line 2297");
+			System.out.println("university="+m_university);
+			System.out.println("firstname="+m_firstName);
+			System.out.println("lastname="+m_lastName);
 		}
 
 		/**
@@ -2299,11 +2324,15 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			user.setAttribute("eid", getEid());
 			if (m_firstName != null) user.setAttribute("first-name", m_firstName);
 			if (m_lastName != null) user.setAttribute("last-name", m_lastName);
+			if (m_university != null) user.setAttribute("university", m_university);//thin
 			if (m_type != null) user.setAttribute("type", m_type);
 			user.setAttribute("email", getEmail());
 			user.setAttribute("created-id", m_createdUserId);
 			user.setAttribute("modified-id", m_lastModifiedUserId);
-			
+			System.out.println();
+			System.out.println("toXml in BaseUserDirectory.java. line 2330");
+			System.out.println("firstname="+m_firstName);
+			System.out.println("university="+m_university);
 			if (m_createdTime != null)
 			{
 				user.setAttribute("created-time", m_createdTime.toString());
@@ -2539,6 +2568,12 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			if (m_lastName == null) return "";
 			return m_lastName;
 		}
+		//thin
+		public String getUniversity()
+		{
+			if (m_university == null) return "";
+			return m_university;
+		}
 
 		/**
 		 * @inheritDoc
@@ -2716,6 +2751,16 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		    	m_sortName = null;
 		    }
 		}
+		
+		//thin
+		public void setUniversity(String university)
+		{
+			if(!m_restrictedUniversity) {
+                // https://jira.sakaiproject.org/browse/SAK-20226 - removed html from name
+		    	m_university = formattedText().convertFormattedTextToPlaintext(university);
+		    	m_sortName = null;
+		    }
+		}
 
 		/**
 		 * @inheritDoc
@@ -2772,6 +2817,13 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		public void restrictEditLastName() {
 
 			m_restrictedLastName = true;
+
+		}
+		
+		//thin
+		public void restrictEditUniversity() {
+
+			m_restrictedUniversity = true;
 
 		}
 

@@ -744,7 +744,14 @@ public class BaseDbFlatStorage
 	 */
 	public Edit putResource(String id, Object[] fields)
 	{
-		return putResource(null, id, fields);
+		System.out.println();
+		System.out.println("BaseDbFlatSotrage.java/ putResource()/ line 747");
+		System.out.println("id="+id);
+		for(int i=0;i<fields.length;i++){
+			System.out.println("fields["+i+"]"+"="+fields[i]);//thin
+		}
+		System.out.println();
+		return putResource(null, id, fields);//thin
 	}
 
 	/**
@@ -760,8 +767,9 @@ public class BaseDbFlatStorage
 	 */
 	public Edit putResource(Connection conn, String id, Object[] fields)
 	{
+		
 		// process the insert
-		boolean ok = insertResource(id, fields, conn);
+		boolean ok = insertResource(id, fields, conn);//thin
 
 		// if this failed, assume a key conflict (i.e. id in use)
 		if (!ok) return null;
@@ -793,15 +801,30 @@ public class BaseDbFlatStorage
 		// bind values come from 'fields' array
 		// store results in fieldOverrides
 		// Note: MSSQL support removed in KNL-880
+		 
 
 		// will be a copy of table's insert values, with overrides as necessary
 		String[] overrideTableInsertValues = new String[m_resourceTableInsertValues.length];
 
 		Object[] fieldOverrides = new Object[m_resourceTableInsertValues.length];
-
+		System.out.println("TEst test test");
+		System.out.println("TEst test test");
+		System.out.println("fileds[] length = "+fields.length);
+		System.out.println("fieldOverrides[] length = "+fieldOverrides.length);
 		for (int i = 0; i < m_resourceTableInsertValues.length; i++)
-		{
+		{//thin
+			System.out.println("BaseDbFlatStorage.java/ insertResources()/ line 812");
+			System.out.println("TEst test test");
+			System.out.println("fileds[] length = "+fields.length);
+			System.out.println("fieldOverrides[] length = "+fieldOverrides.length);
+			System.out.println("m_resourceTableInsertValue length = "+m_resourceTableInsertValues.length);
+			
 			fieldOverrides[i] = fields[i];
+			System.out.println();
+			System.out.println("i="+i);
+			System.out.println("filedOverrides="+fieldOverrides[i]);
+			System.out.println("fields="+fields[i]);
+			System.out.println();
 			overrideTableInsertValues[i] = m_resourceTableInsertValues[i];
 		}
 		String statement = "insert into " + m_resourceTableName + "( " + fieldList(m_resourceTableInsertFields, m_resourceTableDbidField) + " )"

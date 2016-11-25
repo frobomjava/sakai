@@ -187,18 +187,28 @@ public class UsersAction extends PagedResourceActionII
 
 		if (state.getAttribute("single-user") == null)
 		{
+			System.out.println();
+			System.out.println("UsersAction.java/ initState method /line 191");
+			System.out.println("single-user");
+			System.out.println();
 			state.setAttribute("single-user", new Boolean(config.getInitParameter("single-user", "false")));
 			state.setAttribute("include-password", new Boolean(config.getInitParameter("include-password", "true")));
 		}
 
 		if (state.getAttribute("create-user") == null)
 		{
+			System.out.println();
+			System.out.println("create-user");
+			System.out.println();
 			state.setAttribute("create-user", new Boolean(config.getInitParameter("create-user", "false")));
 			state.setAttribute("create-login", new Boolean(config.getInitParameter("create-login", "false")));
 		}
 
 		if (state.getAttribute("create-type") == null)
 		{
+			System.out.println();
+			System.out.println("create-type null");
+			System.out.println();
 			state.setAttribute("create-type", config.getInitParameter("create-type", ""));
 		}
 
@@ -248,7 +258,8 @@ public class UsersAction extends PagedResourceActionII
 	 * build the context
 	 */
 	public String buildMainPanelContext(VelocityPortlet portlet, Context context, RunData rundata, SessionState state)
-	{
+	{	System.out.println();
+		System.out.println("UsersAction.java/ buildMainPanelContext()/line 261");
 		context.put("tlang", rb);
 		context.put("includeLatestJQuery", PortalUtils.includeLatestJQuery("UsersAction"));
 		boolean singleUser = ((Boolean) state.getAttribute("single-user")).booleanValue();
@@ -284,13 +295,25 @@ public class UsersAction extends PagedResourceActionII
 			// TODO: Decide if this should be in "getPortalUrl"
 			// I don't think so but could be convinced - /chuck
 			String controllingPortal = (String) s.getAttribute("sakai-controlling-portal");
+			System.out.println("**************");
+			System.out.println("line 297 controllingPortal="+controllingPortal);
+			System.out.println("**************");
 			String portalUrl = ServerConfigurationService.getPortalUrl();
+			System.out.println("**************");
+			System.out.println("line 301 portalUrl="+portalUrl);
+			System.out.println("**************");
 			if ( controllingPortal != null ) {
 				portalUrl = portalUrl + "/" + controllingPortal;
+				System.out.println("**************");
+				System.out.println("line 300 portalUrl="+portalUrl);
+				System.out.println("**************");
 			}
  
 			sendParentRedirect((HttpServletResponse) ThreadLocalManager.get(RequestFilter.CURRENT_HTTP_RESPONSE),
 					portalUrl);
+			
+			System.out.println("template="+template);
+			System.out.println();
 			return template;
 		}
 
@@ -310,48 +333,81 @@ public class UsersAction extends PagedResourceActionII
 		if ((singleUser) && (mode != null) && (mode.equals("edit")))
 		{
 			template = buildEditContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 332 template="+template);
+			System.out.println("**************");
 		}
 		else if (singleUser)
 		{
 			String id = SessionManager.getCurrentSessionUserId();
 			state.setAttribute("user-id", id);
 			template = buildViewContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 341 template="+template);
+			System.out.println("**************");
 		}
 		else if (createUser)
 		{
 			template = buildCreateContext(state, context);
+			
+			System.out.println("template for createUser = "+template);
+		
 		}
 		else if (mode == null)
 		{
 			template = buildListContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 355 template="+template);
+			System.out.println("**************");
 		}
 		else if (mode.equals("new"))
 		{
 			template = buildNewContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 362 template="+template);
+			System.out.println("**************");
 		}
 		else if (mode.equals("edit"))
 		{
 			template = buildEditContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 369 template="+template);
+			System.out.println("**************");
 		}
 		else if (mode.equals("confirm"))
 		{
 			template = buildConfirmRemoveContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 376 template="+template);
+			System.out.println("**************");
 		}
 		else if (mode.equals("import"))
 		{
 			template = buildImportContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 383 template="+template);
+			System.out.println("**************");
 		}
 		else if (mode.equals("mode_helper") && StringUtils.equals(status, "processImport")) {
 			//returning from helper after uploading file
 			template = buildProcessImportContext(state, rundata, context);
+			System.out.println("**************");
+			System.out.println("line 390 template="+template);
+			System.out.println("**************");
 		}
 		else
 		{
 			Log.warn("chef", "UsersAction: mode: " + mode);
 			template = buildListContext(state, context);
+			System.out.println("**************");
+			System.out.println("line 398 template="+template);
+			System.out.println("**************");
 		}
 
 		String prefix = (String) getContext(rundata).get("template");
+		
+		System.out.println("line 409 prefix="+prefix);
+		System.out.println();
 		return prefix + template;
 
 	} // buildNormalContext
@@ -454,18 +510,39 @@ public class UsersAction extends PagedResourceActionII
 
 		String value = (String) state.getAttribute("valueEid");
 		if (value != null) context.put("valueEid", value);
+		System.out.println("**************");
+		System.out.println("line 509 svalueEid="+value);
+		System.out.println("**************");
 
 		value = (String) state.getAttribute("valueFirstName");
 		if (value != null) context.put("valueFirstName", value);
+		System.out.println("**************");
+		System.out.println("line 515 valueFirstName="+value);
+		System.out.println("**************");
 
 		value = (String) state.getAttribute("valueLastName");
 		if (value != null) context.put("valueLastName", value);
+		System.out.println("**************");
+		System.out.println("line 521 valueLastName="+value);
+		System.out.println("**************");
+		
+		value= (String) state.getAttribute("valueUniversity");
+		if (value !=null) context.put("valueUniversity", value);
+		System.out.println("**************");
+		System.out.println("line 527 valueUniversity="+value);
+		System.out.println("**************");
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
+		System.out.println("**************");
+		System.out.println("line 527 valueEmail="+value);
+		System.out.println("**************");
 
 		value = (String) state.getAttribute("valueType");
 		if (value != null) context.put("valueType", value);
+		System.out.println("**************");
+		System.out.println("line 533 valueType="+value);
+		System.out.println("**************");
 		
 		//optional attributes list
 		context.put("optionalAttributes", getOptionalAttributes());
@@ -517,6 +594,9 @@ public class UsersAction extends PagedResourceActionII
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
+		
+		value = (String) state.getAttribute("valueUniversity");
+		if (value != null) context.put("valueUniversity", value);
 				
 		if ((Boolean)state.getAttribute("user.recaptcha-enabled"))
 		{
@@ -579,6 +659,9 @@ public class UsersAction extends PagedResourceActionII
 
 		value = (String) state.getAttribute("valueLastName");
 		if (value != null) context.put("valueLastName", value);
+		
+		value= (String) state.getAttribute("valueUniversity");
+		if (value !=null) context.put("valueUniversity", value);
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
@@ -774,7 +857,7 @@ public class UsersAction extends PagedResourceActionII
 			for(ImportedUser user: users) {
 				try {
 					
-					TempUser tempUser = new TempUser(user.getEid(), user.getEmail(), null, null, user.getEid(), user.getPassword(), null);
+					TempUser tempUser = new TempUser(user.getEid(), user.getEmail(), null, null, user.getEid(), user.getPassword(), null, user.getUniversity());
 					
 					if (!allowEmailDuplicates && UserDirectoryService.checkDuplicatedEmail(tempUser)){
 						addAlert(state, rb.getString("useact.theuseemail1") + ":" + tempUser.getEmail());
@@ -783,7 +866,7 @@ public class UsersAction extends PagedResourceActionII
 						continue;
 					}
 					
-					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties());
+					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties(), user.getUniversity());//thin
 			
 					
 				}
@@ -890,6 +973,7 @@ public class UsersAction extends PagedResourceActionII
 		{
 			UserEdit user = UserDirectoryService.editUser(id);
 			state.setAttribute("user", user);
+			System.out.println("UsersAction.java, line 976, ="+state.getAttribute("user"));
 			state.setAttribute("mode", "edit");
 
 			// disable auto-updates while not in list mode
@@ -929,22 +1013,32 @@ public class UsersAction extends PagedResourceActionII
 	 * doSave called when "eventSubmit_doSave" is in the request parameters to save user edits
 	 */
 	public void doSave(RunData data, Context context)
-	{
+	{System.out.println("dosave here");
 		SessionState state = ((JetspeedRunData) data).getPortletSessionState(((JetspeedRunData) data).getJs_peid());
-		
+		System.out.println("dosave here2"+state);
+		System.out.println("Request Method = "+data.getRequest().getMethod());
 		if (!"POST".equals(data.getRequest().getMethod())) {
+			System.out.println("post not ");
 			return;
 		}
-
+		
 		// read the form - if rejected, leave things as they are
-		if (!readUserForm(data, state)) return;
+		if (!readUserForm(data, state)) {
+			System.out.println("readUserForm() returned well");
+			System.out.println("data="+data);
+			System.out.println("state="+state);
+			return;
+		}
 
 
 		
 		// commit the change
 		UserEdit edit = (UserEdit) state.getAttribute("user");
 		String valueEmail = (String)state.getAttribute("valueEmail");
+		System.out.println("line 1025 valueEmail = "+valueEmail);
 		String oldEmail = (String)state.getAttribute("oldEmail");
+		String valueUniversity=(String)state.getAttribute("valueUniversity");
+		System.out.println("valueUniversity HERE!!!!!!"+valueUniversity);
 		if (edit != null)
 		{
 			
@@ -988,6 +1082,7 @@ public class UsersAction extends PagedResourceActionII
 		state.removeAttribute("valueEid");
 		state.removeAttribute("valueFirstName");
 		state.removeAttribute("valueLastName");
+		state.removeAttribute("valueUniversity");
 		state.removeAttribute("valueEmail");
 		state.removeAttribute("valueType");
 
@@ -1070,6 +1165,7 @@ public class UsersAction extends PagedResourceActionII
 		state.removeAttribute("valueEid");
 		state.removeAttribute("valueFirstName");
 		state.removeAttribute("valueLastName");
+		state.removeAttribute("valueUniversity");
 		state.removeAttribute("valueEmail");
 		state.removeAttribute("valueType");
 
@@ -1183,6 +1279,7 @@ public class UsersAction extends PagedResourceActionII
                 state.removeAttribute("valueEid");
                 state.removeAttribute("valueFirstName");
                 state.removeAttribute("valueLastName");
+                state.removeAttribute("valueUniversity");
                 state.removeAttribute("valueEmail");
                 state.removeAttribute("valueType");
 
@@ -1243,32 +1340,46 @@ public class UsersAction extends PagedResourceActionII
 		// Admin Delete--remove--false------false------false
 		// Gateway New---null----false------true-------false
 		// Account Edit--edit----true-------false------false
-
+		System.out.println();
 		// read the form
 		String id = StringUtils.trimToNull(data.getParameters().getString("id"));
+		System.out.println();
+		System.out.println("readUserForm() line 1345");
 		String eid = StringUtils.trimToNull(data.getParameters().getString("eid"));
+		System.out.println(" eid="+eid);
 		state.setAttribute("valueEid", eid);
 		String firstName = StringUtils.trimToNull(data.getParameters().getString("first-name"));
+		System.out.println(" firstName="+firstName);
 		state.setAttribute("valueFirstName", firstName);
 		String lastName = StringUtils.trimToNull(data.getParameters().getString("last-name"));
+		System.out.println(" lastName="+lastName);
 		state.setAttribute("valueLastName", lastName);
+		String university = StringUtils.trimToNull(data.getParameters().getString("university"));
+		System.out.println(" uni="+university);
+		state.setAttribute("valueUniversity", university);//thin
 		String email = StringUtils.trimToNull(data.getParameters().getString("email"));
+		System.out.println(" email="+email);
 		state.setAttribute("valueEmail", email);
 		String pw = StringUtils.trimToNull(data.getParameters().getString("pw"));
+		System.out.println(" password="+pw);
         String pwConfirm = StringUtils.trimToNull(data.getParameters().getString("pw0"));
-
+        System.out.println(" passwordConfirm="+pwConfirm);
         String pwcur = StringUtils.trimToNull(data.getParameters().getString("pwcur"));
-        
+        System.out.println(" passwordCur="+pwcur);
         Integer disabled = Integer.valueOf(StringUtils.trimToNull(data.getParameters().getString("disabled")) != null ? "1" : "0" );
         
         String mode = (String) state.getAttribute("mode");
+        System.out.println(" mode="+mode);
 		boolean singleUser = ((Boolean) state.getAttribute("single-user")).booleanValue();
 		boolean createUser = ((Boolean) state.getAttribute("create-user")).booleanValue();
-
+		System.out.println(" singleUser="+singleUser);
+		System.out.println(" createUser="+createUser);
 		// SAK-29182 - enforce invalid domains when creating a user through Gateway -> New Account
 		boolean isEidEditable = isEidEditable( state );
+		System.out.println(" isEidEditable="+isEidEditable);
+		System.out.println();
 		if( createUser && !isEidEditable )
-		{
+		{System.out.println("readUserForm method line 1380,...");
 			for( String domain : getInvalidEmailDomains() )
 			{
 				if( email.toLowerCase().endsWith( domain.toLowerCase() ) )
@@ -1308,8 +1419,10 @@ public class UsersAction extends PagedResourceActionII
 		{
 			if (createUser)
 			{
+				System.out.println("line 1420, this is CreateUser!!!");
 				// for the case of Gateway Account tool creating new user
 				type = (String) state.getAttribute("create-type");
+				System.out.println("line 1423,  type="+type);
 			}
 		}
 		
@@ -1341,6 +1454,13 @@ public class UsersAction extends PagedResourceActionII
 		
 		// get the user
 		UserEdit user = (UserEdit) state.getAttribute("user");
+		System.out.println();
+		System.out.println("UsersAction.java readUserForm() method line 1457");
+		System.out.println("readUserForm(), line 1458,state="+state.getAttribute("user"));
+//		System.out.println("user's ID="+user.getId());
+//		System.out.println("user first Name="+user.getFirstName());
+//		System.out.println("user university="+user.getUniversity());
+//		System.out.println("user email="+user.getEmail());
 		//if user has not changed the email then skip the 'email exists' verification. Also, skip it when user is admin
 		if(!SecurityService.isSuperUser() && user != null && !(StringUtils.equals(user.getEmail(), email))){
 			try {
@@ -1409,6 +1529,7 @@ public class UsersAction extends PagedResourceActionII
 		// add if needed
 		if (user == null)
 		{
+			System.out.println("UsersAction.java user=null line 1532");
 			// make sure we have eid
 			if (isEidEditable)
 			{
@@ -1421,6 +1542,7 @@ public class UsersAction extends PagedResourceActionII
 			
 			else
 			{
+				System.out.println("UsersAction.java user=not null line 1543");
 				// eid is not editable, so we're using the email as the eid
 				if (email == null)
 				{
@@ -1431,12 +1553,13 @@ public class UsersAction extends PagedResourceActionII
 			}
 
 			// if we validate through email, passwords will be handled in AccountValidator
-			TempUser tempUser = new TempUser(eid, null, null, null, eid, pw, null);
+			TempUser tempUser = new TempUser(eid, null, null, null, eid, pw, null, null);
 			if (!validateWithAccountValidator)
 			{
 				// if in create mode, make sure we have a password
 				if (createUser)
 				{
+					System.out.println("UsersAction.java validateWithAccValid line 1560");
 					if (pw == null)
 					{
 						addAlert(state, rb.getString("usecre.pasismis"));
@@ -1478,21 +1601,51 @@ public class UsersAction extends PagedResourceActionII
 				User newUser;
 				if (validateWithAccountValidator)
 				{
+					System.out.println("UsersAction.java validWithAccValid line 1602");
+					System.out.println("id="+id);
+					System.out.println("firstName="+firstName);
+					System.out.println("university="+university);
 					// the eid is their email address. The password is random
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties, university);
 					// Invoke AccountValidator to send an email to the user containing a link to a form on which they can set their name and password
 					ValidationLogic validationLogic = (ValidationLogic) ComponentManager.get(ValidationLogic.class);
 					validationLogic.createValidationAccount(newUser.getId(), ValidationAccount.ACCOUNT_STATUS_REQUEST_ACCOUNT);
 				}
 				else
 				{
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties);
+					System.out.println("else UsersAction.java validWithAccValid line 1602");
+					System.out.println("id="+id);
+					System.out.println("eid="+eid);
+					System.out.println("firstName="+firstName);
+					System.out.println("lastName="+lastName);
+					System.out.println("email="+email);
+					System.out.println("pw="+pw);
+					System.out.println("type="+type);
+					System.out.println("properties="+properties);
+					System.out.println("university="+university);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties, university);
+					System.out.println("User newUser value ID="+newUser.getId());
+					System.out.println("User newUser value eid="+newUser.getEid());
+					System.out.println("User newUser value firstName="+newUser.getFirstName());
+					System.out.println("User newUser value lastName="+newUser.getLastName());
+					System.out.println("User newUser value email="+newUser.getEmail());
+					System.out.println("User newUser value type="+newUser.getType());
+					System.out.println("User newUser value properties="+newUser.getProperties());
+					System.out.println("User newUser value university="+newUser.getUniversity());
 
 					if (SecurityService.isSuperUser()) {
 						if(disabled == 1){
 							try {
+								System.out.println("UsersAction.java securityservice line 1623");
+								System.out.println("id="+newUser.getId());
+								System.out.println("firstName="+newUser.getFirstName());
+								System.out.println("university="+newUser.getUniversity());
 								UserEdit editUser = UserDirectoryService.editUser(newUser.getId());
 								editUser.getProperties().addProperty("disabled", "true");
+								System.out.println("UsersAction.java securityservice line 1629");
+								System.out.println("id="+editUser.getId());
+								System.out.println("firstName="+editUser.getFirstName());
+								System.out.println("university="+editUser.getUniversity());
 								newUser = editUser;
 							} catch (UserNotDefinedException e) {
 								addAlert(state, rb.getString("usecre.disableFailed"));
@@ -1504,7 +1657,10 @@ public class UsersAction extends PagedResourceActionII
 						}
 					}
 				}
-
+				System.out.println("UsersAction.java OutOfsecurityservice line 1644");
+				System.out.println("id="+newUser.getId());
+				System.out.println("firstName="+newUser.getFirstName());
+				System.out.println("university="+newUser.getUniversity());
 				// put the user in the state
 				state.setAttribute("newuser", newUser);
 			}

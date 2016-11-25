@@ -114,7 +114,7 @@ public class UserEntityProvider extends AbstractEntityProvider implements CoreEn
         User user = null;
         if (params.containsKey("username")) {
             String username = (String) params.get("username");
-            user = new EntityUser(username, null, null, null, username, password, null);
+            user = new EntityUser(username, null, null, null, username, password, null, null);
         }
         rating = userDirectoryService.validatePassword(password, user);
         return new ActionReturn(rating.name());
@@ -153,8 +153,9 @@ public class UserEntityProvider extends AbstractEntityProvider implements CoreEn
 
             // NOTE: must assign empty password if user is created this way.... it sucks -AZ
             try {
+            	System.out.println("UserEntity.java, line 156");
                 User newUser = userDirectoryService.addUser(userId, user.getEid(), user.getFirstName(), user.getLastName(), 
-                        user.getEmail(), "", user.getType(), user.getProperties());
+                        user.getEmail(), "", user.getType(), user.getProperties(), user.getUniversity());
                 userId = newUser.getId();
             } catch (UserIdInvalidException e) {
                 throw new IllegalArgumentException("User ID is invalid, id=" + user.getId() + ", eid="+user.getEid(), e);
@@ -181,6 +182,7 @@ public class UserEntityProvider extends AbstractEntityProvider implements CoreEn
                 edit.setEmail(user.getEmail());
                 edit.setFirstName(user.getFirstName());
                 edit.setLastName(user.getLastName());
+                edit.setUniversity(user.getUniversity());//thin
                 edit.setPassword(user.getPassword());
                 edit.setType(user.getType());
                 // put in properties
@@ -231,6 +233,7 @@ public class UserEntityProvider extends AbstractEntityProvider implements CoreEn
             edit.setEmail(u.getEmail());
             edit.setFirstName(u.getFirstName());
             edit.setLastName(u.getLastName());
+            edit.setUniversity(u.getUniversity());//thin
             edit.setType(u.getType());
             // put in properties
             ResourcePropertiesEdit rpe = edit.getPropertiesEdit();
@@ -241,6 +244,7 @@ public class UserEntityProvider extends AbstractEntityProvider implements CoreEn
             edit.setEmail(u.getEmail());
             edit.setFirstName(u.getFirstName());
             edit.setLastName(u.getLastName());
+            edit.setUniversity(u.getUniversity());//thin
             edit.setPassword(u.getPassword());
             edit.setType(u.getType());
             // put in properties

@@ -30,6 +30,10 @@
                     $validator.escapeHtml($user.FirstName)
                 </div>
                 <div class="shorttext">
+                    <label>$tlang.getString("usecre.phno")</label>
+                  
+                </div>
+                <div class="shorttext">
                     <label>$tlang.getString("usecre.lasnam")</label>
                     $validator.escapeHtml($user.LastName)
                 </div>
