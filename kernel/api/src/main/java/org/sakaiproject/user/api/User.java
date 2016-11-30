@@ -94,6 +94,13 @@ public interface User extends Entity, Comparable
 	 * @return The user's first name.
 	 */
 	String getFirstName();
+	
+	/**
+	 * Access the user's university.
+	 * 
+	 * @return The user's university.
+	 */
+	String getUniversity();
 
 	/**
 	 * Access the user's last name.

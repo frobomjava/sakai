@@ -143,7 +143,7 @@ public interface UserDirectoryService extends EntityProducer
 	 *            if the current user does not have permission to add a user.
 	 */
 	User addUser(String id, String eid, String firstName, String lastName, String email, String pw, String type,
-			ResourceProperties properties) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException;
+			ResourceProperties properties, String university) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException;
 
 	/**
 	 * check permissions for addUser().

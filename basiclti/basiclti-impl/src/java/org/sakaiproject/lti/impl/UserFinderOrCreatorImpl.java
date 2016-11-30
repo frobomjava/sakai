@@ -61,6 +61,7 @@ public class UserFinderOrCreatorImpl implements UserFinderOrCreator {
         String fname = (String) payload.get(BasicLTIConstants.LIS_PERSON_NAME_GIVEN);
         String lname = (String) payload.get(BasicLTIConstants.LIS_PERSON_NAME_FAMILY);
         String email = (String) payload.get(BasicLTIConstants.LIS_PERSON_CONTACT_EMAIL_PRIMARY);
+        String university = (String) payload.get(BasicLTIConstants.UNI);
 
         if (fname == null && lname == null && fullname != null) {
             int ipos = fullname.trim().lastIndexOf(' ');
@@ -119,7 +120,7 @@ public class UserFinderOrCreatorImpl implements UserFinderOrCreator {
         if (user == null) {
         	try {
         		String hiddenPW = IdManager.createUuid();
-        		userDirectoryService.addUser(null, eid, fname, lname, email, hiddenPW, "registered", null);
+        		userDirectoryService.addUser(null, eid, fname, lname, email, hiddenPW, "registered", null, university);
         		M_log.info("Created user=" + eid);
         		user = userDirectoryService.getUserByEid(eid);
         	} catch (Exception e) {

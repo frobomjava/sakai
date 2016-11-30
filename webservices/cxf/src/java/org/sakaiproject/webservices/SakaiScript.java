@@ -147,6 +147,7 @@ public class SakaiScript extends AbstractWebService {
             @WebParam(name = "eid", partName = "eid") @QueryParam("eid") String eid,
             @WebParam(name = "firstname", partName = "firstname") @QueryParam("firstname") String firstname,
             @WebParam(name = "lastname", partName = "lastname") @QueryParam("lastname") String lastname,
+            @WebParam(name = "university", partName = "university") @QueryParam("university") String university,
             @WebParam(name = "email", partName = "email") @QueryParam("email") String email,
             @WebParam(name = "type", partName = "type") @QueryParam("type") String type,
             @WebParam(name = "password", partName = "password") @QueryParam("password") String password) {
@@ -159,7 +160,7 @@ public class SakaiScript extends AbstractWebService {
         try {
 
             User addeduser = null;
-            addeduser = userDirectoryService.addUser(null, eid, firstname, lastname, email, password, type, null);
+            addeduser = userDirectoryService.addUser(null, eid, firstname, lastname, email, password, type, null, university);
 
         } catch (Exception e) {
             LOG.warn("WS addNewUser(): " + e.getClass().getName() + " : " + e.getMessage());
@@ -192,6 +193,7 @@ public class SakaiScript extends AbstractWebService {
             @WebParam(name = "eid", partName = "eid") @QueryParam("eid") String eid,
             @WebParam(name = "firstname", partName = "firstname") @QueryParam("firstname") String firstname,
             @WebParam(name = "lastname", partName = "lastname") @QueryParam("lastname") String lastname,
+            @WebParam(name = "university", partName = "university") @QueryParam("university") String university,
             @WebParam(name = "email", partName = "email") @QueryParam("email") String email,
             @WebParam(name = "type", partName = "type") @QueryParam("type") String type,
             @WebParam(name = "password", partName = "password") @QueryParam("password") String password) {
@@ -204,7 +206,7 @@ public class SakaiScript extends AbstractWebService {
         try {
 
             User addeduser = null;
-            addeduser = userDirectoryService.addUser(id, eid, firstname, lastname, email, password, type, null);
+            addeduser = userDirectoryService.addUser(id, eid, firstname, lastname, email, password, type, null, university);
 
         } catch (Exception e) {
             LOG.warn("WS addNewUser(): " + e.getClass().getName() + " : " + e.getMessage());

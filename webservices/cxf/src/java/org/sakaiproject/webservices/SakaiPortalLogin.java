@@ -113,6 +113,7 @@ public class SakaiPortalLogin extends AbstractWebService {
             @WebParam(name = "pw", partName = "pw") @QueryParam("pw") String pw,
             @WebParam(name = "firstName", partName = "firstName") @QueryParam("firstName") String firstName,
             @WebParam(name = "lastName", partName = "lastName") @QueryParam("lastName") String lastName,
+            @WebParam(name = "university", partName = "university") @QueryParam("university") String university,
             @WebParam(name = "eMail", partName = "eMail") @QueryParam("eMail") String eMail) {
 
         String ipAddress = getUserIp();
@@ -147,7 +148,7 @@ public class SakaiPortalLogin extends AbstractWebService {
             try {
                 // Set password to something unguessable - they can set a new PW once they are logged in
                 String hiddenPW = idManager.createUuid();
-                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null);
+                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null,university);
                             LOG.debug("User Created...");
             } catch(Exception e) {
                 LOG.error("Unable to create user...");
@@ -202,6 +203,6 @@ public class SakaiPortalLogin extends AbstractWebService {
             @WebParam(name = "id", partName = "id") @QueryParam("id") String id,
             @WebParam(name = "pw", partName = "pw") @QueryParam("pw") String pw) {
         LOG.debug("SakaiPortalLogin.login()");
-        return loginAndCreate(id, pw, null, null, null);
+        return loginAndCreate(id, pw, null, null, null,null);
     }
 }

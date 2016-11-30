@@ -210,7 +210,7 @@ public class DelegatedAccessSampleDataLoader {
 			//user doesn't exist, lets make it:
 			try {
 				//String id, String eid, String firstName, String lastName, String email, String pw, String type, ResourceProperties properties
-				user = userDirectoryService.addUser("datest", "datest", "DA", "Test", "", "datest", "", null);
+				user = userDirectoryService.addUser("datest", "datest", "DA", "Test", "", "datest", "", null, "");
 			} catch (UserIdInvalidException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -170,6 +170,8 @@ public class BasicLTIConstants {
 	 * this launch. The names of these data items are taken from LIS. The precise
 	 * meaning of the content in these fields is defined by LIS.
 	 */
+	public static final String UNI = "university";
+	
 	public static final String LIS_PERSON_NAME_FULL = "lis_person_name_full";
 	/**
 	 * lis_person_name_given=Jane

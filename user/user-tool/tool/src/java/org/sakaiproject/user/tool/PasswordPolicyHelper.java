@@ -89,6 +89,7 @@ public class PasswordPolicyHelper {
         @Getter @Setter private String email;
         @Getter @Setter private String firstName;
         @Getter @Setter private String lastName;
+        @Getter @Setter private String university;
         @Getter @Setter private String displayName;
         @Getter @Setter private String password;
         @Getter @Setter private String type;
@@ -117,12 +118,13 @@ public class PasswordPolicyHelper {
          * @param type
          * 				the user's type
          */
-        public TempUser(String eid, String email, String firstName, String lastName, String displayName, String password, String type) {
+        public TempUser(String eid, String email, String firstName, String lastName, String displayName, String password, String type, String university) {
             this.eid 			= eid;
             this.password 		= password;
             this.email 			= email;
             this.firstName 		= firstName;
             this.lastName 		= lastName;
+            this.university		= university;
             this.displayName 	= displayName;
             this.type 			= type;
         }
@@ -139,6 +141,7 @@ public class PasswordPolicyHelper {
         @Override public String 			getEid() 									{ return null; }
         @Override public String 			getFirstName() 								{ return null; }
         @Override public String 			getLastName() 								{ return null; }
+        @Override public String 			getUniversity() 							{ return null; }
         @Override public String 			getReference() 								{ return null; }
         @Override public String 			getReference(String arg0)					{ return null; }
         @Override public String 			getUrl() 									{ return null; }

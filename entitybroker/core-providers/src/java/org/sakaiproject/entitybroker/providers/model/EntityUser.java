@@ -59,6 +59,7 @@ public class EntityUser implements User {
     private String email;
     private String firstName;
     private String lastName;
+    private String university;
     private String displayName;
     private String type;
     private String owner;
@@ -80,6 +81,7 @@ public class EntityUser implements User {
         this.email = user.getEmail();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+        this.university=user.getUniversity();
         this.displayName = user.getDisplayName();
         this.owner = user.getCreatedBy() == null ? null : "/user/" + user.getCreatedBy().getId();
         this.lastModified = user.getModifiedTime() == null ? System.currentTimeMillis() : user.getModifiedTime().getTime();
@@ -93,12 +95,13 @@ public class EntityUser implements User {
     }
 
     public EntityUser(String eid, String email, String firstName, String lastName,
-            String displayName, String password, String type) {
+            String displayName, String password, String type, String university) {
         this.eid = eid;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.university= university;
         this.displayName = displayName;
         this.type = type;
     }
@@ -166,6 +169,14 @@ public class EntityUser implements User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
     }
 
     @EntityTitle
