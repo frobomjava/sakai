@@ -133,6 +133,10 @@ import io.swagger.client.api.*;
 // it doesn't have to do synchronization (since it applies just to processing one transaction).
 
 public class SimplePageBean {
+
+	//NEW
+    public static final String API_KEY = "151a03235bde91938b51cde422d33db0";
+    
 	public static final int CACHE_MAX_ENTRIES = 5000;
 	public static final int CACHE_TIME_TO_LIVE_SECONDS = 600;
 	public static final int CACHE_TIME_TO_IDLE_SECONDS = 360;
