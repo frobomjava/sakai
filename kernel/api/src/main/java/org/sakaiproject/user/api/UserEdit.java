@@ -77,6 +77,14 @@ public interface UserEdit extends User, Edit
 	 *        The user's University.
 	 */
 	void setUniversity(String university);
+	
+	/**
+	 * Set the user's phno.
+	 * 
+	 * @param name
+	 *        The user's phno.
+	 */
+	void setPhno(String phno);
 
 
 	/**
@@ -112,6 +120,12 @@ public interface UserEdit extends User, Edit
 	 *    
 	 */
 	void restrictEditUniversity();
+	
+	/**
+	 * Make the user's phno unchangable during this edit
+	 *    
+	 */
+	void restrictEditPhno();
 	
 	/**
 	 * Make the user's email address unchangable during this edit
