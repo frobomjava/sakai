@@ -49,6 +49,16 @@ class UserEditStub implements UserEdit {
 	private String id;
 	private String lastName;
 	private String university;
+	private String phno;
+	
+	public String getPhno() {
+		return phno;
+	}
+
+	public void setPhno(String phno) {
+		this.phno = phno;
+	}
+
 	public String getUniversity() {
 		return university;
 	}
@@ -82,6 +92,9 @@ class UserEditStub implements UserEdit {
 	}
 	
 	public void restrictEditUniversity() {
+	}
+	
+	public void restrictEditPhno() {
 	}
 
 	public void restrictEditPassword() {

@@ -18,6 +18,7 @@ public class ImportedUser {
 	private String firstName;
 	private String lastName;
 	private String university;
+	private String phno;
 	private String email;
 	private String password;
 	private String type;

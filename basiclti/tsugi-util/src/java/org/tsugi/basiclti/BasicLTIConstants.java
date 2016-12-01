@@ -171,6 +171,7 @@ public class BasicLTIConstants {
 	 * meaning of the content in these fields is defined by LIS.
 	 */
 	public static final String UNI = "university";
+	public static final String PHNO = "phno";
 	
 	public static final String LIS_PERSON_NAME_FULL = "lis_person_name_full";
 	/**

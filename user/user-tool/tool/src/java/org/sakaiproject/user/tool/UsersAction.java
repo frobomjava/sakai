@@ -116,6 +116,7 @@ public class UsersAction extends PagedResourceActionII
 	private static final String IMPORT_FIRST_NAME="first name";
 	private static final String IMPORT_LAST_NAME="last name";
 	private static final String IMPORT_UNIVERSITY="university";
+	private static final String IMPORT_PHNO="phno";
 	private static final String IMPORT_EMAIL="email";
 	private static final String IMPORT_PASSWORD="password";
 	private static final String IMPORT_TYPE="type";
@@ -774,7 +775,7 @@ public class UsersAction extends PagedResourceActionII
 			for(ImportedUser user: users) {
 				try {
 					
-					TempUser tempUser = new TempUser(user.getEid(), user.getEmail(), null, null, user.getEid(), user.getPassword(), null, user.getUniversity());
+					TempUser tempUser = new TempUser(user.getEid(), user.getEmail(), null, null, user.getEid(), user.getPassword(), null, user.getUniversity(), user.getPhno());
 					
 					if (!allowEmailDuplicates && UserDirectoryService.checkDuplicatedEmail(tempUser)){
 						addAlert(state, rb.getString("useact.theuseemail1") + ":" + tempUser.getEmail());
@@ -783,7 +784,7 @@ public class UsersAction extends PagedResourceActionII
 						continue;
 					}
 					
-					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties(), user.getUniversity());
+					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties(), user.getUniversity(), user.getPhno());
 			
 					
 				}
@@ -1251,6 +1252,8 @@ public class UsersAction extends PagedResourceActionII
 		state.setAttribute("valueLastName", lastName);
 		String university = StringUtils.trimToNull(data.getParameters().getString("university"));
 		state.setAttribute("valueUniversity", university);
+		String phno = StringUtils.trimToNull(data.getParameters().getString("phno"));
+		state.setAttribute("valuePhno", phno);
 		String email = StringUtils.trimToNull(data.getParameters().getString("email"));
 		state.setAttribute("valueEmail", email);
 		String pw = StringUtils.trimToNull(data.getParameters().getString("pw"));
@@ -1430,7 +1433,7 @@ public class UsersAction extends PagedResourceActionII
 			}
 
 			// if we validate through email, passwords will be handled in AccountValidator
-			TempUser tempUser = new TempUser(eid, null, null, null, eid, pw, null, null);
+			TempUser tempUser = new TempUser(eid, null, null, null, eid, pw, null, null, null);
 			if (!validateWithAccountValidator)
 			{
 				// if in create mode, make sure we have a password
@@ -1478,14 +1481,14 @@ public class UsersAction extends PagedResourceActionII
 				if (validateWithAccountValidator)
 				{
 					// the eid is their email address. The password is random
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties, university);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties, university, phno);
 					// Invoke AccountValidator to send an email to the user containing a link to a form on which they can set their name and password
 					ValidationLogic validationLogic = (ValidationLogic) ComponentManager.get(ValidationLogic.class);
 					validationLogic.createValidationAccount(newUser.getId(), ValidationAccount.ACCOUNT_STATUS_REQUEST_ACCOUNT);
 				}
 				else
 				{
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties, university);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties, university, phno);
 
 					if (SecurityService.isSuperUser()) {
 						if(disabled == 1){
