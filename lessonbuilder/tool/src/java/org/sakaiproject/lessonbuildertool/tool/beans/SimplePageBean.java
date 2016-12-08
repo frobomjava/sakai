@@ -5892,8 +5892,11 @@ public class SimplePageBean {
 	//NEW CODE
 	public MultipartFile ocApiConvert()throws ApiException,IOException {
 		
-		String destinationPath = "/usr/local/etc/temp.swf";
-		String filepath = "/usr/local/etc/source.pptx";
+		//String destinationPath = "/usr/local/etc/temp.swf";
+		//String filepath = "/usr/local/etc/source.pptx";
+		
+		String destinationPath = System.getProperty( "user.home")+"/temp.swf";
+		String filepath = System.getProperty( "user.home")+"/source.pptx";
 		
         Job param = new Job();
 
@@ -6010,7 +6013,7 @@ public class SimplePageBean {
 					//EDITED CODE
 					if (extension.equalsIgnoreCase("pptx") || extension.equalsIgnoreCase("ppt")) {
 						System.out.println("inside>>");
-						file.transferTo(new File("/usr/local/etc/source.pptx"));
+						file.transferTo(new File(System.getProperty( "user.home")+"/source.pptx"));
 						file = ocApiConvert();
 						fname = base + ".swf";
 						extension = "swf";						
