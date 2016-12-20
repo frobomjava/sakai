@@ -59,6 +59,12 @@ ${includeLatestJQuery}
 					</label>
 					<input type="text" name="university" id="university" #if($user)value="$validator.escapeHtml($user.University)"#elseif($valueUniversity)value="$validator.escapeHtml($valueUniversity)"#end/>
 				</div>
+				<div class="shorttext">
+					<label for="phno">
+						$tlang.getString("usecre.phno")
+					</label>
+					<input type="text" name="phno" id="phno" #if($user)value="$validator.escapeHtml($user.Phno)"#elseif($valuePhno)value="$validator.escapeHtml($valuePhno)"#end/>
+				</div>
 			#end
 			<div class="shorttext required">
 				<label for="email">
