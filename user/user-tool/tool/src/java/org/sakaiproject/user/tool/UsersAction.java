@@ -98,6 +98,9 @@ import org.sakaiproject.accountvalidator.logic.ValidationLogic;
 import org.sakaiproject.accountvalidator.model.ValidationAccount;
 import org.sakaiproject.util.PasswordCheck;
 
+import org.sakaiproject.exception.IdUnusedException;
+import org.sakaiproject.exception.PermissionException;
+
 /**
  * <p>
  * UsersAction is the Sakai users editor.
@@ -1022,6 +1025,15 @@ public class UsersAction extends PagedResourceActionII
 
 				// redirect to home (on next build)
 				state.setAttribute("redirect", "");
+				
+				SiteService siteService = (SiteService)ComponentManager.get(SiteService.class);    
+                try {
+                    siteService.join("186be916-bffc-4265-b66c-1de86f8b8587");
+                } catch (IdUnusedException ie) {
+                    throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
+                } catch (PermissionException pe) {
+                    throw new SecurityException("The current user does not have permission to join site : " + pe, pe);
+                }
 			}
 		}
 
