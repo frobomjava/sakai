@@ -74,11 +74,18 @@
 
     <div id="pageBody">
     
-    #if ( $sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle )
-
-        #parse("/vm/morpheus/includePageNav.vm")
-
-    #else 
+		## hide tool nav for non logged in user.
+	    #if( !${loggedIn} )
+	    
+	    	<div style="visibility: hidden; width:0px; height:0px;">
+	    		#parse("/vm/morpheus/includePageNav.vm")
+	    	</div>
+	
+	    #elseif ( $sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle )
+	
+	        #parse("/vm/morpheus/includePageNav.vm")
+	
+	    #else  
 
         <!-- no page nav requested -->
 
