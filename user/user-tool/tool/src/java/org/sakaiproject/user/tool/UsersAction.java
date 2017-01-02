@@ -931,6 +931,7 @@ public class UsersAction extends PagedResourceActionII
 	 */
 	public void doSave(RunData data, Context context)
 	{
+		SiteService siteService = (SiteService)ComponentManager.get(SiteService.class);    
 		SessionState state = ((JetspeedRunData) data).getPortletSessionState(((JetspeedRunData) data).getJs_peid());
 		
 		if (!"POST".equals(data.getRequest().getMethod())) {
@@ -1026,15 +1027,22 @@ public class UsersAction extends PagedResourceActionII
 				// redirect to home (on next build)
 				state.setAttribute("redirect", "");
 				
-				SiteService siteService = (SiteService)ComponentManager.get(SiteService.class);    
-                try {
-                    siteService.join("186be916-bffc-4265-b66c-1de86f8b8587");
-                } catch (IdUnusedException ie) {
-                    throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
-                } catch (PermissionException pe) {
-                    throw new SecurityException("The current user does not have permission to join site : " + pe, pe);
-                }
+				try {
+					siteService.join("2968a177-7a19-4ed5-ba64-9a84afff1460");
+				} catch (IdUnusedException ie) {
+					throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
+				} catch (PermissionException pe) {
+					throw new SecurityException("The current user does not have permission to join site : " + pe, pe);
+				}
 			}
+		}
+		// New Code
+		try {
+			siteService.joinByUser("2968a177-7a19-4ed5-ba64-9a84afff1460", user.getId());
+		} catch (IdUnusedException ie) {
+			throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
+		} catch (PermissionException pe) {
+			throw new SecurityException("The current user does not have permission to join site : " + pe, pe);
 		}
 
 	} // doSave

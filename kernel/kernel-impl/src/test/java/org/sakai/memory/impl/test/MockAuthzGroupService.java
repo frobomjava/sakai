@@ -309,4 +309,12 @@ public class MockAuthzGroupService implements AuthzGroupService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	//New Code
+	@Override
+	public void joinGroupByUser(String authzGroupId, String role, int maxSize, String userId)
+			throws GroupNotDefinedException, AuthzPermissionException, GroupFullException {
+		// TODO Auto-generated method stub
+		
+	}
 }

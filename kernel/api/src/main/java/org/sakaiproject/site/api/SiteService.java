@@ -761,6 +761,8 @@ public interface SiteService extends EntityProducer
 	 *            if the site is otherwise being edited.
 	 */
 	void join(String id) throws IdUnusedException, PermissionException;
+	//New Code
+	void joinByUser(String id, String userId) throws IdUnusedException, PermissionException;
         
         /**
      * Check if current user has the allowed user account type to join the site.

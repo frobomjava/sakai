@@ -1729,6 +1729,70 @@ public abstract class BaseSiteService implements SiteService, Observer
 			M_log.error(String.format("Unexpected exception joining user %s to group in site %s: ", user, id), e);
 		}
 	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	//New Code
+	public void joinByUser(String id, String userId) throws IdUnusedException, PermissionException
+	{
+		//String user = sessionManager().getCurrentSessionUserId();
+		//New Code
+		String user = userId;
+		if (user == null) {
+		    throw new PermissionException(null, AuthzGroupService.SECURE_UPDATE_OWN_AUTHZ_GROUP, siteReference(id));
+		}
+
+		// get the site
+		Site site = getDefinedSite(id);
+
+		// must be joinable
+		if (!site.isJoinable())
+		{
+			throw new PermissionException(user, AuthzGroupService.SECURE_UPDATE_OWN_AUTHZ_GROUP, siteReference(id));
+		}
+
+		// the role to assign
+		String roleId = site.getJoinerRole();
+		if (roleId == null)
+		{
+			M_log.warn(".join(): null site joiner role for site: " + id);
+			throw new PermissionException(user, AuthzGroupService.SECURE_UPDATE_OWN_AUTHZ_GROUP, siteReference(id));
+		}
+
+		// sfoster9@uwo.ca
+        // once joined, add the user to the specified join group and send an email, if these join options are selected
+        // if anything goes wrong with adding to a group or sending email, the join should still finish
+		try
+		{
+			// do the join
+			// New Code
+			authzGroupService().joinGroupByUser(siteReference(id), roleId, 0, userId);
+		}
+		catch(GroupNotDefinedException e)
+		{
+			throw new IdUnusedException(e.getId());
+		}
+		catch(AuthzPermissionException e)
+		{
+			throw new PermissionException(e.getUser(), e.getFunction(), e.getResource());
+		}
+		catch(Exception e)
+		{
+			M_log.error(String.format("Unexpected exception joining user %s to site %s: ", user, id), e);
+			return;
+	}
+		
+		try
+		{
+			// add joining user to the site's join group; the delegate method checks if there are any groups to join
+			joinSiteDelegate.addJoinerToGroup(site);
+		}
+		catch(Exception e)
+		{
+			M_log.error(String.format("Unexpected exception joining user %s to group in site %s: ", user, id), e);
+		}
+	}
         
     /**
 	 * @inheritDoc
