@@ -1027,13 +1027,13 @@ public class UsersAction extends PagedResourceActionII
 				// redirect to home (on next build)
 				state.setAttribute("redirect", "");
 				
-				try {
+				/*try {
 					siteService.join("2968a177-7a19-4ed5-ba64-9a84afff1460");
 				} catch (IdUnusedException ie) {
 					throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
 				} catch (PermissionException pe) {
 					throw new SecurityException("The current user does not have permission to join site : " + pe, pe);
-				}
+				}*/
 			}
 		}
 		// New Code
