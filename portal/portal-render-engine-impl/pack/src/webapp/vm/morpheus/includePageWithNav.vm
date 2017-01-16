@@ -74,11 +74,11 @@
 
     <div id="pageBody">
     
-    #if ( $sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle )
-
-        #parse("/vm/morpheus/includePageNav.vm")
-
-    #else 
+#if ( ${loggedIn} && ($sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle) )
+    
+            #parse("/vm/morpheus/includePageNav.vm")
+    
+        #else
 
         <!-- no page nav requested -->
 
