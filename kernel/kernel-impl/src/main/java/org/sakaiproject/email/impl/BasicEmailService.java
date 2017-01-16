@@ -489,6 +489,10 @@ public class BasicEmailService implements EmailService
 		}
 
 		Properties props = createMailSessionProperties();
+		//set email settings
+		props.put("mail.smtp.auth",true); 
+		props.put("mail.smtp.ssl.trust","*"); 
+		props.put("mail.smtp.sendpartial","true");
 
 		Session session = Session.getInstance(props);
 
@@ -838,7 +842,10 @@ public class BasicEmailService implements EmailService
 		
 		// get a session for our smtp setup, include host, port, reverse-path, and set partial delivery
 		Properties props = createMailSessionProperties();
-
+		//set email settings
+		props.put("mail.smtp.auth",true); 
+		props.put("mail.smtp.ssl.trust","*");
+		props.put("mail.smtp.sendpartial","true");
 		Session session = Session.getInstance(props);
 
 		// form our Message
