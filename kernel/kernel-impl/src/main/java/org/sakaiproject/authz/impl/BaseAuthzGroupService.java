@@ -448,6 +448,50 @@ public abstract class BaseAuthzGroupService implements AuthzGroupService
 		
 	}
 	
+	public void joinGroupByUser(String authzGroupId, String roleId, int maxSize, String userId) throws GroupNotDefinedException, AuthzPermissionException, GroupFullException
+	{
+		//String user = sessionManager().getCurrentSessionUserId();
+		//New Code
+		String user = userId;
+		
+		if (user == null) {
+		    throw new AuthzPermissionException(null, SECURE_UPDATE_OWN_AUTHZ_GROUP, authzGroupId);
+		}
+
+		// check security (throws if not permitted)
+		unlock(SECURE_UPDATE_OWN_AUTHZ_GROUP, authzGroupId);
+
+		// get the AuthzGroup
+		AuthzGroup azGroup = m_storage.get(authzGroupId);
+		if (azGroup == null)
+		{
+			throw new GroupNotDefinedException(authzGroupId);
+		}
+
+		// check that the role exists
+		Role role = azGroup.getRole(roleId);
+		if (role == null)
+		{
+			throw new GroupNotDefinedException(roleId);
+		}
+
+		// KNL-523 separate join and unjoin events
+		//((BaseAuthzGroup) azGroup).setEvent(SECURE_UPDATE_OWN_AUTHZ_GROUP);
+
+		// see if already a member
+		BaseMember grant = (BaseMember) azGroup.getMember(user);
+		
+		if (grant == null)
+			addMemberToGroup(azGroup, user, roleId, maxSize);
+		else		
+			// if inactive, deny permission to join
+			if (!grant.active) 
+				throw new AuthzPermissionException(user, SECURE_UPDATE_OWN_AUTHZ_GROUP, authzGroupId); 
+			
+		// If the user is already in the group and active, or is already in the group and active but
+		// with a different role, no action will be taken
+		
+	}
 	/**
 	 * {@inheritDoc}
 	 */

@@ -264,7 +264,7 @@ public interface AuthzGroupService extends EntityProducer
 	 *         if adding the current user would cause the AuthzGroup to become larger than maxSize.
 	 */
 	void joinGroup(String authzGroupId, String role, int maxSize) throws GroupNotDefinedException, AuthzPermissionException, GroupFullException;
-	
+	void joinGroupByUser(String authzGroupId, String role, int maxSize, String userId) throws GroupNotDefinedException, AuthzPermissionException, GroupFullException;
 	/**
 	 * Cause the current user to unjoin the given AuthzGroup, using SECURE_UPDATE_OWN_AUTHZ_GROUP security.
 	 * 

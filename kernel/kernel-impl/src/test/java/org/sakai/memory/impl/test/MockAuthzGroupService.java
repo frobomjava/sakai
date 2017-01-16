@@ -128,6 +128,13 @@ public class MockAuthzGroupService implements AuthzGroupService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void joinGroupByUser(String authzGroupId, String role, int maxSize, String userId)
+			throws GroupNotDefinedException, AuthzPermissionException, GroupFullException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public Set<String[]> getUsersIsAllowedByGroup(String function,
 			Collection<String> azGroups) {
