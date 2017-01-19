@@ -74,7 +74,7 @@
 
     <div id="pageBody">
     
-#if ( ${loggedIn} && ($sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle) )
+	#if ( ${loggedIn} && ($sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle) )
     
             #parse("/vm/morpheus/includePageNav.vm")
     
@@ -85,10 +85,15 @@
     #end ## END of IF ( $sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle )
 
     <div class="Mrphs-pagebody">
-       
-        #parse("/vm/morpheus/includePageBody.vm")
-        
-        #parse("/vm/morpheus/includeFooter.vm")
+    
+    	#if (${pageId} == "4f9713fc-88e7-4758-9690-ddced045dd0f")
+    		#parse("/vm/morpheus/includePageBodySpecial.vm")
+    	#else
+    		#parse("/vm/morpheus/includePageBody.vm")
+    	
+    	#end ## END of IF ( $pageId == '4f9713fc-88e7-4758-9690-ddced045dd0f' )
+    	
+    	#parse("/vm/morpheus/includeFooter.vm")
 
     </div>
     

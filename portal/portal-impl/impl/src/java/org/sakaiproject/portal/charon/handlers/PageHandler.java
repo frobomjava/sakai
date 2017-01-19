@@ -203,10 +203,15 @@ public class PageHandler extends BasePortalHandler
 
 			// divs to wrap the tools
 			rcontext.put("pageWrapperClass", wrapperClass);
-			rcontext
+		   rcontext
 					.put("pageColumnLayout",
 							(page.getLayout() == SitePage.LAYOUT_DOUBLE_COL) ? "col1of2"
 									: "col1");
+
+			// System.out.println ("pageId : " + page.getId());
+			//new code
+			rcontext.put("pageId", page.getId()+"");
+			
 			Site site = null;
 			try
 			{
@@ -240,10 +245,17 @@ public class PageHandler extends BasePortalHandler
 					}
 				}
 				rcontext.put("pageColumn0Tools", toolList);
+				
+				/*System.out.println("pageColumn0Tools");
+				for (Object tool : toolList) {
+					System.out.println("tool toString : " + tool.toString());
+				}*/
+
 			}
 
 			rcontext.put("pageTwoColumn", Boolean
 					.valueOf(page.getLayout() == SitePage.LAYOUT_DOUBLE_COL));
+			
 
 			// do the second column if needed
 			if (page.getLayout() == SitePage.LAYOUT_DOUBLE_COL)
@@ -266,6 +278,11 @@ public class PageHandler extends BasePortalHandler
 					}
 				}
 				rcontext.put("pageColumn1Tools", toolList);
+				
+				/*System.out.println("pageColumn1Tools");
+				for (Object tool : toolList) {
+					System.out.println("tool toString : " + tool.toString());
+				}*/
 			}
 
 			// Add footer variables to page template context- SAK-10312
