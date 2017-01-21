@@ -4,9 +4,225 @@ calendar Portlet
 @version 1.1 
 
 *#
-
 #* Calendar Event Legend macro
 *#
+<style>
+		table.calendar{
+			font-size: 0.8em;
+			background-color: #dbe8f0;
+		}
+	
+		table.calendar td{
+			text-align: center;
+			border-collapse: collapse;
+		}
+		table.calendar th{
+			text-align: center;
+			border-collapse: collapse;
+		}
+
+		.event{
+			background-color: #6fa3c3;
+			border:  #bbb;
+		}
+		
+		.event a {
+			color: #fff;
+		}
+
+		.bgActivity {
+		    background-color: #6fa3c3;
+		    border: 1px solid #0064cd;
+		    text-align: right;
+		    a {
+				color: #fff;
+			}
+		}
+
+		.bgWithoutActivity {
+		    background-color: #fff;
+		    border: 1px solid #bbb;
+		    text-align: right;
+		}
+
+		.borderGrayYear {
+		    background-color: #eee;
+		    border: 1px solid #bbb;
+		    text-align: right;
+		}
+
+		.borderGrayDayWeek {
+		    border-bottom: none;
+		    border-collapse: collapse;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayBackground {
+		    background-color: #6fa3c3;
+		    border-bottom: #bbb;
+		    border-left: #bbb;
+		    border-right: #bbb;
+		    border-top: #bbb;
+		    a {
+				color: #fff;
+			}
+		}
+
+		.borderGrayTodayBgCenter {
+		    background-color: #6fa3c3;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: #bbb;
+		}
+
+		.borderGrayTodayEmptyMiddleBottom {
+		    background-color: white;
+		    border: 1px solid #bbb;
+		}
+
+		.borderGrayTodayEmptyMiddleCenter {
+		    background-color: white;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayLeftBottom {
+		    border-bottom: 1px solid #bbb;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayLeftCenter {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayMiddleCenter {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayRightBottom {
+		    border-bottom: 1px solid #bbb;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayRightCenter {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderOnlyLeftDay {
+		    background-color: #6fa3c3;
+		    border-left: #bbb;
+		}
+
+		.borderOnlyLeft {
+		    border-left: 1px solid #bbb
+		}
+
+		.borderToday {
+			border: 2px solid #4a8db3;
+		}
+
+		.borderTodayCenter {
+			border: 1px solid #bbb;
+			background-color:  #edf3f7;
+		}
+
+		.borderTodayTop {
+		    border-left: 1px solid #fff;
+		    border-right: 1px solid #fff;
+		    border-top: 1px solid #fff;
+		    background-color: #c9dce8;
+		}
+
+		.borderTodayWithActivity {
+		    background-color: #6fa3c3;
+		    border: 2px solid #4a8db3;
+		    text-align: right;
+		    a {
+				color: #fff;
+			}
+		}
+
+		.borderTodayWithoutActivity {
+		    background-color: #777;
+		    border: 1px solid #bbb;
+		    text-align: right;
+		}
+
+		.borderTodayWithoutActivity a {
+		    color: #fff
+		}
+
+		.borderTopLeft {
+		    background-color: #6fa3c3;
+		    border-left: #bbb;
+		    border-right: #bbb;
+		    border-top: #bbb;
+		    a {
+				color: #fff;
+			}
+		}
+
+		.borderTopLeftWhite {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderWhiteYear {
+		    background-color: #6fa3c3;
+		    border: 1px solid #fff;
+		    text-align: center;
+		}
+
+		.borderWhite {
+		    border-bottom: none;
+		    border-left: 1px solid #fff;
+		    border-right: 1px solid #fff;
+		    border-top: 1px solid #fff;
+		}
+
+		.borderGrayTodayCenter, .borderOnlyLeftTodayCenter {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayEmptyRightBottom, .borderGrayTodayEmptyRightCenter {
+		    background-color: white;
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #000;
+		    border-top: 1px solid #bbb;
+		}
+
+		.borderGrayTodayMiddleBottom, .borderFullGray, .borderGrayMonth {
+		    border: 1px solid #bbb;
+		}
+
+		.borderTodayBottom, .borderGrayTodayBottom, .borderOnlyLeftTodayBottom {
+		    border-left: 1px solid #bbb;
+		    border-right: 1px solid #bbb;
+		    border-bottom: 1px solid #bbb;
+			background-color: #edf3f7;
+		}
+
+		.timeCells {
+		    background: #eee
+		}
+</style>
+
 
 #macro (eventLegend $tlang)
 	<h4>$tlang.getString('view.legend')</h4>
