@@ -97,6 +97,17 @@ import org.sakaiproject.lti.api.LTIService;
 import org.sakaiproject.basiclti.util.SakaiBLTIUtil;
 import org.tsugi.lti2.ContentItem;
 
+//NEW
+import org.springframework.mock.web.MockMultipartFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.net.ConnectException;
+import io.swagger.client.ApiException;
+import io.swagger.client.model.*;
+import io.swagger.client.api.*;
+
 /**
  * Backing bean for Simple pages
  * 
@@ -122,6 +133,10 @@ import org.tsugi.lti2.ContentItem;
 // it doesn't have to do synchronization (since it applies just to processing one transaction).
 
 public class SimplePageBean {
+	
+	//NEW
+    public static final String API_KEY = "151a03235bde91938b51cde422d33db0";
+    
 	public static final int CACHE_MAX_ENTRIES = 5000;
 	public static final int CACHE_TIME_TO_LIVE_SECONDS = 600;
 	public static final int CACHE_TIME_TO_IDLE_SECONDS = 360;
@@ -5874,6 +5889,99 @@ public class SimplePageBean {
 		
 	}
 
+	//NEW CODE
+	public MultipartFile ocApiConvert()throws ApiException,IOException {
+		
+		//String destinationPath = "/usr/local/etc/temp.swf";
+		//String filepath = "/usr/local/etc/source.pptx";
+		
+		String destinationPath = System.getProperty( "user.home")+"/temp.swf";
+		String filepath = System.getProperty( "user.home")+"/source.pptx";
+		
+        Job param = new Job();
+
+        // API Post call to create new job as per parameters
+        JobsApi jobsApi  = new JobsApi();
+        Job job = jobsApi.jobsPost(API_KEY, param);
+
+        System.out.println("New created job object:");
+        System.out.println(job.toString());
+
+        // API Post call to file upload       
+        UploadApi uploadApi = new UploadApi();
+        InputFile inputFile = uploadApi.filePost(job.getServer(), job.getToken(), job.getId(), filepath);
+        System.out.println("New created InputFile object:");
+        System.out.println(inputFile.toString());
+
+        job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+        System.out.println("After file upload job object:");
+        System.out.println(job.toString());
+
+        // Create conversion object parameter
+        Conversion conversionParam = new Conversion();
+        conversionParam.setTarget("swf");
+
+        // API call to assign conversion object to created job
+        ConversionApi conversionApi = new ConversionApi();
+        Conversion conversion = conversionApi.jobsJobIdConversionsPost(conversionParam, null, API_KEY, job.getId());
+
+        System.out.println("New created Conversion object:");
+        System.out.println(conversion.toString());
+
+        job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+        System.out.println("After add conversion job object:");
+        System.out.println(job.toString());
+
+        loop: while (true) {
+            switch (job.getStatus().getCode()) {
+                case "queued":
+                case "downloading":
+                case "pending":
+                case "processing":
+                    job = jobsApi.jobsJobIdGet(null, API_KEY, job.getId());
+                    System.out.println(job.toString());
+                    break;
+                case "completed":
+                    OutputApi outputApi = new OutputApi();
+                    List<OutputFile> output = outputApi.jobsJobIdOutputGet(null, null, null, API_KEY, job.getId());
+                    System.out.println("File converted successfully.");
+                    System.out.println("Dowonload File Path: " + output.get(0).getUri());
+				
+                    try {
+
+						URL website = new URL(output.get(0).getUri());
+						java.nio.file.Path target = new File(destinationPath).toPath();
+						InputStream in = website.openStream();
+						Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
+
+					} catch (Exception e) {
+	
+						e.printStackTrace();
+					}
+	                    break loop;
+                default:
+                    System.out.println("Failed: job status " + job.getStatus().getCode());
+                    break loop;
+            }
+        }
+
+        java.nio.file.Path path = Paths.get(destinationPath);
+		String name = "temp.swf";
+		String originalFileName = "temp.swf";
+		String contentType = "application/x-shockwave-flash";
+		byte[] content = null;
+		try {
+			content = Files.readAllBytes(path);
+		} catch (final IOException e) {
+		}
+		MultipartFile result = new MockMultipartFile(name, originalFileName, contentType, content);
+		Files.delete(path);
+		path = Paths.get(filepath);
+		Files.delete(path);
+		return result;    
+	}
+	// end ocApiConvert()
+	
 	public void addMultimediaFile(MultipartFile file, boolean first, String name){
 		try{
 			
@@ -5902,6 +6010,16 @@ public class SimplePageBean {
 				if (i > 0) {
 					base = fname.substring(0, i);
 					extension = fname.substring(i+1);
+					
+					//EDITED CODE
+					if (extension.equalsIgnoreCase("pptx") || extension.equalsIgnoreCase("ppt")) {
+						System.out.println("inside>>");
+						file.transferTo(new File(System.getProperty( "user.home")+"/source.pptx"));
+						file = ocApiConvert();
+						fname = base + ".swf";
+						extension = "swf";						
+					}
+					//end EDITED CODE
 				}
 				
 				mimeType = file.getContentType();
