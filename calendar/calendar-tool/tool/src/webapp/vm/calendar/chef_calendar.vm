@@ -34,9 +34,10 @@ calendar Portlet
 		    background-color: #6fa3c3;
 		    border: 1px solid #0064cd;
 		    text-align: right;
-		    a {
+		}
+		
+		.bgActivity a {
 				color: #fff;
-			}
 		}
 
 		.bgWithoutActivity {
@@ -65,9 +66,10 @@ calendar Portlet
 		    border-left: #bbb;
 		    border-right: #bbb;
 		    border-top: #bbb;
-		    a {
+		}
+		
+		.borderGrayBackground a {
 				color: #fff;
-			}
 		}
 
 		.borderGrayTodayBgCenter {
@@ -150,9 +152,10 @@ calendar Portlet
 		    background-color: #6fa3c3;
 		    border: 2px solid #4a8db3;
 		    text-align: right;
-		    a {
+		}
+		
+		.borderTodayWithActivity a {
 				color: #fff;
-			}
 		}
 
 		.borderTodayWithoutActivity {
@@ -170,9 +173,10 @@ calendar Portlet
 		    border-left: #bbb;
 		    border-right: #bbb;
 		    border-top: #bbb;
-		    a {
+		}
+		
+		.borderTopLeft a {
 				color: #fff;
-			}
 		}
 
 		.borderTopLeftWhite {
