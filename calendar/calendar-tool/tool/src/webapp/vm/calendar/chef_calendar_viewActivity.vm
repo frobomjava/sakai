@@ -10,8 +10,43 @@
 	function change_parent_url(url)
 	{
 	  parent.location=url;
-	}		
+	}	
+	
 //-->
+</script>
+<script type="text/JavaScript">
+
+function showFrame(){
+    
+    var divsToHideiframe = parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+
+    for(var j = 0; j < divsToHideiframe.length; j++)
+    {
+    divsToHideiframe[j].style.display='block';
+    }
+    var divsToHideannouncement =parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-announcements");
+
+    for(var k = 0; k < divsToHideannouncement.length; k++)
+    {
+    divsToHideannouncement[k].style.display ='block';
+    }
+        }	
+window.onload=function(){
+
+ 	var divsToHideannouncement =parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-announcements");
+    for(var k = 0; k < divsToHideannouncement.length; k++)
+    {
+    divsToHideannouncement[k].style.display ='none';
+    }
+    var divsToHideiframe =parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+
+    for(var k = 0; k < divsToHideiframe.length; k++)
+    {
+    divsToHideiframe[k].style.display ='none';
+    }
+        
+    
+};
 </script>
 
 <div class="portletBody">
@@ -34,7 +69,7 @@
 					<input type="submit" name="eventSubmit_doPrev_activity" value="$tlang.getString('det.lasact')" disabled="disabled" />
 				#end
 				<input type="submit" name="eventSubmit_doToday" value="$tlang.getString('view.gotoday')" />
-				<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" /></a>
+				<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" onclick="javascript:showFrame()"/></a>
 				#if ($!nextAct)
 				<input type="submit" name="eventSubmit_doNext_activity" value="$tlang.getString('det.nexact')" />
 				#else
@@ -53,7 +88,7 @@
 						<input type="submit" name="eventSubmit_doPrev_activity" value="$tlang.getString('det.lasact')" disabled="disabled" />
 						#end
 						<input type="submit" name="eventSubmit_doToday" value="$tlang.getString('view.gotoday')" />
-						<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" /></a>
+						<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" onclick="javascript:showFrame()" /></a>
 						#if ($!nextAct)
 						<input type="submit" name="eventSubmit_doNext_activity" value="$tlang.getString('det.nexact')" />
 						#else
@@ -72,7 +107,7 @@
 					<input type="submit" name="eventSubmit_doPrev_activity" value="$tlang.getString('det.lasact')" disabled="disabled" />
 				#end
 				<input type="submit" name="eventSubmit_doToday" value="$tlang.getString('view.gotoday')" />
-				<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" /></a>
+				<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" onclick="javascript:showFrame()" /></a>
 				#if ($!nextAct)
 				<input type="submit" name="eventSubmit_doNext_activity" value="$tlang.getString('det.nexact')" />
 				#else
@@ -262,7 +297,7 @@
 						<input type="submit" name="eventSubmit_doPrev_activity" value="$tlang.getString('det.lasact')" disabled="disabled" />
 						#end
 						<input type="submit" name="eventSubmit_doToday" value="$tlang.getString('view.gotoday')" />
-						<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" /></a>
+						<a href="#" onclick="location='#toolLink("$action" "doOk")';return false;"><input type="button" value="$tlang.getString("gen.backtolist")" onclick="javascript:showFrame()" /></a>
 						#if ($!nextAct)
 						<input type="submit" name="eventSubmit_doNext_activity" value="$tlang.getString('det.nexact')" />
 						#else

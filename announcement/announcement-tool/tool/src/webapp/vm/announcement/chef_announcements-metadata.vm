@@ -4,8 +4,43 @@
         function change_parent_url(url)
         {
           parent.location=url;
+                            
         }
+       
 </script>
+<script type="text/JavaScript">
+ function showFrameAnnouncement(){
+      var divsToHide1= parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+
+    for(var j = 0; j < divsToHide1.length; j++)
+    {
+    divsToHide1[j].style.display='block';
+    }
+    var divsToHide2 =parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-schedule");
+
+    for(var k = 0; k < divsToHide2.length; k++)
+    {
+    divsToHide2[k].style.display ='block';
+    }
+        }
+window.onload=function(){
+
+   
+    var divsToHide1 = parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+
+    for(var j = 0; j < divsToHide1.length; j++){
+   		 divsToHide1[j].style.display = 'none';
+    }
+    var divsToHide2 = parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-schedule");
+
+    for(var k = 0; k < divsToHide2.length; k++) {
+   		 divsToHide2[k].style.display ='none';
+    }
+        
+    
+};
+</script>
+
 
 <div class="portletBody">
 	#if($menu && $EnabledMenuItemExists)
@@ -16,7 +51,7 @@
 	
 	<div class="page-header">
 	  <h2>$validator.escapeHtml($message.Header.subject)</h2>
-	</div>
+		</div>
 
 	<div class="form-horizontal">
 	  <div class="form-group">
@@ -80,7 +115,7 @@
 		</h4>
 	</div>
 	
-	<div class="message-body">
+	<div style="display:block;width: 100%;padding-top:5px;font-size: 90%;color: #5D5D5D;background-color:#f2f2f2;padding:15px;margin-bottom:20px;border:1px solid #e6e6e6;border-radius:4px;">
 		<p>$validator.escapeHtmlFormattedText($message.body)</p>
 	</div>
 	#set ($size = 0)
@@ -122,7 +157,7 @@
 						value="&lt;  $tlang.getString("meta.prev")"
 						disabled="disabled" />
 				#end
-				<input type="submit" name="eventSubmit_doLinkcancel" value="$tlang.getString("meta.retlis")" />
+				<input type="submit" name="eventSubmit_doLinkcancel" value="$tlang.getString("meta.retlis")" onclick="javascript:showFrameAnnouncement()"/>
 				#if ($!goNTButton)
 					<input type="submit" name="eventSubmit_doNext_message" value=" $tlang.getString("meta.next") &gt;" />
 				#else
@@ -137,7 +172,7 @@
 #else
 	<form name="formII" action="#toolForm("$action")" method="post">
 		<p class="act">
-			<input class="active" type="submit" name="eventSubmit_doLinkcancel" value="$tlang.getString("meta.retlis")"  accesskey="x" />
+			<input class="active" type="submit" name="eventSubmit_doLinkcancel" value="$tlang.getString("meta.retlis")"  accesskey="x" onclick="javascript:showFrameAnnouncement()"/>
 		</p>	
 		<input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
 	</form>
