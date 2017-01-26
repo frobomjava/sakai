@@ -9,8 +9,13 @@
        
 </script>
 <script type="text/JavaScript">
+	var originalWidth;
  function showFrameAnnouncement(){
-      var divsToHide1= parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+    var divsToHide1= parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+      
+    parent.document.getElementById("col2of2").className = "Mrphs-pageColumns Mrphs-pageColumns--second";
+    parent.document.getElementById("col1of2").className = "Mrphs-pageColumns Mrphs-pageColumns--first";
+    parent.document.getElementById("col2of2").style.width = originalWidth;
 
     for(var j = 0; j < divsToHide1.length; j++)
     {
@@ -27,6 +32,10 @@ window.onload=function(){
 
    
     var divsToHide1 = parent.document.getElementsByClassName("Mrphs-container Mrphs-sakai-iframe-site");
+    
+    parent.document.getElementById("col2of2").className = "Mrphs-pageColumns Mrphs-pageColumns--single";
+    originalWidth = parent.document.getElementById("col2of2").style.width;
+    parent.document.getElementById("col2of2").style.width = "100%";
 
     for(var j = 0; j < divsToHide1.length; j++){
    		 divsToHide1[j].style.display = 'none';
