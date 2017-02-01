@@ -54,16 +54,16 @@ div.my-tree div.wicket-tree {
 }
 #scormNavPanel {
     position: absolute;
-    top: 110px;
-    left: 110px;
+    top: 180px;
+    left: 100px;
     width: 280px;
     overflow: auto;
 }
 
 #scormContentPanel {
     position: absolute;
-    top: 100px;
-    left: 390px;
+    top: 180px;
+    left: 380px;
     overflow: hidden;
 }
 
@@ -72,7 +72,7 @@ div.my-tree div.wicket-tree {
 }
 
 #scormContent {
-    width: 920px;
+    width: 940px;
     height: 100%;
     overflow: auto;
 }
