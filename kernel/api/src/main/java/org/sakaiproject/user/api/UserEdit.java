@@ -69,6 +69,12 @@ public interface UserEdit extends User, Edit
 	 *        The user's last name.
 	 */
 	void setLastName(String name);
+	
+	void setCompanyName(String companyName);
+	void setCompanyPostal(String companyPostal);
+	void setCompanyAddress(String companyAddress);
+	void setCompanyPhone(String companyPhone);
+	void setCompanyFax(String companyFax);
 
 	/**
 	 * Set the user's password
@@ -97,6 +103,12 @@ public interface UserEdit extends User, Edit
 	 *    
 	 */
 	void restrictEditLastName();
+	
+	void restrictEditCompanyName();
+	void restrictEditCompanyPostal();
+	void restrictEditCompanyAddress();
+	void restrictEditCompanyPhone();
+	void restrictEditCompanyFax();
 	
 	/**
 	 * Make the user's email address unchangable during this edit

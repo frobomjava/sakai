@@ -48,6 +48,11 @@ class UserEditStub implements UserEdit {
 	private String firstName;
 	private String id;
 	private String lastName;
+	private String companyName;
+	private String companyPostal;
+	private String companyAddress;
+	private String companyPhone;
+	private String companyFax;
 	private String type;
 	
 	// non-std user field, useful for caching test config
@@ -72,6 +77,21 @@ class UserEditStub implements UserEdit {
 	public void restrictEditLastName() {
 	}
 
+	public void restrictEditCompanyName() {
+	}
+	
+	public void restrictEditCompanyPostal() {
+	}
+	
+	public void restrictEditCompanyAddress() {
+	}
+	
+	public void restrictEditCompanyPhone() {
+	}
+	
+	public void restrictEditCompanyFax() {
+	}
+	
 	public void restrictEditPassword() {
 	}
 
@@ -99,6 +119,26 @@ class UserEditStub implements UserEdit {
 	public void setLastName(String name) {
 		this.lastName = name;
 		
+	}
+	
+	public void setCompanyName(String name) {
+		this.companyName = name;
+	}
+	
+	public void setCompanyPostal(String name) {
+		this.companyPostal = name;
+	}
+	
+	public void setCompanyAddress(String name) {
+		this.companyAddress = name;
+	}
+	
+	public void setCompanyPhone(String name) {
+		this.companyPhone = name;
+	}
+	
+	public void setCompanyFax(String name) {
+		this.companyFax = name;
 	}
 
 	public void setPassword(String pw) {
@@ -141,6 +181,26 @@ class UserEditStub implements UserEdit {
 		return this.lastName;
 	}
 
+	public String getCompanyName() {
+		return this.companyName;
+	}
+	
+	public String getCompanyPostal() {
+		return this.companyPostal;
+	}
+	
+	public String getCompanyAddress() {
+		return this.companyAddress;
+	}
+	
+	public String getCompanyPhone() {
+		return this.companyPhone;
+	}
+	
+	public String getCompanyFax() {
+		return this.companyFax;
+	}
+	
 	public User getModifiedBy() {
 		return null;
 	}
@@ -231,6 +291,11 @@ class UserEditStub implements UserEdit {
 			.append("email", this.email)
 			.append("type", this.type)
 			.append("properties", this.properties)
+			.append("companyName", this.companyName)
+			.append("companyPostal", this.companyPostal)
+			.append("companyAddress", this.companyAddress)
+			.append("companyPhone", this.companyPhone)
+			.append("companyFax", this.companyFax)
 			.toString();
 	}
 	
@@ -263,6 +328,11 @@ class UserEditStub implements UserEdit {
 			append(email, user.getEmail()).
 			append(type, user.getType()).
             append(properties, user.getProperties()).
+            append(companyName, user.getCompanyName()).
+            append(companyPostal, user.getCompanyPostal()).
+            append(companyAddress, user.getCompanyAddress()).
+            append(companyPhone, user.getCompanyPhone()).
+            append(companyFax, user.getCompanyFax()).
             isEquals();
 	}
 	

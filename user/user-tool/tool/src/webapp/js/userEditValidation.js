@@ -149,9 +149,23 @@ USER.validateCurrentPassword = function () {
 // Validate the form (enabled/disable the submit button)
 USER.validateForm = function () {
     var submitButton = USER.get("eventSubmit_doSave");
+    var useEid = document.getElementById("user_eid").value;
+    var comNam = document.getElementById("company-name").value;
+	var comPos = document.getElementById("company-postal").value;
+	var comAdd = document.getElementById("company-address").value;
+	var comPh = document.getElementById("company-phone").value;
 
     if (USER.userValid && USER.passwordsMatch && USER.emailValid && (USER.isSuperUser || (USER.passwordValid && USER.currentPassValid))) {
-        submitButton.disabled = false;
+    	    	
+        if(comNam != "") {
+        	if(comPos != "" && comAdd != "" && comPh !=""){
+        		submitButton.disabled = false;        		
+        	}else {
+        		submitButton.disabled = true;
+        	}
+        }else {
+        	submitButton.disabled = false;
+        }
     }
     else {
         submitButton.disabled = true;

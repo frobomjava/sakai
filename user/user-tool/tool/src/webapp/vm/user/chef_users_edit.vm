@@ -3,6 +3,11 @@
 #css("/sakai-user-tool/css/sakai-user-tool.css" 'media="screen"')
 
 ${includeLatestJQuery}
+#javascript("/sakai-user-tool/js/userValidationCommon.js")
+<script type="text/javascript">USER.isSuperUser =#if ($!superUser) true; #else false; #end</script>
+<script type="text/javascript">USER.isPasswordPolicyEnabled =#if ($!isPasswordPolicyEnabled) true; #else false; #end</script>
+#javascript("/sakai-user-tool/js/userEditValidation.js")
+#javascript("/library/js/spinner.js")
 
 <script type="text/javascript">
 
@@ -27,14 +32,49 @@ function removeOptionalAttributeBlock(elem) {
 	$(elem).parent("p").remove();
 }
 
+function hasCompany() {
+
+	USER.validateForm();
+
+	if(document.getElementById("company-name").value != "") {
+ 		document.getElementById("company-postal").disabled = false;
+		document.getElementById("company-address").disabled = false;
+		document.getElementById("company-phone").disabled = false;
+		document.getElementById("company-fax").disabled = false;
+ 		
+    } else {
+    	document.getElementById("company-postal").disabled = true;
+		document.getElementById("company-address").disabled = true;
+		document.getElementById("company-phone").disabled = true;
+		document.getElementById("company-fax").disabled = true;
+		
+		document.getElementById("company-postal").value = "";
+		document.getElementById("company-address").value = "";
+		document.getElementById("company-phone").value = "";
+		document.getElementById("company-fax").value = "";
+		
+    }
+}
+
+function hasCompanyData() {
+
+	USER.validateForm();
+	
+	if(document.getElementById("eventSubmit_doSave").disabled == false){
+		var useEid = document.getElementById("user_eid").value;
+		var comPos = document.getElementById("company-postal").value;
+		var comAdd = document.getElementById("company-address").value;
+		var comPh = document.getElementById("company-phone").value;
+		
+		if(useEid != "" && comPos != "" && comAdd != "" && comPh !="") {
+			document.getElementById("eventSubmit_doSave").disabled = false;
+		} else {
+			document.getElementById("eventSubmit_doSave").disabled = true;
+		}
+	}
+}
 
 </script>
-
-#javascript("/sakai-user-tool/js/userValidationCommon.js")
-<script type="text/javascript">USER.isSuperUser =#if ($!superUser) true; #else false; #end</script>
-<script type="text/javascript">USER.isPasswordPolicyEnabled =#if ($!isPasswordPolicyEnabled) true; #else false; #end</script>
-#javascript("/sakai-user-tool/js/userEditValidation.js")
-#javascript("/library/js/spinner.js")
 
 <div class="portletBody">
 #if($menu)
@@ -95,6 +135,7 @@ function removeOptionalAttributeBlock(elem) {
 				#if($user)$validator.escapeHtml($user.LastName)#elseif($valueLastName)$validator.escapeHtml($valueLastName)#end
 			#end
 			</div>
+			
 			<div class="shorttext">
 				<label for="email">
 					$tlang.getString("useconrem.ema")
@@ -146,6 +187,102 @@ function removeOptionalAttributeBlock(elem) {
 			&nbsp;
 		#end
 #end
+
+			<div class="shorttext">
+				<label for="company-name">
+					$tlang.getString("usecre.comnam")
+				</label>
+			#if ($service.allowUpdateCompanyName($user.Id) || !$user)
+				<input type="text" name="company-name" id="company-name" oninput="hasCompany()" #if($user)value="$validator.escapeHtml($user.CompanyName)"#elseif($valueCompanyName)value="$validator.escapeHtml($valueCompanyName)"#end />
+			#else
+				#if($user)$validator.escapeHtml($user.CompanyName)#elseif($valueCompanyName)$validator.escapeHtml($valueCompanyName)#end
+			#end
+			</div>
+			
+			#if($user.CompanyName && $user.CompanyName != "")
+					<div class="shorttext">
+						<label for="company-postal">
+							$tlang.getString("usecre.compos")
+						</label>
+					#if ($service.allowUpdateCompanyPostal($user.Id) || !$user)
+						<input type="text" name="company-postal" id="company-postal" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPostal)"#elseif($valueCompanyPostal)value="$validator.escapeHtml($valueCompanyPostal)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyPostal)#elseif($valueCompanyPostal)$validator.escapeHtml($valueCompanyPostal)#end
+					#end
+					</div>
+					<div class="shorttext">
+						<label for="company-address">
+							$tlang.getString("usecre.comadd")
+						</label>
+					#if ($service.allowUpdateCompanyAddress($user.Id) || !$user)
+						<input type="text" name="company-address" id="company-address" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyAddress)"#elseif($valueCompanyAddress)value="$validator.escapeHtml($valueCompanyAddress)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyAddress)#elseif($valueCompanyAddress)$validator.escapeHtml($valueCompanyAddress)#end
+					#end
+					</div>
+					<div class="shorttext">
+						<label for="company-phone">
+							$tlang.getString("usecre.comphn")
+						</label>
+					#if ($service.allowUpdateCompanyPhone($user.Id) || !$user)
+						<input type="text" name="company-phone" id="company-phone" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPhone)"#elseif($valueCompanyPhone)value="$validator.escapeHtml($valueCompanyPhone)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyPhone)#elseif($valueCompanyPhone)$validator.escapeHtml($valueCompanyPhone)#end
+					#end
+					</div>
+					<div class="shorttext">
+						<label for="company-fax">
+							$tlang.getString("usecre.comfax")
+						</label>
+					#if ($service.allowUpdateCompanyFax($user.Id) || !$user)
+						<input type="text" name="company-fax" id="company-fax" #if($user)value="$validator.escapeHtml($user.CompanyFax)"#elseif($valueCompanyFax)value="$validator.escapeHtml($valueCompanyFax)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyFax)#elseif($valueCompanyFax)$validator.escapeHtml($valueCompanyFax)#end
+					#end
+					</div>
+			#else
+					<div class="shorttext">
+						<label for="company-postal">
+							$tlang.getString("usecre.compos")
+						</label>
+					#if ($service.allowUpdateCompanyPostal($user.Id) || !$user)
+						<input type="text" name="company-postal" id="company-postal" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPostal)"#elseif($valueCompanyPostal)value="$validator.escapeHtml($valueCompanyPostal)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyPostal)#elseif($valueCompanyPostal)$validator.escapeHtml($valueCompanyPostal)#end
+					#end
+					</div>
+					<div class="shorttext">
+						<label for="company-address">
+							$tlang.getString("usecre.comadd")
+						</label>
+					#if ($service.allowUpdateCompanyAddress($user.Id) || !$user)
+						<input type="text" name="company-address" id="company-address" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyAddress)"#elseif($valueCompanyAddress)value="$validator.escapeHtml($valueCompanyAddress)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyAddress)#elseif($valueCompanyAddress)$validator.escapeHtml($valueCompanyAddress)#end
+					#end
+					</div>
+					<div class="shorttext">
+						<label for="company-phone">
+							$tlang.getString("usecre.comphn")
+						</label>
+					#if ($service.allowUpdateCompanyPhone($user.Id) || !$user)
+						<input type="text" name="company-phone" id="company-phone" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPhone)"#elseif($valueCompanyPhone)value="$validator.escapeHtml($valueCompanyPhone)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyPhone)#elseif($valueCompanyPhone)$validator.escapeHtml($valueCompanyPhone)#end
+					#end
+					</div>
+						<div class="shorttext">
+						<label for="company-fax">
+							$tlang.getString("usecre.comfax")
+						</label>
+					#if ($service.allowUpdateCompanyFax($user.Id) || !$user)
+						<input type="text" name="company-fax" id="company-fax" disabled=true #if($user)value="$validator.escapeHtml($user.CompanyFax)"#elseif($valueCompanyFax)value="$validator.escapeHtml($valueCompanyFax)"#end />
+					#else
+						#if($user)$validator.escapeHtml($user.CompanyFax)#elseif($valueCompanyFax)$validator.escapeHtml($valueCompanyFax)#end
+					#end
+					</div>
+			#end ##if($user.CompanyName)
+
 #if ($incType)
 			<div class="shorttext">
 				<label for="type">

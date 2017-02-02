@@ -119,7 +119,7 @@ public class UserFinderOrCreatorImpl implements UserFinderOrCreator {
         if (user == null) {
         	try {
         		String hiddenPW = IdManager.createUuid();
-        		userDirectoryService.addUser(null, eid, fname, lname, email, hiddenPW, "registered", null);
+        		userDirectoryService.addUser(null, eid, fname, lname, email, hiddenPW, "registered", null, null, null, null, null, null);
         		M_log.info("Created user=" + eid);
         		user = userDirectoryService.getUserByEid(eid);
         	} catch (Exception e) {

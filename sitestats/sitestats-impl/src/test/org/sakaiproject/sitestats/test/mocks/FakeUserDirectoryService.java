@@ -47,7 +47,7 @@ public class FakeUserDirectoryService implements UserDirectoryService {
 		return null;
 	}
 
-	public User addUser(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, ResourceProperties arg7) throws UserIdInvalidException, UserAlreadyDefinedException,
+	public User addUser(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, ResourceProperties arg7, String arg8, String arg9, String arg10, String arg11, String arg12) throws UserIdInvalidException, UserAlreadyDefinedException,
 			UserPermissionException {
 		// TODO Auto-generated method stub
 		return null;
@@ -77,6 +77,32 @@ public class FakeUserDirectoryService implements UserDirectoryService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public boolean allowUpdateCompanyName(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean allowUpdateCompanyPostal(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean allowUpdateCompanyAddress(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean allowUpdateCompanyPhone(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean allowUpdateCompanyFax(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	public boolean updateUserId(String eId, String newEmail) {
 		return false;
 	}

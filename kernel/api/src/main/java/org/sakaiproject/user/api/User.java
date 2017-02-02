@@ -102,6 +102,11 @@ public interface User extends Entity, Comparable
 	 */
 	String getLastName();
 
+	String getCompanyName();
+	String getCompanyPostal();
+	String getCompanyAddress();
+	String getCompanyPhone();
+	String getCompanyFax();
 	/**
 	 * Check if this is the user's password.
 	 * 

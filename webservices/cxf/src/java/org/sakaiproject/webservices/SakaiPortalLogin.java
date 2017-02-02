@@ -113,6 +113,11 @@ public class SakaiPortalLogin extends AbstractWebService {
             @WebParam(name = "pw", partName = "pw") @QueryParam("pw") String pw,
             @WebParam(name = "firstName", partName = "firstName") @QueryParam("firstName") String firstName,
             @WebParam(name = "lastName", partName = "lastName") @QueryParam("lastName") String lastName,
+            @WebParam(name = "companyName", partName = "companyName") @QueryParam("companyName") String companyName,
+            @WebParam(name = "companyPortal", partName = "companyPortal") @QueryParam("companyPortal") String companyPortal,
+            @WebParam(name = "companyAddress", partName = "companyAddress") @QueryParam("companyAddress") String companyAddress,
+            @WebParam(name = "companyPhone", partName = "companyPhone") @QueryParam("companyPhone") String companyPhone,
+            @WebParam(name = "companyFax", partName = "companyFax") @QueryParam("companyFax") String companyFax,
             @WebParam(name = "eMail", partName = "eMail") @QueryParam("eMail") String eMail) {
 
         String ipAddress = getUserIp();
@@ -147,7 +152,7 @@ public class SakaiPortalLogin extends AbstractWebService {
             try {
                 // Set password to something unguessable - they can set a new PW once they are logged in
                 String hiddenPW = idManager.createUuid();
-                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null);
+                userDirectoryService.addUser(null,id,firstName,lastName,eMail,hiddenPW,"registered", null, companyName, companyPortal, companyAddress, companyPhone, companyFax);
                             LOG.debug("User Created...");
             } catch(Exception e) {
                 LOG.error("Unable to create user...");
@@ -202,6 +207,6 @@ public class SakaiPortalLogin extends AbstractWebService {
             @WebParam(name = "id", partName = "id") @QueryParam("id") String id,
             @WebParam(name = "pw", partName = "pw") @QueryParam("pw") String pw) {
         LOG.debug("SakaiPortalLogin.login()");
-        return loginAndCreate(id, pw, null, null, null);
+        return loginAndCreate(id, pw, null, null, null, null, null, null, null, null);
     }
 }

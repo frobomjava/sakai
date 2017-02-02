@@ -120,6 +120,11 @@ public class UsersAction extends PagedResourceActionII
 	private static final String IMPORT_LAST_NAME="last name";
 	private static final String IMPORT_EMAIL="email";
 	private static final String IMPORT_PASSWORD="password";
+	private static final String IMPORT_COMPANY_NAME="company name";
+	private static final String IMPORT_COMPANY_POSTAL="company postal";
+	private static final String IMPORT_COMPANY_ADDRESS="company address";
+	private static final String IMPORT_COMPANY_PHONE="company phone";
+	private static final String IMPORT_COMPANY_FAX="company fax";
 	private static final String IMPORT_TYPE="type";
 	private ValidationLogic validationLogic;
 
@@ -465,6 +470,21 @@ public class UsersAction extends PagedResourceActionII
 
 		value = (String) state.getAttribute("valueLastName");
 		if (value != null) context.put("valueLastName", value);
+		
+		value = (String) state.getAttribute("valueCompanyName");
+		if (value != null) context.put("valueCompanyName", value);
+		
+		value = (String) state.getAttribute("valueCompanyPostal");
+		if (value != null) context.put("valueCompanyPostal", value);
+		
+		value = (String) state.getAttribute("valueCompanyAddress");
+		if (value != null) context.put("valueCompanyAddress", value);
+		
+		value = (String) state.getAttribute("valueCompanyPhone");
+		if (value != null) context.put("valueCompanyPhone", value);
+		
+		value = (String) state.getAttribute("valueCompanyFax");
+		if (value != null) context.put("valueCompanyFax", value);
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
@@ -519,6 +539,21 @@ public class UsersAction extends PagedResourceActionII
 
 		value = (String) state.getAttribute("valueLastName");
 		if (value != null) context.put("valueLastName", value);
+		
+		value = (String) state.getAttribute("valueCompanyName");
+		if (value != null) context.put("valueCompanyName", value);
+		
+		value = (String) state.getAttribute("valueCompanyPostal");
+		if (value != null) context.put("valueCompanyPostal", value);
+		
+		value = (String) state.getAttribute("valueCompanyAddress");
+		if (value != null) context.put("valueCompanyAddress", value);
+		
+		value = (String) state.getAttribute("valueCompanyPhone");
+		if (value != null) context.put("valueCompanyPhone", value);
+		
+		value = (String) state.getAttribute("valueCompanyFax");
+		if (value != null) context.put("valueCompanyFax", value);
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
@@ -584,6 +619,21 @@ public class UsersAction extends PagedResourceActionII
 
 		value = (String) state.getAttribute("valueLastName");
 		if (value != null) context.put("valueLastName", value);
+		
+		value = (String) state.getAttribute("valueCompanyName");
+		if (value != null) context.put("valueCompanyName", value);
+		
+		value = (String) state.getAttribute("valueCompanyPostal");
+		if (value != null) context.put("valueCompanyPostal", value);
+		
+		value = (String) state.getAttribute("valueCompanyAddress");
+		if (value != null) context.put("valueCompanyAddress", value);
+		
+		value = (String) state.getAttribute("valueCompanyPhone");
+		if (value != null) context.put("valueCompanyPhone", value);
+		
+		value = (String) state.getAttribute("valueCompanyFax");
+		if (value != null) context.put("valueCompanyFax", value);
 
 		value = (String) state.getAttribute("valueEmail");
 		if (value != null) context.put("valueEmail", value);
@@ -785,7 +835,7 @@ public class UsersAction extends PagedResourceActionII
 						continue;
 					}
 					
-					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties());
+					User newUser = UserDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties(), user.getCompanyName(), user.getCompanyPostal(), user.getCompanyAddress(), user.getCompanyPhone(), user.getCompanyFax());
 			
 					
 				}
@@ -990,6 +1040,11 @@ public class UsersAction extends PagedResourceActionII
 		state.removeAttribute("valueLastName");
 		state.removeAttribute("valueEmail");
 		state.removeAttribute("valueType");
+		state.removeAttribute("valueCompanyName");
+		state.removeAttribute("valueCompanyPostal");
+		state.removeAttribute("valueCompanyAddress");
+		state.removeAttribute("valueCompanyPhone");
+		state.removeAttribute("valueCompanyFax");
 
 		// return to main mode
 		state.removeAttribute("mode");
@@ -1080,6 +1135,11 @@ public class UsersAction extends PagedResourceActionII
 		state.removeAttribute("valueLastName");
 		state.removeAttribute("valueEmail");
 		state.removeAttribute("valueType");
+		state.removeAttribute("valueCompanyName");
+		state.removeAttribute("valueCompanyPostal");
+		state.removeAttribute("valueCompanyAddress");
+		state.removeAttribute("valueCompanyPhone");
+		state.removeAttribute("valueCompanyFax");
 
 		// return to main mode
 		state.removeAttribute("mode");
@@ -1191,6 +1251,11 @@ public class UsersAction extends PagedResourceActionII
                 state.removeAttribute("valueEid");
                 state.removeAttribute("valueFirstName");
                 state.removeAttribute("valueLastName");
+                state.removeAttribute("valueCompanyName");
+                state.removeAttribute("valueCompanyPostal");
+                state.removeAttribute("valueCompanyAddress");
+                state.removeAttribute("valueCompanyPhone");
+                state.removeAttribute("valueCompanyFax");
                 state.removeAttribute("valueEmail");
                 state.removeAttribute("valueType");
 
@@ -1260,6 +1325,16 @@ public class UsersAction extends PagedResourceActionII
 		state.setAttribute("valueFirstName", firstName);
 		String lastName = StringUtils.trimToNull(data.getParameters().getString("last-name"));
 		state.setAttribute("valueLastName", lastName);
+		String companyName = StringUtils.trimToNull(data.getParameters().getString("company-name"));
+		state.setAttribute("valueCompanyName", companyName);
+		String companyPostal = StringUtils.trimToNull(data.getParameters().getString("company-postal"));
+		state.setAttribute("valueCompanyPostal", companyPostal);
+		String companyAddress = StringUtils.trimToNull(data.getParameters().getString("company-address"));
+		state.setAttribute("valueCompanyAddress", companyAddress);
+		String companyPhone = StringUtils.trimToNull(data.getParameters().getString("company-phone"));
+		state.setAttribute("valueCompanyPhone", companyPhone);
+		String companyFax = StringUtils.trimToNull(data.getParameters().getString("company-fax"));
+		state.setAttribute("valueCompanyFax", companyFax);
 		String email = StringUtils.trimToNull(data.getParameters().getString("email"));
 		state.setAttribute("valueEmail", email);
 		String pw = StringUtils.trimToNull(data.getParameters().getString("pw"));
@@ -1317,10 +1392,14 @@ public class UsersAction extends PagedResourceActionII
 			if (createUser)
 			{
 				// for the case of Gateway Account tool creating new user
-				type = (String) state.getAttribute("create-type");
+				//for type unable to choose
+				//type = (String) state.getAttribute("create-type");
+				//for type able to choose
+				type = StringUtils.trimToNull(data.getParameters().getString("dtype"));	
+				state.setAttribute("valueType", type);
 			}
 		}
-		
+			
 		if ((Boolean)state.getAttribute("user.recaptcha-enabled"))
 		{
 			String challengeField = data.getParameters().getString("recaptcha_challenge_field");
@@ -1487,14 +1566,14 @@ public class UsersAction extends PagedResourceActionII
 				if (validateWithAccountValidator)
 				{
 					// the eid is their email address. The password is random
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, PasswordCheck.generatePassword(), type, properties, companyName, companyPostal, companyAddress, companyPhone, companyFax);
 					// Invoke AccountValidator to send an email to the user containing a link to a form on which they can set their name and password
 					ValidationLogic validationLogic = (ValidationLogic) ComponentManager.get(ValidationLogic.class);
 					validationLogic.createValidationAccount(newUser.getId(), ValidationAccount.ACCOUNT_STATUS_REQUEST_ACCOUNT);
 				}
 				else
 				{
-					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties);
+					newUser = UserDirectoryService.addUser(id, eid, firstName, lastName, email, pw, type, properties, companyName, companyPostal, companyAddress, companyPhone, companyFax);
 
 					if (SecurityService.isSuperUser()) {
 						if(disabled == 1){
@@ -1578,6 +1657,11 @@ public class UsersAction extends PagedResourceActionII
 			if (eid != null) user.setEid(eid);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
+			user.setCompanyName(companyName);
+			user.setCompanyPostal(companyPostal);
+			user.setCompanyAddress(companyAddress);
+			user.setCompanyPhone(companyPhone);
+			user.setCompanyFax(companyFax);
 			user.setEmail(email);
 			if (type != null) user.setType(type);
 			

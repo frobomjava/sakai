@@ -59,6 +59,11 @@ public class EntityUser implements User {
     private String email;
     private String firstName;
     private String lastName;
+    private String companyName;
+    private String companyPostal;
+    private String companyAddress;
+    private String companyPhone;
+    private String companyFax;
     private String displayName;
     private String type;
     private String owner;
@@ -80,6 +85,11 @@ public class EntityUser implements User {
         this.email = user.getEmail();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+        this.companyName = user.getCompanyName();
+        this.companyPostal = user.getCompanyPostal();
+        this.companyAddress = user.getCompanyAddress();
+        this.companyPhone = user.getCompanyPhone();
+        this.companyFax = user.getCompanyFax();
         this.displayName = user.getDisplayName();
         this.owner = user.getCreatedBy() == null ? null : "/user/" + user.getCreatedBy().getId();
         this.lastModified = user.getModifiedTime() == null ? System.currentTimeMillis() : user.getModifiedTime().getTime();
@@ -93,12 +103,18 @@ public class EntityUser implements User {
     }
 
     public EntityUser(String eid, String email, String firstName, String lastName,
-            String displayName, String password, String type) {
+            String displayName, String password, String type, String companyName, 
+            String companyPostal, String companyAddress, String companyPhone, String companyFax) {
         this.eid = eid;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.companyName = companyName;
+        this.companyPostal = companyPostal;
+        this.companyAddress = companyAddress;
+        this.companyPhone = companyPhone;
+        this.companyFax = companyFax;
         this.displayName = displayName;
         this.type = type;
     }
@@ -166,6 +182,46 @@ public class EntityUser implements User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+    
+    public String getCompanyPostal() {
+        return companyPostal;
+    }
+    
+    public void setCompanyPostal(String companyPostal) {
+        this.companyPostal = companyPostal;
+    }
+    
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+    
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+    
+    public String getCompanyPhone() {
+        return companyPhone;
+    }
+    
+    public void setCompanyPhone(String companyPhone) {
+        this.companyPhone = companyPhone;
+    }
+    
+    public String getCompanyFax() {
+        return companyFax;
+    }
+    
+    public void setCompanyFax(String companyFax) {
+        this.companyFax = companyFax;
     }
 
     @EntityTitle
