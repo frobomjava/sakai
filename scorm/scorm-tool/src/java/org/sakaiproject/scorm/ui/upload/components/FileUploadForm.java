@@ -114,7 +114,6 @@ public class FileUploadForm extends Form {
 	        if (upload != null) {
 	            try {
 	            	resourceService.putArchive(upload.getInputStream(), upload.getClientFileName(), upload.getContentType(), isFileHidden(), 0);
-	            	//resourceService.putArchive(upload.getInputStream(), upload.getClientFileName(), upload.getContentType(), false, 0);
 	            }
 	            catch (Exception e)
 	            {
@@ -146,7 +145,7 @@ public class FileUploadForm extends Form {
 	            	
 	            	
 	            	resourceService.putArchive(upload.getInputStream(), upload.getClientFileName(), upload.getContentType(), isFileHidden(), 0);
-	            	//resourceService.putArchive(upload.getInputStream(), upload.getClientFileName(), upload.getContentType(), false, 0);
+	            	
 
 	            }
 	            catch (Exception e)

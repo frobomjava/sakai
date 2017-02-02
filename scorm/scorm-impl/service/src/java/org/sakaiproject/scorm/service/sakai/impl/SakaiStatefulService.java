@@ -172,17 +172,16 @@ public abstract class SakaiStatefulService implements LearningManagementSystem, 
 
 	protected boolean unlockCheck(String lock, String ref) {
 		boolean isAllowed = securityService().isSuperUser();
-//		 if (!isAllowed) {
-//			// make a reference from the resource id, if specified
-//			/*String ref = null;
-//			if (id != null)
-//			{
-//				ref = siteService().siteReference(id);
-//			}*/
-//
-//			isAllowed = ref != null && securityService().unlock(lock, ref);
-//		} 
-	isAllowed=true;
+		if (!isAllowed) {
+			// make a reference from the resource id, if specified
+			/*String ref = null;
+			if (id != null)
+			{
+				ref = siteService().siteReference(id);
+			}*/
+
+			isAllowed = ref != null && securityService().unlock(lock, ref);
+		}
 
 		return isAllowed;
 
