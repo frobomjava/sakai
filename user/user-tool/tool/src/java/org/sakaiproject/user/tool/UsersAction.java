@@ -1027,7 +1027,8 @@ public class UsersAction extends PagedResourceActionII
 			}
 		}
 		try {
-			siteService.joinByUser("ee585ab9-adbe-42db-bdbe-ac0e9d7b8c6e", user.getId());
+			String autoJoinSiteId = ServerConfigurationService.getString("autoJoinSite");
+			siteService.joinByUser(autoJoinSiteId, user.getId());
 		} catch (IdUnusedException ie) {
 			throw new IllegalArgumentException("The siteId provided could not be found: " + ie, ie);
 		} catch (PermissionException pe) {
