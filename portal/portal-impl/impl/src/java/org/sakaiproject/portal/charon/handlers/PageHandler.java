@@ -211,6 +211,8 @@ public class PageHandler extends BasePortalHandler
 			// System.out.println ("pageId : " + page.getId());
 			//new code
 			rcontext.put("pageId", page.getId()+"");
+			String specialColumnPageId = ServerConfigurationService.getString("specialColumnPage");
+			rcontext.put("specialColumnPageId", specialColumnPageId );
 			
 			Site site = null;
 			try

@@ -86,12 +86,12 @@
 
     <div class="Mrphs-pagebody">
     
-    	#if (${pageId} == "4f9713fc-88e7-4758-9690-ddced045dd0f")
+    	#if (${pageId} == ${specialColumnPageId})
     		#parse("/vm/morpheus/includePageBodySpecial.vm")
     	#else
     		#parse("/vm/morpheus/includePageBody.vm")
     	
-    	#end ## END of IF ( $pageId == '4f9713fc-88e7-4758-9690-ddced045dd0f' )
+    	#end ## END of IF (${pageId} == ${specialColumnPageId})
     	
     	#parse("/vm/morpheus/includeFooter.vm")
 
