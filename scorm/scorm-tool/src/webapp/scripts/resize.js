@@ -30,12 +30,12 @@ function onResize() {
 		
 		var windowWidth = getInnerWidth();
 		var navWidth = document.getElementById("scormNavPanel").offsetWidth;
-		var mainWidth = windowWidth - navWidth;
+		var mainWidth = windowWidth - navWidth - 130;
 	
 		document.getElementById("scormNavPanel").style.height = mainHeight+"px";
 		document.getElementById("scormContentPanel").style.height = mainHeight+"px";
 		document.getElementById("scormContent").style.height = mainHeight+"px";
-		//document.getElementById("scormContent").style.width = mainWidth + "px";
+		document.getElementById("scormContent").style.width = mainWidth + "px";
 	}
 }
 

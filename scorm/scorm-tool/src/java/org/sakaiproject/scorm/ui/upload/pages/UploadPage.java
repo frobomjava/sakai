@@ -224,8 +224,6 @@ public class UploadPage extends ConsoleBasePage implements ScormConstants {
 							{
 								String resourceId = resourceService.putArchive( upload.getInputStream(), upload.getClientFileName(),
 										upload.getContentType(), isFileHidden(), getPriority() );
-										/*String resourceId = resourceService.putArchive( upload.getInputStream(), upload.getClientFileName(),
-										upload.getContentType(), true, getPriority() );	*/	
 								int status = contentService.storeAndValidate( resourceId, isFileValidated(), 
 										serverConfigurationService.getString( "scorm.zip.encoding", "UTF-8" ) );
 
