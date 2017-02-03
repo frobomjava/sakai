@@ -66,7 +66,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 	/** All fields. */
 	protected String[] m_fieldNames = {"USER_ID", "EMAIL", "EMAIL_LC", "FIRST_NAME", "LAST_NAME", "TYPE", "PW", "CREATEDBY", "MODIFIEDBY",
-			"CREATEDON", "MODIFIEDON"};
+			"CREATEDON", "MODIFIEDON", "COMPANY_NAME", "COMPANY_POSTAL", "COMPANY_ADDRESS", "COMPANY_PHONE", "COMPANY_FAX"};
 
 	/*************************************************************************************************************************************************
 	 * Dependencies
@@ -372,11 +372,11 @@ public abstract class DbUserService extends BaseUserDirectoryService
 		 */
 		protected Object[] fields(String id, UserEdit edit, boolean idAgain)
 		{
-			Object[] rv = new Object[idAgain ? 12 : 11];
+			Object[] rv = new Object[idAgain ? 17 : 16];
 			rv[0] = caseId(id);
 			if (idAgain)
 			{
-				rv[11] = rv[0];
+				rv[16] = rv[0];
 			}
 
 			if (edit == null)
@@ -397,6 +397,11 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				rv[8] = attribUser;
 				rv[9] = now;
 				rv[10] = now;
+				rv[11] = "";
+				rv[12] = "";
+				rv[13] = "";
+				rv[14] = "";
+				rv[15] = "";
 			}
 
 			else
@@ -422,6 +427,11 @@ public abstract class DbUserService extends BaseUserDirectoryService
 
 				rv[9] = edit.getCreatedTime();
 				rv[10] = edit.getModifiedTime();
+				rv[11] = StringUtils.trimToEmpty(edit.getCompanyName());
+				rv[12] = StringUtils.trimToEmpty(edit.getCompanyPostal());
+				rv[13] = StringUtils.trimToEmpty(edit.getCompanyAddress());
+				rv[14] = StringUtils.trimToEmpty(edit.getCompanyPhone());
+				rv[15] = StringUtils.trimToEmpty(edit.getCompanyFax());
 			}
 
 			return rv;
@@ -449,6 +459,11 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				String modifiedBy = result.getString(9);
 				Time createdOn = timeService().newTime(result.getTimestamp(10, sqlService().getCal()).getTime());
 				Time modifiedOn = timeService().newTime(result.getTimestamp(11, sqlService().getCal()).getTime());
+				String companyName = result.getString(12);
+				String companyPostal = result.getString(13);
+				String companyAddress = result.getString(14);
+				String companyPhone = result.getString(15);
+				String companyFax = result.getString(16);
 
 				// find the eid from the mapping
 				String eid = checkMapForEid(id);
@@ -458,7 +473,7 @@ public abstract class DbUserService extends BaseUserDirectoryService
 				}
 
 				// create the Resource from these fields
-				return new BaseUserEdit(id, eid, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn);
+				return new BaseUserEdit(id, eid, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn, companyName, companyPostal, companyAddress, companyPhone, companyFax);
 			}
 			catch (SQLException e)
 			{
@@ -852,9 +867,14 @@ public abstract class DbUserService extends BaseUserDirectoryService
 					String modifiedBy = result.getString(10);
 					Time createdOn = (result.getObject(11) != null) ? timeService().newTime(result.getTimestamp(11, sqlService().getCal()).getTime()) : null;
 					Time modifiedOn = (result.getObject(12) != null) ? timeService().newTime(result.getTimestamp(12, sqlService().getCal()).getTime()) : null;
+					String companyName = result.getString(13);
+					String companyPostal = result.getString(14);
+					String companyAddress = result.getString(15);
+					String companyPhone = result.getString(16);
+					String companyFax = result.getString(17);
 
 					// create the Resource from these fields
-					userEdit = new BaseUserEdit(idFromMap, eidFromMap, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn);
+					userEdit = new BaseUserEdit(idFromMap, eidFromMap, email, firstName, lastName, type, pw, createdBy, createdOn, modifiedBy, modifiedOn, companyName, companyPostal, companyAddress, companyPhone, companyFax);
 
 					if (idFromSakaiUser != null)
 					{

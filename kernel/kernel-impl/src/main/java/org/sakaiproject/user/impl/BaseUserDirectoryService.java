@@ -566,6 +566,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_PASSWORD);
 			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_TYPE);
 			functionManager().registerFunction(SECURE_UPDATE_USER_ANY);
+			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_COMPANY);
+			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_COMPANY_POSTAL);
+			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS);
+			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_COMPANY_PHONE);
+			functionManager().registerFunction(SECURE_UPDATE_USER_OWN_COMPANY_FAX);
 
 			// if no provider was set, see if we can find one
 			if ((m_provider == null) && (m_providerName != null))
@@ -988,6 +993,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			locks.add(SECURE_UPDATE_USER_OWN_EMAIL);
 			locks.add(SECURE_UPDATE_USER_OWN_PASSWORD);
 			locks.add(SECURE_UPDATE_USER_OWN_TYPE);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_POSTAL);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_PHONE);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_FAX);
 
 			// own or any
 			return unlockCheck(locks, userReference(id));
@@ -1016,6 +1026,141 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			locks.add(SECURE_UPDATE_USER_OWN);
 			locks.add(SECURE_UPDATE_USER_ANY);
 			locks.add(SECURE_UPDATE_USER_OWN_NAME);
+
+
+			// own or any
+			return unlockCheck(locks, userReference(id));
+		}
+
+		else
+		{
+			// just any
+			return unlockCheck(SECURE_UPDATE_USER_ANY, userReference(id));
+		}
+
+	}
+	
+	public boolean allowUpdateCompanyName(String id)
+	{
+		// clean up the id
+		id = cleanId(id);
+		if (id == null) return false;
+
+		//		 is this the user's own?
+		if (id.equals(sessionManager().getCurrentSessionUserId()))
+		{
+			ArrayList<String> locks = new ArrayList<String>();
+			locks.add(SECURE_UPDATE_USER_OWN);
+			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY);
+
+
+			// own or any
+			return unlockCheck(locks, userReference(id));
+		}
+
+		else
+		{
+			// just any
+			return unlockCheck(SECURE_UPDATE_USER_ANY, userReference(id));
+		}
+
+	}
+	
+	public boolean allowUpdateCompanyPostal(String id)
+	{
+		// clean up the id
+		id = cleanId(id);
+		if (id == null) return false;
+
+		//		 is this the user's own?
+		if (id.equals(sessionManager().getCurrentSessionUserId()))
+		{
+			ArrayList<String> locks = new ArrayList<String>();
+			locks.add(SECURE_UPDATE_USER_OWN);
+			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_POSTAL);
+
+
+			// own or any
+			return unlockCheck(locks, userReference(id));
+		}
+
+		else
+		{
+			// just any
+			return unlockCheck(SECURE_UPDATE_USER_ANY, userReference(id));
+		}
+
+	}
+	
+	public boolean allowUpdateCompanyAddress(String id)
+	{
+		// clean up the id
+		id = cleanId(id);
+		if (id == null) return false;
+
+		//		 is this the user's own?
+		if (id.equals(sessionManager().getCurrentSessionUserId()))
+		{
+			ArrayList<String> locks = new ArrayList<String>();
+			locks.add(SECURE_UPDATE_USER_OWN);
+			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS);
+
+
+			// own or any
+			return unlockCheck(locks, userReference(id));
+		}
+
+		else
+		{
+			// just any
+			return unlockCheck(SECURE_UPDATE_USER_ANY, userReference(id));
+		}
+
+	}
+	
+	public boolean allowUpdateCompanyPhone(String id)
+	{
+		// clean up the id
+		id = cleanId(id);
+		if (id == null) return false;
+
+		//		 is this the user's own?
+		if (id.equals(sessionManager().getCurrentSessionUserId()))
+		{
+			ArrayList<String> locks = new ArrayList<String>();
+			locks.add(SECURE_UPDATE_USER_OWN);
+			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_PHONE);
+
+
+			// own or any
+			return unlockCheck(locks, userReference(id));
+		}
+
+		else
+		{
+			// just any
+			return unlockCheck(SECURE_UPDATE_USER_ANY, userReference(id));
+		}
+
+	}
+	
+	public boolean allowUpdateCompanyFax(String id)
+	{
+		// clean up the id
+		id = cleanId(id);
+		if (id == null) return false;
+
+		//		 is this the user's own?
+		if (id.equals(sessionManager().getCurrentSessionUserId()))
+		{
+			ArrayList<String> locks = new ArrayList<String>();
+			locks.add(SECURE_UPDATE_USER_OWN);
+			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_FAX);
 
 
 			// own or any
@@ -1144,6 +1289,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			locks.add(SECURE_UPDATE_USER_OWN_PASSWORD);
 			locks.add(SECURE_UPDATE_USER_OWN_TYPE);
 			locks.add(SECURE_UPDATE_USER_ANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_POSTAL);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_PHONE);
+			locks.add(SECURE_UPDATE_USER_OWN_COMPANY_FAX);
 
 			locksSucceeded = unlock(locks, userReference(id));
 			function = SECURE_UPDATE_USER_OWN;
@@ -1190,6 +1340,26 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 
 			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_TYPE)) {
 				user.restrictEditType();
+			}
+			
+			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_COMPANY)) {
+				user.restrictEditCompanyName();
+			}
+			
+			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_COMPANY_POSTAL)) {
+				user.restrictEditCompanyPostal();
+			}
+			
+			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS)) {
+				user.restrictEditCompanyAddress();
+			}
+			
+			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_COMPANY_PHONE)) {
+				user.restrictEditCompanyPhone();
+			}
+			
+			if(!locksSucceeded.contains(SECURE_UPDATE_USER_OWN_COMPANY_FAX)) {
+				user.restrictEditCompanyFax();
 			}
 
 		}
@@ -1469,7 +1639,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 	 * @inheritDoc
 	 */
 	public User addUser(String id, String eid, String firstName, String lastName, String email, String pw, String type,
-			ResourceProperties properties) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException
+			ResourceProperties properties, String companyName, String companyPostal, String companyAddress, String companyPhone, String companyFax) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException
 	{
 		// get it added
 		UserEdit edit = addUser(id, eid);
@@ -1480,6 +1650,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		edit.setEmail(email);
 		edit.setPassword(pw);
 		edit.setType(type);
+		edit.setCompanyName(companyName);
+		edit.setCompanyPostal(companyPostal);
+		edit.setCompanyAddress(companyAddress);
+		edit.setCompanyPhone(companyPhone);
+		edit.setCompanyFax(companyFax);
 
 		ResourcePropertiesEdit props = edit.getPropertiesEdit();
 		if (properties != null)
@@ -2029,6 +2204,12 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 
 		/** The user last name. */
 		protected String m_lastName = null;
+		
+		protected String m_companyName = null;
+		protected String m_companyPostal = null;
+		protected String m_companyAddress = null;
+		protected String m_companyPhone = null;
+		protected String m_companyFax = null;
 
 		/** The user email address. */
 		protected String m_email = null;
@@ -2060,6 +2241,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		/** If editing the last name is restricted **/
 		protected boolean m_restrictedLastName = false;
 
+		protected boolean m_restrictedCompanyName = false;
+		protected boolean m_restrictedCompanyPostal = false;
+		protected boolean m_restrictedCompanyAddress = false;
+		protected boolean m_restrictedCompanyPhone = false;
+		protected boolean m_restrictedCompanyFax = false;
 
 		/** If editing the email is restricted **/
 		protected boolean m_restrictedEmail = false;
@@ -2136,6 +2322,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_eid = cleanEid(el.getAttribute("eid"));
 			m_firstName = StringUtils.trimToNull(el.getAttribute("first-name"));
 			m_lastName = StringUtils.trimToNull(el.getAttribute("last-name"));
+			m_companyName = StringUtils.trimToNull(el.getAttribute("company-name"));
+			m_companyPostal = StringUtils.trimToNull(el.getAttribute("company-postal"));
+			m_companyAddress = StringUtils.trimToNull(el.getAttribute("company-address"));
+			m_companyPhone = StringUtils.trimToNull(el.getAttribute("company-phone"));
+			m_companyFax = StringUtils.trimToNull(el.getAttribute("company-fax"));
 			setEmail(StringUtils.trimToNull(el.getAttribute("email")));
 			m_pw = el.getAttribute("pw");
 			m_type = StringUtils.trimToNull(el.getAttribute("type"));
@@ -2233,12 +2424,17 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 		 *        The modified on property.
 		 */
 		public BaseUserEdit(String id, String eid, String email, String firstName, String lastName, String type, String pw,
-				String createdBy, Time createdOn, String modifiedBy, Time modifiedOn)
+				String createdBy, Time createdOn, String modifiedBy, Time modifiedOn, String companyName, String companyPostal, String companyAddress, String companyPhone, String companyFax)
 		{
 			m_id = id;
 			m_eid = eid;
 			m_firstName = firstName;
 			m_lastName = lastName;
+			m_companyName = companyName;
+			m_companyPostal = companyPostal;
+			m_companyAddress = companyAddress;
+			m_companyPhone = companyPhone;
+			m_companyFax = companyFax;
 			m_type = type;
 			setEmail(email);
 			m_pw = pw;
@@ -2265,6 +2461,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_eid = user.getEid();
 			m_firstName = user.getFirstName();
 			m_lastName = user.getLastName();
+			m_companyName = user.getCompanyName();
+			m_companyPostal = user.getCompanyPostal();
+			m_companyAddress = user.getCompanyAddress();
+			m_companyPhone = user.getCompanyPhone();
+			m_companyFax = user.getCompanyFax();
 			m_type = user.getType();
 			setEmail(user.getEmail());
 			m_pw = ((BaseUserEdit) user).m_pw;
@@ -2305,6 +2506,11 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			user.setAttribute("email", getEmail());
 			user.setAttribute("created-id", m_createdUserId);
 			user.setAttribute("modified-id", m_lastModifiedUserId);
+			user.setAttribute("company-name", getCompanyName());
+			user.setAttribute("company-postal", getCompanyPostal());
+			user.setAttribute("company-address", getCompanyAddress());
+			user.setAttribute("company-phone", getCompanyPhone());
+			user.setAttribute("company-fax", getCompanyFax());
 			
 			if (m_createdTime != null)
 			{
@@ -2542,6 +2748,36 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			return m_lastName;
 		}
 
+		public String getCompanyName()
+		{
+			if (m_companyName == null) return "";
+			return m_companyName;
+		}
+		
+		public String getCompanyPostal()
+		{
+			if (m_companyPostal == null) return "";
+			return m_companyPostal;
+		}
+		
+		public String getCompanyAddress()
+		{
+			if (m_companyAddress == null) return "";
+			return m_companyAddress;
+		}
+		
+		public String getCompanyPhone()
+		{
+			if (m_companyPhone == null) return "";
+			return m_companyPhone;
+		}
+		
+		public String getCompanyFax()
+		{
+			if (m_companyFax == null) return "";
+			return m_companyFax;
+		}
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -2728,6 +2964,41 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 				m_email = email;
 			}
 		}
+		
+		public void setCompanyName(String companyName)
+		{
+			if(!m_restrictedCompanyName) {
+				m_companyName = companyName;
+			}
+		}
+		
+		public void setCompanyPostal(String companyPostal)
+		{
+			if(!m_restrictedCompanyPostal) {
+				m_companyPostal = companyPostal;
+			}
+		}
+		
+		public void setCompanyAddress(String companyAddress)
+		{
+			if(!m_restrictedCompanyAddress) {
+				m_companyAddress = companyAddress;
+			}
+		}
+		
+		public void setCompanyPhone(String companyPhone)
+		{
+			if(!m_restrictedCompanyPhone) {
+				m_companyPhone = companyPhone;
+			}
+		}
+		
+		public void setCompanyFax(String companyFax)
+		{
+			if(!m_restrictedCompanyFax) {
+				m_companyFax = companyFax;
+			}
+		}
 
 		/**
 		 * @inheritDoc
@@ -2777,7 +3048,35 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 
 		}
 
+		public void restrictEditCompanyName() {
 
+			m_restrictedCompanyName = true;
+
+		}
+		
+		public void restrictEditCompanyPostal() {
+
+			m_restrictedCompanyPostal = true;
+
+		}
+		
+		public void restrictEditCompanyAddress() {
+
+			m_restrictedCompanyAddress = true;
+
+		}
+		
+		public void restrictEditCompanyPhone() {
+
+			m_restrictedCompanyPhone = true;
+
+		}
+		
+		public void restrictEditCompanyFax() {
+
+			m_restrictedCompanyFax = true;
+
+		}
 
 		public void restrictEditEmail() {
 
@@ -2800,6 +3099,7 @@ public abstract class BaseUserDirectoryService implements UserDirectoryService, 
 			m_restrictedType = true;
 
 		}
+		
 
 		/**
 		 * Take all values from this object.

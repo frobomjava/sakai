@@ -250,13 +250,13 @@ public class UserDirectoryService
 
 	public static org.sakaiproject.user.api.User addUser(java.lang.String param0, java.lang.String param1, java.lang.String param2,
 			java.lang.String param3, java.lang.String param4, java.lang.String param5, java.lang.String param6,
-			org.sakaiproject.entity.api.ResourceProperties param7) throws org.sakaiproject.user.api.UserIdInvalidException,
+			org.sakaiproject.entity.api.ResourceProperties param7, java.lang.String param8, java.lang.String param9, java.lang.String param10, java.lang.String param11, java.lang.String param12) throws org.sakaiproject.user.api.UserIdInvalidException,
 			org.sakaiproject.user.api.UserAlreadyDefinedException, org.sakaiproject.user.api.UserPermissionException
 	{
 		org.sakaiproject.user.api.UserDirectoryService service = getInstance();
 		if (service == null) return null;
 
-		return service.addUser(param0, param1, param2, param3, param4, param5, param6, param7);
+		return service.addUser(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12);
 	}
 
 	public static org.sakaiproject.user.api.UserEdit mergeUser(org.w3c.dom.Element param0)

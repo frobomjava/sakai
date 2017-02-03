@@ -89,6 +89,11 @@ public class PasswordPolicyHelper {
         @Getter @Setter private String email;
         @Getter @Setter private String firstName;
         @Getter @Setter private String lastName;
+        @Getter @Setter private String companyName;
+        @Getter @Setter private String companyPostal;
+        @Getter @Setter private String companyAddress;
+        @Getter @Setter private String companyPhone;
+        @Getter @Setter private String companyFax;
         @Getter @Setter private String displayName;
         @Getter @Setter private String password;
         @Getter @Setter private String type;

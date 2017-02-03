@@ -21,5 +21,10 @@ public class ImportedUser {
 	private String password;
 	private String type;
 	private ResourceProperties properties;
+	private String companyName;
+	private String companyPostal;
+	private String companyAddress;
+	private String companyPhone;
+	private String companyFax;
 	
 }

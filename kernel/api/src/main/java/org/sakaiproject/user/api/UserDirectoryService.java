@@ -56,6 +56,16 @@ public interface UserDirectoryService extends EntityProducer
 	/** Name for the ability for updating one's own name. */
 	static final String SECURE_UPDATE_USER_OWN_NAME = "user.upd.own.name";
 	
+	static final String SECURE_UPDATE_USER_OWN_COMPANY = "user.upd.own.company";
+	
+	static final String SECURE_UPDATE_USER_OWN_COMPANY_POSTAL = "user.upd.own.company.postal";
+	
+	static final String SECURE_UPDATE_USER_OWN_COMPANY_ADDRESS = "user.upd.own.company.postal";
+	
+	static final String SECURE_UPDATE_USER_OWN_COMPANY_PHONE = "user.upd.own.company.phone";
+	
+	static final String SECURE_UPDATE_USER_OWN_COMPANY_FAX = "user.upd.own.company.fax";
+	
 	/** Name for the ability for updating one's own email. */
 	static final String SECURE_UPDATE_USER_OWN_EMAIL = "user.upd.own.email";
 
@@ -143,7 +153,7 @@ public interface UserDirectoryService extends EntityProducer
 	 *            if the current user does not have permission to add a user.
 	 */
 	User addUser(String id, String eid, String firstName, String lastName, String email, String pw, String type,
-			ResourceProperties properties) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException;
+			ResourceProperties properties, String companyName, String companyPostal, String companyAddress, String CompanyPhone, String CompanyFax) throws UserIdInvalidException, UserAlreadyDefinedException, UserPermissionException;
 
 	/**
 	 * check permissions for addUser().
