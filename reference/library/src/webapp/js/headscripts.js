@@ -328,7 +328,7 @@ function setMainFrameHeightNow(id, maxHeight)
 	if (frame)
 	{
 		// reset the scroll
-		parent.window.scrollTo(0,0);
+		//parent.window.scrollTo(0,0);
 
 		var objToResize = (frame.style) ? frame.style : frame;
   
