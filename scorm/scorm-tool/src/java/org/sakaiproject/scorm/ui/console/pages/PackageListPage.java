@@ -136,6 +136,12 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 		}
 
 		columns.add(actionColumn);
+		
+		columns.add(new SpeakerColumn(new StringResourceModel("column.header.speaker", this, null), "speaker"));
+		
+		columns.add(new BriefHistoryColumn(new StringResourceModel("column.header.briefHistory", this, null), "briefHistory"));
+		
+		columns.add(new SummaryColumn(new StringResourceModel("column.header.summary", this, null), "summary"));		
 
 		columns.add(new StatusColumn(new StringResourceModel("column.header.status", this, null), "status"));
 
@@ -192,6 +198,66 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 			}
 
 			return new ResourceModel(resourceId);
+		}
+	}
+	
+	public class SpeakerColumn extends AbstractColumn<ContentPackage> {
+		
+		private static final long serialVersionUID = 1L;
+
+		String speaker = "";
+		
+		public SpeakerColumn(IModel<String> displayModel, String sortProperty) {
+			super(displayModel, sortProperty);
+		}
+
+		public void populateItem(Item<ICellPopulator<ContentPackage>> item, String componentId, IModel<ContentPackage> model) {
+			Object target = model.getObject();
+			if (target instanceof ContentPackage) {
+				ContentPackage contentPackage = (ContentPackage)target;
+				speaker = contentPackage.getSpeaker();
+			}
+			item.add(new Label(componentId, speaker));
+		}
+	}
+	
+	public class BriefHistoryColumn extends AbstractColumn<ContentPackage> {
+		
+		private static final long serialVersionUID = 1L;
+
+		String briefHistory = "";
+		
+		public BriefHistoryColumn(IModel<String> displayModel, String sortProperty) {
+			super(displayModel, sortProperty);
+		}
+
+		public void populateItem(Item<ICellPopulator<ContentPackage>> item, String componentId, IModel<ContentPackage> model) {
+			Object target = model.getObject();
+			if (target instanceof ContentPackage) {
+				ContentPackage contentPackage = (ContentPackage)target;
+				briefHistory = contentPackage.getBriefHistory();
+			}
+			item.add(new Label(componentId, briefHistory));
+		}
+	}
+	
+	public class SummaryColumn extends AbstractColumn<ContentPackage> {
+		
+		private static final long serialVersionUID = 1L;
+
+		String summary = "";
+		
+		public SummaryColumn(IModel<String> displayModel, String sortProperty) {
+			super(displayModel, sortProperty);
+		}
+
+		public void populateItem(Item<ICellPopulator<ContentPackage>> item, String componentId, IModel<ContentPackage> model) {
+			Object target = model.getObject();
+			if (target instanceof ContentPackage) {
+				ContentPackage contentPackage = (ContentPackage)target;
+				summary = contentPackage.getSummary();
+			}
+			item.add(new Label(componentId, summary));
 		}
 	}
 

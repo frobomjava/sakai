@@ -44,6 +44,24 @@
 						    	<input name="fileInput" wicket:id="fileInput" class="upload" accept="zip" type="file"/>
 						    </p>
 						    <br/>
+						    <p class="shorttext">
+						    	<label for="speaker"> <wicket:message key="upload.file.speaker"/></label>
+						    	<br/>
+								<input type="text" wicket:id="speaker" name="speaker"/>
+						    </p>
+						    <br/>
+						    <p class="shorttext">
+						    	<label for="briefhistory"> <wicket:message key="upload.file.briefhistory"/></label>
+						    	<br/>
+								<textarea name="briefhistory" wicket:id="briefhistory" rows="8" cols="80"></textarea>
+						    </p>
+						    <br/>
+						    <p class="shorttext">
+						    	<label for="summary"> <wicket:message key="upload.file.summary"/></label>
+						    	<br/>
+								<textarea name="summary" wicket:id="summary" rows="8" cols="80"></textarea>
+						    </p>
+						    <br/>
 						    <p class="longtext">
 						    	<input type="checkbox" wicket:id="fileValidated"/> <span class="instruction"><wicket:message key="upload.validate.checkbox"/></span>
 						    </p>

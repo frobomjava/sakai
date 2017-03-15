@@ -47,6 +47,10 @@
 		<property name="numberOfTries" column="NUMBER_OF_TRIES" />
 		<property name="deleted" column="IS_DELETED" />
 		
+		<property name="speaker" column="SPEAKER" />
+		<property name="briefHistory" column="BRIEF_HISTORY" />
+		<property name="summary" column="SUMMARY" />
+		
 	</class>
 	
 	
