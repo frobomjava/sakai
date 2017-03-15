@@ -109,4 +109,6 @@ public interface ScormContentService extends ScormConstants {
 	 */
 	public int storeAndValidate(String resourceId, boolean isValidateToSchema, String encoding) throws ResourceStorageException;
 	
+	public int storeAndValidate(String resourceId, boolean isValidateToSchema, String encoding, String speaker, String briefHistory, String summary) throws ResourceStorageException;
+	
 }

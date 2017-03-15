@@ -62,6 +62,12 @@ public class ContentPackage implements Serializable {
 	private int numberOfTries = NUMBER_OF_TRIES_UNLIMITED;
 
 	private boolean isDeleted;
+	
+	private String speaker;
+	
+	private String briefHistory;
+	
+	private String summary;
 
 	public ContentPackage() {
 		this.isDeleted = false;
@@ -163,6 +169,18 @@ public class ContentPackage implements Serializable {
 	public String getUrl() {
 		return url;
 	}
+	
+	public String getSpeaker() {
+		return speaker;
+	}
+	
+	public String getBriefHistory() {
+		return briefHistory;
+	}
+	
+	public String getSummary() {
+		return summary;
+	}
 
 	@Override
 	public int hashCode() {
@@ -245,5 +263,16 @@ public class ContentPackage implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public void setSpeaker(String speaker) {
+		this.speaker = speaker;
+	}
 
+	public void setBriefHistory(String briefHistory) {
+		this.briefHistory = briefHistory;
+	}
+	
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 }

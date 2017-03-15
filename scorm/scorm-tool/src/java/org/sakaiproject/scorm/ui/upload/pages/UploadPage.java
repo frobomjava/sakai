@@ -37,6 +37,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
@@ -62,6 +64,10 @@ public class UploadPage extends ConsoleBasePage implements ScormConstants {
 	private static final ResourceReference PAGE_ICON = new ResourceReference(ConsoleBasePage.class, "res/table_add.png");
 	private static final Log LOG = LogFactory.getLog(FileUploadForm.class);
 
+	final TextField<String> speaker = new TextField<String>("speaker", Model.of(""));
+	final TextArea<String> briefhistory = new TextArea<String>("briefhistory",Model.of(""));
+	final TextArea<String> summary = new TextArea<String>("summary",Model.of(""));
+	
 	// SCO-97 sakai.property to enable/disable (show/hide) email sending (drop down)
 	private static final String SAK_PROP_SCORM_ENABLE_EMAIL = "scorm.enable.email";
 	@SpringBean( name = "org.sakaiproject.component.api.ServerConfigurationService" )
@@ -224,8 +230,17 @@ public class UploadPage extends ConsoleBasePage implements ScormConstants {
 							{
 								String resourceId = resourceService.putArchive( upload.getInputStream(), upload.getClientFileName(),
 										upload.getContentType(), isFileHidden(), getPriority() );
+								
+								String speakerValue = speaker.getModelObject();
+								String briefhistoryValue = briefhistory.getModelObject();
+								String summaryValue = summary.getModelObject();
+								
+								/*int status = contentService.storeAndValidate( resourceId, isFileValidated(), 
+										serverConfigurationService.getString( "scorm.zip.encoding", "UTF-8" ) );*/
+								
 								int status = contentService.storeAndValidate( resourceId, isFileValidated(), 
-										serverConfigurationService.getString( "scorm.zip.encoding", "UTF-8" ) );
+										serverConfigurationService.getString( "scorm.zip.encoding", "UTF-8" ),
+										speakerValue, briefhistoryValue, summaryValue);
 
 								if( status == VALIDATION_SUCCESS )
 								{
@@ -251,6 +266,9 @@ public class UploadPage extends ConsoleBasePage implements ScormConstants {
 			add( btnCancel );
 			add( btnSubmit );
 			add(feedbackPanel);
+			add(speaker);
+			add(briefhistory);
+			add(summary);
 		}
 
 		public boolean isFileHidden() {

@@ -102,6 +102,44 @@ public abstract class ScormContentServiceImpl implements ScormContentService, Sc
 		contentPackageDao().save(cp);
 		return cp;
 	}
+	
+	private ContentPackage convertToContentPackage(String resourceId, IValidator validator, IValidatorOutcome outcome, String speaker, String briefHistory, String summary) throws Exception {
+
+		ContentPackageManifest manifest = createManifest(outcome.getDocument(), validator);
+
+		// Grab some important info about the site and user
+		String context = lms().currentContext();
+		String learnerId = lms().currentLearnerId();
+		Date now = new Date();
+
+		String title = getContentPackageTitle(outcome.getDocument());
+
+		int packageCount = contentPackageDao().countContentPackages(context, title);
+
+		if (packageCount > 1) {
+			title = new StringBuilder(title).append(" (").append(packageCount).append(")").toString();
+		}
+
+		String archiveId = resourceService().convertArchive(resourceId, title);
+
+		Serializable manifestId = contentPackageManifestDao().save(manifest);
+
+		// Now create a representation of this content package in the database
+		ContentPackage cp = new ContentPackage(title, archiveId);
+		cp.setContext(context);
+		cp.setManifestId(manifestId);
+		cp.setReleaseOn(new Date());
+		cp.setCreatedBy(learnerId);
+		cp.setModifiedBy(learnerId);
+		cp.setCreatedOn(now);
+		cp.setModifiedOn(now);
+		cp.setSpeaker(speaker);
+		cp.setBriefHistory(briefHistory);
+		cp.setSummary(summary);
+
+		contentPackageDao().save(cp);
+		return cp;
+	}
 
 	private File createFile(InputStream inputStream) {
 		File tempFile = null;
@@ -316,6 +354,10 @@ public abstract class ScormContentServiceImpl implements ScormContentService, Sc
 	public int storeAndValidate(String resourceId, boolean isValidateToSchema, String encoding) throws ResourceStorageException {
 		return validate(resourceId, false, isValidateToSchema, encoding, true);
 	}
+	
+	public int storeAndValidate(String resourceId, boolean isValidateToSchema, String encoding, String speaker, String briefHistory, String summary) throws ResourceStorageException {
+		return validate(resourceId, false, isValidateToSchema, encoding, true, speaker, briefHistory, summary);
+	}
 
 	
 	/* (non-Javadoc)
@@ -360,6 +402,56 @@ public abstract class ScormContentServiceImpl implements ScormContentService, Sc
 		if (createContentPackage) {
 			try {
 				convertToContentPackage(resourceId, validator, validatorOutcome);
+			} catch (InvalidArchiveException iae) {
+				return VALIDATION_WRONGMIMETYPE;
+			} catch (Exception e) {
+				log.error("Failed to convert content package for resourceId: " + resourceId, e);
+				return VALIDATION_CONVERTFAILED;
+			}
+		}
+
+		return result;
+	}
+	
+	public int validate(String resourceId, boolean isManifestOnly, boolean isValidateToSchema, String encoding, boolean createContentPackage, String speaker, String briefHistory, String summary) throws ResourceStorageException {
+		File file = createFile(resourceService().getArchiveStream(resourceId));
+
+		int result = VALIDATION_SUCCESS;
+
+		if (!file.exists())
+			return VALIDATION_NOFILE;
+
+		IValidator validator = validate(file, isManifestOnly, isValidateToSchema, encoding);
+		IValidatorOutcome validatorOutcome = validator.getADLValidatorOutcome();
+
+		if (!validatorOutcome.getDoesIMSManifestExist())
+			return VALIDATION_NOMANIFEST;
+
+		if (!validatorOutcome.getIsWellformed()) {
+			result = VALIDATION_NOTWELLFORMED;
+		}
+
+		if (!validatorOutcome.getIsValidRoot()) {
+			result = VALIDATION_NOTVALIDROOT;
+		}
+
+		if (isValidateToSchema) {
+			if (!validatorOutcome.getIsValidToSchema()) {
+				result = VALIDATION_NOTVALIDSCHEMA;
+			}
+
+			if (!validatorOutcome.getIsValidToApplicationProfile()) {
+				result = VALIDATION_NOTVALIDPROFILE;
+			}
+
+			if (!validatorOutcome.getDoRequiredCPFilesExist()) {
+				result = VALIDATION_MISSINGREQUIREDFILES;
+			}
+		}
+
+		if (createContentPackage) {
+			try {
+				convertToContentPackage(resourceId, validator, validatorOutcome, speaker, briefHistory, summary);
 			} catch (InvalidArchiveException iae) {
 				return VALIDATION_WRONGMIMETYPE;
 			} catch (Exception e) {
