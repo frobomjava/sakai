@@ -30,23 +30,43 @@
 		<form wicket:id="configurationForm">
 			<p class="shorttext">
 				<span class="reqStar">*</span>
-				<label for="packageName">
+				<label for="packageName" style="display: inline-block; width: 172px;">
 					<wicket:message key="form.label.package.name"></wicket:message>
 				</label>
 				<input type="text" wicket:id="packageName" size="50" maxlength="200" />
+			</p>
+			<p class="shorttext">
+				<label for="speaker" style="display: inline-block; width: 180px;">
+					<wicket:message key="form.label.speaker"></wicket:message>
+				</label>
+				<input type="text" wicket:id="speaker" size="50" maxlength="200" />
+			</p>
+			<p class="shorttext">
+				<label for="briefhistory" style="display: inline-block; width: 180px;">
+					<wicket:message key="form.label.briefHistory"></wicket:message>
+				</label>
+				<br/>
+				<textarea wicket:id="briefhistory" rows="8" cols="80"></textarea>
+			</p>
+			<p class="shorttext">
+				<label for="summary" style="display: inline-block; width: 180px;">
+					<wicket:message key="form.label.summary"></wicket:message>
+				</label>
+				<br/>
+				<textarea wicket:id="summary" rows="8" cols="80"></textarea>
 			</p>
 			<p class="instruction labelindnt">
 				<wicket:message key="form.instructions.open.date"></wicket:message>
 			</p>
 			<p class="shorttext">
 				<span class="reqStar">*</span>
-				<label for="releaseOnDTF">
+				<label for="releaseOnDTF" style="display: inline-block; width: 172px;">
 					<wicket:message key="form.label.open.date"></wicket:message>
 				</label>
 				<span wicket:id="releaseOnDTF"></span>
 			</p>
 			<p class="shorttext">
-				<label for="dueOnDTF">
+				<label for="dueOnDTF" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.due.date"></wicket:message>
 				</label>
 				<span wicket:id="dueOnDTF"></span>
@@ -55,37 +75,37 @@
 				<wicket:message key="form.instructions.accept.until"></wicket:message>
 			</p>
 			<p class="shorttext">
-				<label for="acceptUntilDTF">
+				<label for="acceptUntilDTF" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.accept.until"></wicket:message>
 				</label>
 				<span wicket:id="acceptUntilDTF"></span>
 			</p>
 			<p class="shorttext">
-				<label for="numberOfTries">
+				<label for="numberOfTries" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.number.of.tries"></wicket:message>
 				</label>
 				<select wicket:id="numberOfTries"/>
 			</p>
 			<p class="shorttext">
-				<label for="createdBy">
+				<label for="createdBy" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.created.by"></wicket:message>
 				</label>
 				<span wicket:id="createdBy"></span>
 			</p>
 			<p class="shorttext">
-				<label for="createdOn">
+				<label for="createdOn" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.created.on"></wicket:message>
 				</label>
 				<span wicket:id="createdOn"></span>
 			</p>
 			<p class="shorttext">
-				<label for="modifiedBy">
+				<label for="modifiedBy" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.last.changed.by"></wicket:message>
 				</label>
 				<span wicket:id="modifiedBy"></span>
 			</p>
 			<p class="shorttext">
-				<label for="modifiedOn">
+				<label for="modifiedOn" style="display: inline-block; width: 180px;">
 					<wicket:message key="form.label.last.changed.on"></wicket:message>
 				</label>
 				<span wicket:id="modifiedOn"></span>

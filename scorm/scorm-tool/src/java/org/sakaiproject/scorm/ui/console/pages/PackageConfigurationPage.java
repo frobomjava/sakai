@@ -36,6 +36,7 @@ import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.PropertyModel;
@@ -280,6 +281,16 @@ public class PackageConfigurationPage extends ConsoleBasePage {
 		TextField nameField = new TextField("packageName", new PropertyModel(contentPackage, "title"));
 		nameField.setRequired(true);
 		form.add(nameField);
+
+		TextField speaker = new TextField<String>("speaker", new PropertyModel(contentPackage, "speaker"));
+		form.add(speaker);
+
+		TextArea briefhistory = new TextArea<String>("briefhistory",new PropertyModel(contentPackage, "briefHistory"));
+		form.add(briefhistory);
+
+		TextArea summary = new TextArea<String>("summary",new PropertyModel(contentPackage, "summary"));
+		form.add(summary);
+
 		DateTimeField releaseOnDTF = new DateTimeField("releaseOnDTF", new PropertyModel(contentPackage, "releaseOn"));
 		releaseOnDTF.setRequired(true);
 

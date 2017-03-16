@@ -124,6 +124,16 @@ public abstract class ScormContentServiceImpl implements ScormContentService, Sc
 
 		Serializable manifestId = contentPackageManifestDao().save(manifest);
 
+		if (speaker == null) {
+			speaker = "";
+		}
+		if (briefHistory == null) {
+			briefHistory = "";
+		}
+		if (summary == null) {
+			summary = "";
+		}
+
 		// Now create a representation of this content package in the database
 		ContentPackage cp = new ContentPackage(title, archiveId);
 		cp.setContext(context);
@@ -330,6 +340,24 @@ public abstract class ScormContentServiceImpl implements ScormContentService, Sc
 		if (learnerId == null) {
 			learnerId = "unknown";
 		}
+
+		String speaker = contentPackage.getSpeaker();
+		String briefHistory = contentPackage.getBriefHistory();
+		String summary = contentPackage.getSummary();
+
+		if (speaker == null) {
+			speaker = "";
+		}
+		if (briefHistory == null) {
+			briefHistory = "";
+		}
+		if (summary == null) {
+			summary = "";
+		}
+
+		contentPackage.setSpeaker(speaker);
+		contentPackage.setBriefHistory(briefHistory);
+		contentPackage.setSummary(summary);
 
 		contentPackage.setModifiedBy(learnerId);
 		contentPackage.setModifiedOn(new Date());
