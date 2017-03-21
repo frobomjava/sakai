@@ -247,64 +247,46 @@ calendar Portlet
 
 
 #macro (eventLegend $tlang)
-	<h4>$tlang.getString('view.legend')</h4>
-	<ul class="calendarLegend">
-		<li><i class="icon icon-calendar-academic-calendar"></i> $tlang.getString('legend.key1')</li>
-		<li><i class="icon icon-calendar-activity"></i> $tlang.getString('legend.key2')</li>
-		<li><i class="icon icon-calendar-cancellation"></i> $tlang.getString('legend.key3')</li>
-		<li><i class="icon icon-calendar-class-section-discussion"></i> $tlang.getString('legend.key4')</li>
-		<li><i class="icon icon-calendar-class-section-lab"></i> $tlang.getString('legend.key5')</li>
-		<li><i class="icon icon-calendar-class-section-lecture"></i> $tlang.getString('legend.key6')</li>
-		<li><i class="icon icon-calendar-class-section-small-group"></i> $tlang.getString('legend.key7')</li>
-		<li><i class="icon icon-calendar-class-session"></i> $tlang.getString('legend.key8')</li>
-		<li><i class="icon icon-calendar-computer-session"></i> $tlang.getString('legend.key9')</li>
-		<li><i class="icon icon-calendar-deadline"></i> $tlang.getString('legend.key10')</li>
-		<li><i class="icon icon-calendar-exam"></i> $tlang.getString('legend.key11')</li>
-		<li><i class="icon icon-calendar-meeting"></i> $tlang.getString('legend.key12')</li>
-		<li><i class="icon icon-calendar-multidisciplinary-conference"></i> $tlang.getString('legend.key13')</li>
-		<li><i class="icon icon-calendar-quiz"></i> $tlang.getString('legend.key14')</li>
-		<li><i class="icon icon-calendar-special-event"></i> $tlang.getString('legend.key15')</li>
-		<li><i class="icon icon-calendar-web-assignment"></i> $tlang.getString('legend.key16')</li>
-	</ul>
-	<div class="clear"></div>
+    <h4>$tlang.getString('view.legend')</h4>
+    <ul class="calendarLegend">
+        <li><i class="icon icon-calendar-seminar"></i> $tlang.getString('legend.keynew1')</li>
+        <li><i class="icon icon-calendar-forum"></i> $tlang.getString('legend.keynew2')</li>
+        <li><i class="icon icon-calendar-symposium"></i> $tlang.getString('legend.keynew3')</li>
+        <li><i class="icon icon-calendar-workshop"></i> $tlang.getString('legend.keynew4')</li>
+        <li><i class="icon icon-calendar-exhibition"></i> $tlang.getString('legend.keynew5')</li>
+        <li><i class="icon icon-calendar-debriefing-session"></i> $tlang.getString('legend.keynew6')</li>
+        <li><i class="icon icon-calendar-society"></i> $tlang.getString('legend.keynew7')</li>
+        <li><i class="icon icon-calendar-tournament"></i> $tlang.getString('legend.keynew8')</li>
+        <li><i class="icon icon-calendar-study-group"></i> $tlang.getString('legend.keynew9')</li>
+        <li><i class="icon icon-calendar-meeting"></i> $tlang.getString('legend.key12')</li>  
+    </ul>
+    <div class="clear"></div>
 #end
 
 #* Calendar Event Icons macro
 *#
 
 #macro (iconImage $eventType)
-#if ($eventType=="Academic Calendar")
-<i class="icon icon-calendar-academic-calendar" title="$tlang.getString('legend.key1')" ></i>
-#elseif ($eventType =="Activity")
-<i class="icon icon-calendar-activity" title="$tlang.getString('legend.key2')" ></i>
-#elseif ($eventType =="Cancellation")
-<i class="icon icon-calendar-cancellation" title="$tlang.getString('legend.key3')" ></i>
-#elseif ($eventType =="Class section - Discussion")
-<i class="icon icon-calendar-class-section-discussion" title="$tlang.getString('legend.key4')" ></i>
-#elseif ($eventType =="Class section - Lab")
-<i class="icon icon-calendar-class-section-lab" title="$tlang.getString('legend.key5')" ></i>
-#elseif ($eventType =="Class section - Lecture")
-<i class="icon icon-calendar-class-section-lecture" title="$tlang.getString('legend.key6')" ></i>
-#elseif ($eventType =="Class section - Small Group")
-<i class="icon icon-calendar-class-section-small-group" title="$tlang.getString('legend.key7')" ></i>
-#elseif ($eventType =="Class session")
-<i class="icon icon-calendar-class-session" title="$tlang.getString('legend.key8')" ></i>
-#elseif ($eventType =="Computer Session")
-<i class="icon icon-calendar-computer-session" title="$tlang.getString('legend.key9')" ></i>
-#elseif ($eventType =="Deadline")
-<i class="icon icon-calendar-deadline" title="$tlang.getString('legend.key10')" ></i>
-#elseif ($eventType =="Exam")
-<i class="icon icon-calendar-exam" title="$tlang.getString('legend.key11')" ></i>
+#if ($eventType=="Seminar")
+<i class="icon icon-calendar-seminar" title="$tlang.getString('legend.keynew1')" ></i>
+#elseif ($eventType =="Forum")
+<i class="icon icon-calendar-forum" title="$tlang.getString('legend.keynew2')" ></i>
+#elseif ($eventType =="Symposium")
+<i class="icon icon-calendar-symposium" title="$tlang.getString('legend.keynew3')" ></i>
+#elseif ($eventType =="Workshop")
+<i class="icon icon-calendar-workshop" title="$tlang.getString('legend.keynew4')" ></i>
+#elseif ($eventType =="Exhibition")
+<i class="icon icon-calendar-exhibition" title="$tlang.getString('legend.keynew5')" ></i>
+#elseif ($eventType =="Debriefing session")
+<i class="icon icon-calendar-debriefing-session" title="$tlang.getString('legend.keynew6')" ></i>
+#elseif ($eventType =="Society")
+<i class="icon icon-calendar-society" title="$tlang.getString('legend.keynew7')" ></i>
+#elseif ($eventType =="Tournament")
+<i class="icon icon-calendar-tournament" title="$tlang.getString('legend.keynew8')" ></i>
+#elseif ($eventType =="Study Group")
+<i class="icon icon-calendar-study-group" title="$tlang.getString('legend.keynew9')" ></i>
 #elseif ($eventType =="Meeting")
 <i class="icon icon-calendar-meeting" title="$tlang.getString('legend.key12')" ></i>
-#elseif ($eventType =="Multidisciplinary Conference")
-<i class="icon icon-calendar-multidisciplinary-conference" title="$tlang.getString('legend.key13')" ></i>
-#elseif ($eventType =="Quiz")
-<i class="icon icon-calendar-quiz" title="$tlang.getString('legend.key14')" ></i>
-#elseif ($eventType =="Special event")
-<i class="icon icon-calendar-special-event" title="$tlang.getString('legend.key15')" ></i>
-#elseif ($eventType =="Web Assignment")
-<i class="icon icon-calendar-web-assignment" title="$tlang.getString('legend.key16')" ></i>
 #end
 #end
 

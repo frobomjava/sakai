@@ -300,5 +300,14 @@
 			&.icon-calendar-quiz							{	@extend .fa-star}
 			&.icon-calendar-special-event					{	@extend .fa-certificate}
 			&.icon-calendar-web-assignment					{	@extend .fa-code}
+			&.icon-calendar-seminar                         {   @extend .fa-weixin}
+            &.icon-calendar-forum                           {   @extend .fa-users}
+            &.icon-calendar-symposium                       {   @extend .fa-share-alt}
+            &.icon-calendar-workshop                        {   @extend .fa-wrench}
+            &.icon-calendar-exhibition                      {   @extend .fa-map-o}
+            &.icon-calendar-debriefing-session              {   @extend .fa-clipboard}
+            &.icon-calendar-society                         {   @extend .fa-spinner}
+            &.icon-calendar-tournament                      {   @extend .fa-trophy}
+            &.icon-calendar-study-group                     {   @extend .fa-graduation-cap}
 	}
 }
