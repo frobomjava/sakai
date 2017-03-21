@@ -86,14 +86,15 @@
 
     <div class="Mrphs-pagebody">
     
-    	#if (${pageId} == ${specialColumnPageId})
+	<!--#if (${pageId} == ${specialColumnPageId})
     		#parse("/vm/morpheus/includePageBodySpecial.vm")
     	#else
     		#parse("/vm/morpheus/includePageBody.vm")
     	
-    	#end ## END of IF (${pageId} == ${specialColumnPageId})
+	#end ## END of IF (${pageId} == ${specialColumnPageId})-->
     	
-    	#parse("/vm/morpheus/includeFooter.vm")
+	#parse("/vm/morpheus/includePageBody.vm")
+	#parse("/vm/morpheus/includeFooter.vm")
 
     </div>
     
