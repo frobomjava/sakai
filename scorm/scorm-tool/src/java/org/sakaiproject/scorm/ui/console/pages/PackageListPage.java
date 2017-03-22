@@ -28,6 +28,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.PageMap;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
@@ -237,7 +238,13 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 				ContentPackage contentPackage = (ContentPackage)target;
 				briefHistory = contentPackage.getBriefHistory();
 			}
-			item.add(new Label(componentId, briefHistory));
+			if(briefHistory != "") {
+				item.add(new JavascriptLink(componentId, briefHistory, "略歴"));
+				item.setOutputMarkupId(true);
+				item.setMarkupId(componentId);
+			} else {
+				item.add(new Label(componentId, ""));
+			}
 		}
 	}
 	
@@ -257,7 +264,29 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 				ContentPackage contentPackage = (ContentPackage)target;
 				summary = contentPackage.getSummary();
 			}
-			item.add(new Label(componentId, summary));
+			if(summary != "") {
+				item.add(new JavascriptLink(componentId, summary, "概要"));
+				item.setOutputMarkupId(true);
+				item.setMarkupId(componentId);
+			} else {
+				item.add(new Label(componentId, ""));
+			}
+		}
+	}
+
+	public class JavascriptLink extends Label {
+		public JavascriptLink(String id, String detail, String linkText) {
+			super(id, linkText);
+			String script = "setModalData('" + linkText + "','" + detail + "')";
+			String toggle = "modal";
+			String target = "#myModal";
+			String spanId = "SpanButton";
+			String pointer = "cursor:pointer";
+			add(new AttributeAppender("onclick", new Model(script), ""));
+			add(new AttributeAppender("data-toggle", new Model(toggle), ""));
+			add(new AttributeAppender("data-target", new Model(target), ""));
+			add(new AttributeAppender("id", new Model(spanId), ""));
+			add(new AttributeAppender("style", new Model(pointer), ""));
 		}
 	}
 

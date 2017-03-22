@@ -22,6 +22,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.sourceforge.net/" xml:lang="en" lang="en">
 <head>
 	<wicket:head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<title>SCORM Console</title>
 	</wicket:head>
 </head>
@@ -29,9 +32,28 @@
 	<wicket:extend>		
 	
 		<table wicket:id="cpTable" class="listHier lines nolines"/>
-	
 		<p/>
 		<br/>
+
+		<div class="modal fade" id="myModal" role="dialog" style="position:fixed; top:15%; overflow-y: hidden;">
+			<div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+			        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 id="modal-title" class="modal-title">Modal Header</h4>
+			        </div>
+			        <div class="modal-body" style="max-height: 250px; overflow-y: auto;">
+						<p id="modal-body-data">Some text in the modal.</p>
+			        </div>
+			        <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+		      </div>
+			</div>
+		</div>
+
 	</wicket:extend>
+
 </body>
 </html>
