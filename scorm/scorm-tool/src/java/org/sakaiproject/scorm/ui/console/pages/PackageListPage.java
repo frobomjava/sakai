@@ -277,6 +277,7 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 	public class JavascriptLink extends Label {
 		public JavascriptLink(String id, String detail, String linkText) {
 			super(id, linkText);
+			detail = detail.replaceAll("(\\r|\\n|\\r\\n)+", "<br>");
 			String script = "setModalData('" + linkText + "','" + detail + "')";
 			String toggle = "modal";
 			String target = "#myModal";
