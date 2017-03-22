@@ -225,6 +225,17 @@ window.onload=function(){
 					#if ($event.getType()=="Quiz") $tlang.getString("legend.key14") #end
 					#if ($event.getType()=="Special event") $tlang.getString("legend.key15") #end
 					#if ($event.getType()=="Web Assignment") $tlang.getString("legend.key16") #end
+
+					#if ($event.getType()=="Seminar") $tlang.getString("legend.keynew1") #end
+					#if ($event.getType()=="Forum") $tlang.getString("legend.keynew2") #end
+					#if ($event.getType()=="Symposium") $tlang.getString("legend.keynew3") #end
+					#if ($event.getType()=="Workshop") $tlang.getString("legend.keynew4") #end
+					#if ($event.getType()=="Exhibition") $tlang.getString("legend.keynew5") #end
+					#if ($event.getType()=="Debriefing session") $tlang.getString("legend.keynew6") #end
+					#if ($event.getType()=="Society") $tlang.getString("legend.keynew7") #end
+					#if ($event.getType()=="Tournament") $tlang.getString("legend.keynew8") #end
+					#if ($event.getType()=="Study Group") $tlang.getString("legend.keynew9") #end
+
 				</td>	
 			</tr>
 			#if($owner_name && $owner_name !="")

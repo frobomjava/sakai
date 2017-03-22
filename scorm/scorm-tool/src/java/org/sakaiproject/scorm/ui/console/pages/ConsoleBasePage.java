@@ -136,6 +136,7 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
         {
             listIcon.setVisibilityAllowed( false );
             uploadIcon.setVisibilityAllowed( false );
+            listContainer.setVisible(false);
             //validateIcon.setVisibilityAllowed( false );
         }
         
