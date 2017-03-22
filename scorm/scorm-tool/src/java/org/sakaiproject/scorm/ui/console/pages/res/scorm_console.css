@@ -204,3 +204,21 @@
 			margin:0 1px;
 		}
 		
+		#SpanButton{
+			border: 1px solid #4a8db3;
+		    padding: 3px 4px;
+		    background: #2a94c0;
+		    border-radius: 3px;
+		    color: white;
+		    display: block;
+			width: 40px;
+		}
+		#SpanButton:hover {
+		    background: #1a6584;
+		}
+		body {
+		    padding-right: 0 !important;
+		}
+		#main-nav {
+		    padding-right: 0 !important;
+		}
