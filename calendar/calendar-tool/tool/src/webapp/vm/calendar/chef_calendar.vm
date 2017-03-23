@@ -6,7 +6,9 @@ calendar Portlet
 *#
 #* Calendar Event Legend macro
 *#
+
 <style>
+
 		table.calendar{
 			font-size: 0.8em;
 			background-color: #dbe8f0;
@@ -243,23 +245,132 @@ calendar Portlet
 			display: inline-block;
 			padding: 4px;
 		}
-</style>
-
+		.fa-weixin:before{
+            content: "\f1d7";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-users:before{
+            content: "\f0c0";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-share-alt:before{
+            content: "\f1e0";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-wrench:before{
+            content: "\f0ad";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-map-marker:before{
+            content: "\f041";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-clipboard:before{
+            content: "\f0ea";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-spinner:before{
+            content: "\f110";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-trophy:before{
+            content: "\f091";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+		.fa-graduation-cap:before{
+            content: "\f19d";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+        .fa-clock-o:before{
+            content: "\f017";
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin-left: 6px;
+        }
+	</style>
 
 #macro (eventLegend $tlang)
     <h4>$tlang.getString('view.legend')</h4>
     <ul class="calendarLegend">
-        <li><i class="icon icon-calendar-seminar"></i> $tlang.getString('legend.keynew1')</li>
-        <li><i class="icon icon-calendar-forum"></i> $tlang.getString('legend.keynew2')</li>
-        <li><i class="icon icon-calendar-symposium"></i> $tlang.getString('legend.keynew3')</li>
-        <li><i class="icon icon-calendar-workshop"></i> $tlang.getString('legend.keynew4')</li>
-        <li><i class="icon icon-calendar-exhibition"></i> $tlang.getString('legend.keynew5')</li>
-        <li><i class="icon icon-calendar-debriefing-session"></i> $tlang.getString('legend.keynew6')</li>
-        <li><i class="icon icon-calendar-society"></i> $tlang.getString('legend.keynew7')</li>
-        <li><i class="icon icon-calendar-tournament"></i> $tlang.getString('legend.keynew8')</li>
-        <li><i class="icon icon-calendar-study-group"></i> $tlang.getString('legend.keynew9')</li>
-        <li><i class="icon icon-calendar-meeting"></i> $tlang.getString('legend.key12')</li>  
-    </ul>
+        <li><i class="fa-weixin"></i> $tlang.getString('legend.keynew1')</li>
+        <li><i class="fa-users"></i> $tlang.getString('legend.keynew2')</li>
+        <li><i class="fa-share-alt"></i> $tlang.getString('legend.keynew3')</li>
+        <li><i class="fa-wrench"></i> $tlang.getString('legend.keynew4')</li>
+        <li><i class="fa-map-marker"></i> $tlang.getString('legend.keynew5')</li>
+        <li><i class="fa-clipboard"></i> $tlang.getString('legend.keynew6')</li>
+        <li><i class="fa-spinner"></i> $tlang.getString('legend.keynew7')</li>
+        <li><i class="fa-trophy"></i> $tlang.getString('legend.keynew8')</li>
+        <li><i class="fa-graduation-cap"></i> $tlang.getString('legend.keynew9')</li>
+        <li><i class="fa-clock-o"></i> $tlang.getString('legend.key12')</li>
+     </ul>
     <div class="clear"></div>
 #end
 
@@ -268,25 +379,25 @@ calendar Portlet
 
 #macro (iconImage $eventType)
 #if ($eventType=="Seminar")
-<i class="icon icon-calendar-seminar" title="$tlang.getString('legend.keynew1')" ></i>
+<i class="fa-weixin" title="$tlang.getString('legend.keynew1')" ></i>
 #elseif ($eventType =="Forum")
-<i class="icon icon-calendar-forum" title="$tlang.getString('legend.keynew2')" ></i>
+<i class="fa-users" title="$tlang.getString('legend.keynew2')" ></i>
 #elseif ($eventType =="Symposium")
-<i class="icon icon-calendar-symposium" title="$tlang.getString('legend.keynew3')" ></i>
+<i class="fa-share-alt" title="$tlang.getString('legend.keynew3')" ></i>
 #elseif ($eventType =="Workshop")
-<i class="icon icon-calendar-workshop" title="$tlang.getString('legend.keynew4')" ></i>
+<i class="fa-wrench" title="$tlang.getString('legend.keynew4')" ></i>
 #elseif ($eventType =="Exhibition")
-<i class="icon icon-calendar-exhibition" title="$tlang.getString('legend.keynew5')" ></i>
+<i class="fa-map-marker" title="$tlang.getString('legend.keynew5')" ></i>
 #elseif ($eventType =="Debriefing session")
-<i class="icon icon-calendar-debriefing-session" title="$tlang.getString('legend.keynew6')" ></i>
+<i class="fa-clipboard" title="$tlang.getString('legend.keynew6')" ></i>
 #elseif ($eventType =="Society")
-<i class="icon icon-calendar-society" title="$tlang.getString('legend.keynew7')" ></i>
+<i class="fa-spinner" title="$tlang.getString('legend.keynew7')" ></i>
 #elseif ($eventType =="Tournament")
-<i class="icon icon-calendar-tournament" title="$tlang.getString('legend.keynew8')" ></i>
+<i class="fa-trophy" title="$tlang.getString('legend.keynew8')" ></i>
 #elseif ($eventType =="Study Group")
-<i class="icon icon-calendar-study-group" title="$tlang.getString('legend.keynew9')" ></i>
+<i class="fa-graduation-cap" title="$tlang.getString('legend.keynew9')" ></i>
 #elseif ($eventType =="Meeting")
-<i class="icon icon-calendar-meeting" title="$tlang.getString('legend.key12')" ></i>
+<i class="fa-clock-o" title="$tlang.getString('legend.key12')" ></i>
 #end
 #end
 
