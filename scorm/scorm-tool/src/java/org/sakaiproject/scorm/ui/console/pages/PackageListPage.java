@@ -276,18 +276,18 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 
 	public class JavascriptLink extends Label {
 		public JavascriptLink(String id, String detail, String linkText) {
-			super(id, linkText);
+			super(id, "");
 			detail = detail.replaceAll("(\\r|\\n|\\r\\n)+", "<br>");
 			String script = "setModalData('" + linkText + "','" + detail + "')";
 			String toggle = "modal";
 			String target = "#myModal";
 			String spanId = "SpanButton";
-			String pointer = "cursor:pointer";
+			String spanClass = "fa-comment-o";
 			add(new AttributeAppender("onclick", new Model(script), ""));
 			add(new AttributeAppender("data-toggle", new Model(toggle), ""));
 			add(new AttributeAppender("data-target", new Model(target), ""));
 			add(new AttributeAppender("id", new Model(spanId), ""));
-			add(new AttributeAppender("style", new Model(pointer), ""));
+			add(new AttributeAppender("class", new Model(spanClass), ""));
 		}
 	}
 
