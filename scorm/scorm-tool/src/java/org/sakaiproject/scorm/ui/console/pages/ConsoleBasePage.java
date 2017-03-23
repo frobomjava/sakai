@@ -82,7 +82,9 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
 		if (isSinglePackageTool()) {
 	        wmc.setVisible(false);
 		}
-		
+		if (!canUpload){
+			wmc.setVisible(false);
+		}
         NavIntraLink listLink = new NavIntraLink("listLink", new ResourceModel("link.list"), PackageListPage.class);
         NavIntraLink uploadLink = new NavIntraLink("uploadLink", new ResourceModel("link.upload"), UploadPage.class);
         //NavIntraLink validateLink = new NavIntraLink("validateLink", new ResourceModel("link.validate"), ValidationPage.class);
@@ -96,15 +98,14 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
 
         SimpleAttributeModifier className = new SimpleAttributeModifier( "class", "current" );
 		if (listLink.linksTo(getPage())) {
-			if (canUpload) {
-				listContainer.add(className);
-				listLink.add(className);
-			}
+
+			listContainer.add(className);
+			listLink.add(className);
+
 		} else if (uploadLink.linksTo(getPage())) {
-			if (canUpload) {
-				uploadContainer.add(className);
-				uploadLink.add(className);
-			}
+
+			uploadContainer.add(className);
+			uploadLink.add(className);
 
 		}
         //else if( validateLink.linksTo( getPage() ) )
