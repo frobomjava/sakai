@@ -95,16 +95,18 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
         //validateContainer.add( validateLink );
 
         SimpleAttributeModifier className = new SimpleAttributeModifier( "class", "current" );
-        if( listLink.linksTo( getPage() ) )
-        {
-            listContainer.add( className );
-            listLink.add( className );
-        }
-        else if( uploadLink.linksTo( getPage() ) )
-        {
-            uploadContainer.add( className );
-            uploadLink.add( className );
-        }
+		if (listLink.linksTo(getPage())) {
+			if (canUpload) {
+				listContainer.add(className);
+				listLink.add(className);
+			}
+		} else if (uploadLink.linksTo(getPage())) {
+			if (canUpload) {
+				uploadContainer.add(className);
+				uploadLink.add(className);
+			}
+
+		}
         //else if( validateLink.linksTo( getPage() ) )
         //{
         //    validateContainer.add( className );
@@ -128,7 +130,6 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
         {
             listIcon.setVisible(canUpload || canValidate);
             uploadIcon.setVisible(canUpload);
-
             // SCO-107 hide the validate link (interface is currently unimplemented)
             //validateIcon.setVisible(canValidate);
             //validateIcon.setVisibilityAllowed(false);
@@ -137,7 +138,6 @@ public class ConsoleBasePage extends SakaiPortletWebPage implements IHeaderContr
         {
             listIcon.setVisibilityAllowed( false );
             uploadIcon.setVisibilityAllowed( false );
-            listContainer.setVisible(false);
             //validateIcon.setVisibilityAllowed( false );
         }
         
