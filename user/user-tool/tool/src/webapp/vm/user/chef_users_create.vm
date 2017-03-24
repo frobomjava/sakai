@@ -242,7 +242,7 @@ function hasCompanyData() {
 				<!--end for gateway create user unable to choose type-->
 				
 				<!--for gateway create user able to choose type-->
-				<div class="shorttext">
+				<div class="shorttext" hidden>
 					<label for="dtype">
 						$tlang.getString("usecre.typ")
 					</label>
@@ -250,7 +250,7 @@ function hasCompanyData() {
 					#if($userTypes)
 						<select name="dtype" id="dtype">
 						#foreach ( $userType in $userTypes )
-							#if($userType != "registered" && $userType != "maintain")
+							#if($userType == "guest")
 							<option value="$validator.escapeHtml($userType)" #if($user.Type==$userType)selected#end>$validator.escapeHtml($userType)</option>
 							#end
 						#end
