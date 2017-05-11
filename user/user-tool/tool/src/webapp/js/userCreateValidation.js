@@ -136,22 +136,13 @@ USER.validateForm = function () {
 	var usePw = document.getElementById("user_pw").value;
 	var usePw0 = document.getElementById("user_pw0").value;
 	var comNam = document.getElementById("company-name").value;
-	var comPos = document.getElementById("company-postal").value;
-	var comAdd = document.getElementById("company-address").value;
-	var comPh = document.getElementById("company-phone").value;
+	var email = document.getElementById("email").value;
     
 
     if (USER.userValid && USER.emailValid && USER.passwordValid && USER.passwordsMatch) {
     	
-    	if(comNam != ""){
-    		if(comPos != "" && comAdd != "" && comPh !="") {
-    			submitButton.disabled = false;    			
-    		} else {
-    			submitButton.disabled = true;
-    		}    		
-    	} else {
-    		submitButton.disabled = false;
-    	}
+    	if(email != "" && comNam != "") { submitButton.disabled = false; }
+    	else { submitButton.disabled = true; }
     }
     else {
         submitButton.disabled = true;

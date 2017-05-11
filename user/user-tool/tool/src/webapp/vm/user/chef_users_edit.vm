@@ -32,46 +32,10 @@ function removeOptionalAttributeBlock(elem) {
 	$(elem).parent("p").remove();
 }
 
-function hasCompany() {
-
-	USER.validateForm();
-
-	if(document.getElementById("company-name").value != "") {
- 		document.getElementById("company-postal").disabled = false;
-		document.getElementById("company-address").disabled = false;
-		document.getElementById("company-phone").disabled = false;
-		document.getElementById("company-fax").disabled = false;
- 		
-    } else {
-    	document.getElementById("company-postal").disabled = true;
-		document.getElementById("company-address").disabled = true;
-		document.getElementById("company-phone").disabled = true;
-		document.getElementById("company-fax").disabled = true;
-		
-		document.getElementById("company-postal").value = "";
-		document.getElementById("company-address").value = "";
-		document.getElementById("company-phone").value = "";
-		document.getElementById("company-fax").value = "";
-		
-    }
-}
-
-function hasCompanyData() {
-
-	USER.validateForm();
-	
-	if(document.getElementById("eventSubmit_doSave").disabled == false){
-		var useEid = document.getElementById("user_eid").value;
-		var comPos = document.getElementById("company-postal").value;
-		var comAdd = document.getElementById("company-address").value;
-		var comPh = document.getElementById("company-phone").value;
-		
-		if(useEid != "" && comPos != "" && comAdd != "" && comPh !="") {
-			document.getElementById("eventSubmit_doSave").disabled = false;
-		} else {
-			document.getElementById("eventSubmit_doSave").disabled = true;
-		}
-	}
+function checkValidation(hasUser) {
+alert("checkValidation");
+	if(hasUser == 0) { USER.validateForm1(); alert("call validateForm1"); }
+    else {  USER.validateForm(); alert("call validateForm");}
 }
 
 </script>
@@ -97,19 +61,19 @@ function hasCompanyData() {
                 </div>
 			<div class="shorttext required">
 				<label #if(!$user) for="user_eid" #end>
-					#if(!$user)<span id="userIdRequired" class="reqStar">*</span>#end $tlang.getString("useconrem.useid")
+					<span id="userIdRequired" class="reqStar">*</span> $tlang.getString("useconrem.useid")
 				</label>
 				#if($!user && !$valueEid)
 					#set($valueEid=$user.Eid)
 				#end
 				#if(!$user)
 					## creating new account
-					<input type="text" name="eid" id="user_eid" oninput="USER.validateUserId();" onkeyup="USER.validateUserId();" autocomplete="off" #if($!valueEid)value="$validator.escapeHtml($!valueEid)"#end/>
+					<input type="text" name="eid" id="user_eid" oninput="USER.validateUserId(0);" onkeyup="USER.validateUserId(0);" autocomplete="off" #if($!valueEid)value="$validator.escapeHtml($!valueEid)"#end/>
 				#else
 					## modifying existing account
 					#if($!superUser)
 						## only admin type user can modify the eid field
-						<input type="text" name="eid" id="user_eid" oninput="USER.validateUserId();" onkeyup="USER.validateUserId();" autocomplete="off" #if($!valueEid)value="$validator.escapeHtml($!valueEid)"#end/>
+						<input type="text" name="eid" id="user_eid" oninput="USER.validateUserId(1);" onkeyup="USER.validateUserId(1);" autocomplete="off" #if($!valueEid)value="$validator.escapeHtml($!valueEid)"#end/>
 					#else
 						<span id="eidValue">$validator.escapeHtml($!valueEid)</span>
 					#end
@@ -138,10 +102,11 @@ function hasCompanyData() {
 			
 			<div class="shorttext">
 				<label for="email">
+					<span class="reqStar">*</span>
 					$tlang.getString("useconrem.ema")
 				</label>
 			#if ($service.allowUpdateUserEmail($user.Id) || !$user)
-				<input type="text" name="email" id="email" oninput="USER.validateEmail();" onkeyup="USER.validateEmail();" autocomplete="off"#if($user)value="$validator.escapeHtml($user.Email)"#elseif($valueEmail)value="$validator.escapeHtml($valueEmail)"#end />
+				<input type="text" name="email" id="email" #if(!$user) oninput="USER.validateEmail(0);" onkeyup="USER.validateEmail(0);" #else oninput="USER.validateEmail(1);" onkeyup="USER.validateEmail(1);" #end autocomplete="off"#if($user)value="$validator.escapeHtml($user.Email)"#elseif($valueEmail)value="$validator.escapeHtml($valueEmail)"#end />
                 <div id="emailWarningMsg" style="display:none">$tlang.getString("useact.invemail")</div>
 			#else
 				#if($user)$validator.escapeHtml($user.Email)#elseif($valueEmail)$validator.escapeHtml($valueEmail)#end
@@ -163,9 +128,10 @@ function hasCompanyData() {
 		#if ($service.allowUpdateUserPassword($user.Id) || !$user)
 			<div class="shorttext">
 				<label for="user_pw">
+					#if(!$user)<span class="reqStar">*</span>#end
 					$tlang.getString("usecre.crenewpass")
 				</label>
-				<input type="password" name="pw" id="user_pw" oninput="USER.validatePassword();" onkeyup="USER.validatePassword();" onblur="USER.displayStrengthInfo();" onfocus="USER.displayStrengthInfo();" autocomplete="off" />
+				<input type="password" name="pw" id="user_pw" #if(!$user) oninput="USER.validatePassword(0);" onkeyup="USER.validatePassword(0);" #else oninput="USER.validatePassword(1);" onkeyup="USER.validatePassword(1);" #end onblur="USER.displayStrengthInfo();" onfocus="USER.displayStrengthInfo();" autocomplete="off" />
                 <div id="strongMsg" style="display:none">$tlang.getString("pw.strong")</div>
                 <div id="moderateMsg" style="display:none">$tlang.getString("pw.moderate")</div>
 				<div id="weakMsg" style="display:none">$tlang.getString("pw.weak")</div>
@@ -177,9 +143,10 @@ function hasCompanyData() {
 			</div>
 			<div class="shorttext">
 				<label for="user_pw0">
+					#if(!$user)<span class="reqStar">*</span>#end
 					$tlang.getString("usecre.vernewpass")
 				</label>
-				<input type="password" name="pw0" id="user_pw0" oninput="USER.verifyPasswordsMatch();" onkeyup="USER.verifyPasswordsMatch();" autocomplete="off" />
+				<input type="password" name="pw0" id="user_pw0" #if(!$user) oninput="USER.verifyPasswordsMatch(0);" onkeyup="USER.verifyPasswordsMatch(0);" #else oninput="USER.verifyPasswordsMatch(1);" onkeyup="USER.verifyPasswordsMatch(1);" #end autocomplete="off" />
                 <div id="matchMsg" style="display:none">$tlang.getString("pw.match")</div>
                 <div id="noMatchMsg" style="display:none">$tlang.getString("pw.noMatch")</div>
 			</div>
@@ -190,22 +157,22 @@ function hasCompanyData() {
 
 			<div class="shorttext">
 				<label for="company-name">
+					<span class="reqStar">*</span>
 					$tlang.getString("usecre.comnam")
 				</label>
 			#if ($service.allowUpdateCompanyName($user.Id) || !$user)
-				<input type="text" name="company-name" id="company-name" oninput="hasCompany()" #if($user)value="$validator.escapeHtml($user.CompanyName)"#elseif($valueCompanyName)value="$validator.escapeHtml($valueCompanyName)"#end />
+				<input type="text" name="company-name" id="company-name" #if(!$user) oninput="USER.validateForm1();" onkeyup="USER.validateForm1();" #else oninput="USER.validateForm();" onkeyup="USER.validateForm();" #end #if($user)value="$validator.escapeHtml($user.CompanyName)"#elseif($valueCompanyName)value="$validator.escapeHtml($valueCompanyName)"#end />
 			#else
 				#if($user)$validator.escapeHtml($user.CompanyName)#elseif($valueCompanyName)$validator.escapeHtml($valueCompanyName)#end
 			#end
 			</div>
 			
-			#if($user.CompanyName && $user.CompanyName != "")
 					<div class="shorttext">
 						<label for="company-postal">
 							$tlang.getString("usecre.compos")
 						</label>
 					#if ($service.allowUpdateCompanyPostal($user.Id) || !$user)
-						<input type="text" name="company-postal" id="company-postal" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPostal)"#elseif($valueCompanyPostal)value="$validator.escapeHtml($valueCompanyPostal)"#end />
+						<input type="text" name="company-postal" id="company-postal" #if($user)value="$validator.escapeHtml($user.CompanyPostal)"#elseif($valueCompanyPostal)value="$validator.escapeHtml($valueCompanyPostal)"#end />
 					#else
 						#if($user)$validator.escapeHtml($user.CompanyPostal)#elseif($valueCompanyPostal)$validator.escapeHtml($valueCompanyPostal)#end
 					#end
@@ -215,7 +182,7 @@ function hasCompanyData() {
 							$tlang.getString("usecre.comadd")
 						</label>
 					#if ($service.allowUpdateCompanyAddress($user.Id) || !$user)
-						<input type="text" name="company-address" id="company-address" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyAddress)"#elseif($valueCompanyAddress)value="$validator.escapeHtml($valueCompanyAddress)"#end />
+						<input type="text" name="company-address" id="company-address" #if($user)value="$validator.escapeHtml($user.CompanyAddress)"#elseif($valueCompanyAddress)value="$validator.escapeHtml($valueCompanyAddress)"#end />
 					#else
 						#if($user)$validator.escapeHtml($user.CompanyAddress)#elseif($valueCompanyAddress)$validator.escapeHtml($valueCompanyAddress)#end
 					#end
@@ -225,7 +192,7 @@ function hasCompanyData() {
 							$tlang.getString("usecre.comphn")
 						</label>
 					#if ($service.allowUpdateCompanyPhone($user.Id) || !$user)
-						<input type="text" name="company-phone" id="company-phone" oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPhone)"#elseif($valueCompanyPhone)value="$validator.escapeHtml($valueCompanyPhone)"#end />
+						<input type="text" name="company-phone" id="company-phone" #if($user)value="$validator.escapeHtml($user.CompanyPhone)"#elseif($valueCompanyPhone)value="$validator.escapeHtml($valueCompanyPhone)"#end />
 					#else
 						#if($user)$validator.escapeHtml($user.CompanyPhone)#elseif($valueCompanyPhone)$validator.escapeHtml($valueCompanyPhone)#end
 					#end
@@ -240,48 +207,6 @@ function hasCompanyData() {
 						#if($user)$validator.escapeHtml($user.CompanyFax)#elseif($valueCompanyFax)$validator.escapeHtml($valueCompanyFax)#end
 					#end
 					</div>
-			#else
-					<div class="shorttext">
-						<label for="company-postal">
-							$tlang.getString("usecre.compos")
-						</label>
-					#if ($service.allowUpdateCompanyPostal($user.Id) || !$user)
-						<input type="text" name="company-postal" id="company-postal" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPostal)"#elseif($valueCompanyPostal)value="$validator.escapeHtml($valueCompanyPostal)"#end />
-					#else
-						#if($user)$validator.escapeHtml($user.CompanyPostal)#elseif($valueCompanyPostal)$validator.escapeHtml($valueCompanyPostal)#end
-					#end
-					</div>
-					<div class="shorttext">
-						<label for="company-address">
-							$tlang.getString("usecre.comadd")
-						</label>
-					#if ($service.allowUpdateCompanyAddress($user.Id) || !$user)
-						<input type="text" name="company-address" id="company-address" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyAddress)"#elseif($valueCompanyAddress)value="$validator.escapeHtml($valueCompanyAddress)"#end />
-					#else
-						#if($user)$validator.escapeHtml($user.CompanyAddress)#elseif($valueCompanyAddress)$validator.escapeHtml($valueCompanyAddress)#end
-					#end
-					</div>
-					<div class="shorttext">
-						<label for="company-phone">
-							$tlang.getString("usecre.comphn")
-						</label>
-					#if ($service.allowUpdateCompanyPhone($user.Id) || !$user)
-						<input type="text" name="company-phone" id="company-phone" disabled=true oninput="hasCompanyData()" #if($user)value="$validator.escapeHtml($user.CompanyPhone)"#elseif($valueCompanyPhone)value="$validator.escapeHtml($valueCompanyPhone)"#end />
-					#else
-						#if($user)$validator.escapeHtml($user.CompanyPhone)#elseif($valueCompanyPhone)$validator.escapeHtml($valueCompanyPhone)#end
-					#end
-					</div>
-						<div class="shorttext">
-						<label for="company-fax">
-							$tlang.getString("usecre.comfax")
-						</label>
-					#if ($service.allowUpdateCompanyFax($user.Id) || !$user)
-						<input type="text" name="company-fax" id="company-fax" disabled=true #if($user)value="$validator.escapeHtml($user.CompanyFax)"#elseif($valueCompanyFax)value="$validator.escapeHtml($valueCompanyFax)"#end />
-					#else
-						#if($user)$validator.escapeHtml($user.CompanyFax)#elseif($valueCompanyFax)$validator.escapeHtml($valueCompanyFax)#end
-					#end
-					</div>
-			#end ##if($user.CompanyName)
 
 #if ($incType)
 			<div class="shorttext">

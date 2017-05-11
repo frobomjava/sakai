@@ -21,19 +21,18 @@
 // USER declared in userValidationCommon.js
 
 // Validate the user ID from the form
-USER.validateUserId = function () {
+USER.validateUserId = function (hasUser) {
     var eid = USER.get("user_eid");
     var userIdReq = USER.get("userIdRequired");
     USER.userValid = false;
     if (eid === null || userIdReq === null || USER.trim(eid.value).length > 0) {
         USER.userValid = true;
     }
-
-    USER.validatePassword();
+    USER.validatePassword(hasUser);
 };
 
 // Validate the password from the form
-USER.validatePassword = function () {
+USER.validatePassword = function (hasUser) {
     var strongMsg = USER.get("strongMsg");
     var moderateMsg = USER.get("moderateMsg");
     var weakMsg = USER.get("weakMsg");
@@ -77,13 +76,12 @@ USER.validatePassword = function () {
         USER.hideAllElements(strongMsg, moderateMsg, weakMsg, failMsg, strengthInfo, strengthBar, strengthBarMeter);
         USER.passwordValid = true;
     }
-
     // Verify the passwords match (which in turn validates the form)
-    USER.verifyPasswordsMatch();
+    USER.verifyPasswordsMatch(hasUser);
 };
 
 // Verify the passwords match
-USER.verifyPasswordsMatch = function () {
+USER.verifyPasswordsMatch = function (hasUser) {
     var pw = USER.get("user_pw");
     var pw0 = USER.get("user_pw0");
     var matchMsg = USER.get("matchMsg");
@@ -108,11 +106,13 @@ USER.verifyPasswordsMatch = function () {
         USER.passwordsMatch = true;
     }
 
-    USER.validateForm();
+    if(hasUser == 0) { USER.validateForm1(); }
+    else { USER.validateForm(); }
+
 };
 
 // Validate the email address from the form
-USER.validateEmail = function () {
+USER.validateEmail = function (hasUser) {
     USER.emailValid = false;
     var email = USER.get("email");
     var emailWarningMsg = USER.get("emailWarningMsg");
@@ -132,7 +132,9 @@ USER.validateEmail = function () {
     }
 
     USER.display(emailWarningMsg, !USER.emailValid);
-    USER.validateForm();
+    if(hasUser == 0) { USER.validateForm1(); }
+    else { USER.validateForm(); }
+
 };
 
 // Validate the current password from the form
@@ -151,26 +153,34 @@ USER.validateForm = function () {
     var submitButton = USER.get("eventSubmit_doSave");
     var useEid = document.getElementById("user_eid").value;
     var comNam = document.getElementById("company-name").value;
-	var comPos = document.getElementById("company-postal").value;
-	var comAdd = document.getElementById("company-address").value;
-	var comPh = document.getElementById("company-phone").value;
-
+    var email = document.getElementById("email").value;
     if (USER.userValid && USER.passwordsMatch && USER.emailValid && (USER.isSuperUser || (USER.passwordValid && USER.currentPassValid))) {
-    	    	
-        if(comNam != "") {
-        	if(comPos != "" && comAdd != "" && comPh !=""){
-        		submitButton.disabled = false;        		
-        	}else {
-        		submitButton.disabled = true;
-        	}
-        }else {
-        	submitButton.disabled = false;
-        }
+
+    if(useEid !="" && email != "" && comNam != "") { submitButton.disabled = false; }
+	    else { submitButton.disabled = true; }
     }
     else {
         submitButton.disabled = true;
     }
+    setMainFrameHeightNow(window.name);
+};
 
+USER.validateForm1 = function () {
+
+    var submitButton = USER.get("eventSubmit_doSave");
+    var useEid = document.getElementById("user_eid").value;
+    var comNam = document.getElementById("company-name").value;
+    var email = document.getElementById("email").value;
+    var pw = document.getElementById("user_pw").value;
+    var pw0 = document.getElementById("user_pw0").value;
+    if (USER.userValid && USER.passwordsMatch && USER.emailValid && (USER.isSuperUser || (USER.passwordValid && USER.currentPassValid))) {
+
+    if(useEid !="" && email != "" && comNam != "" && pw != "" && pw0 != "") { submitButton.disabled = false; }
+	    else { submitButton.disabled = true; }
+    }
+    else {
+        submitButton.disabled = true;
+    }
     setMainFrameHeightNow(window.name);
 };
 
