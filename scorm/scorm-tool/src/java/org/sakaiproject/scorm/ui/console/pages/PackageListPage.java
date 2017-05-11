@@ -239,7 +239,7 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 				briefHistory = contentPackage.getBriefHistory();
 			}
 			if(briefHistory != null && !briefHistory.trim().isEmpty()) {
-				item.add(new JavascriptLink(componentId, briefHistory, "略歴"));
+				item.add(new JavascriptLink(componentId, briefHistory, "所属(肩書)"));
 				item.setOutputMarkupId(true);
 				item.setMarkupId(componentId);
 			} else {
@@ -265,7 +265,7 @@ public class PackageListPage extends ConsoleBasePage implements ScormConstants {
 				summary = contentPackage.getSummary();
 			}
 			if(summary != null && !summary.trim().isEmpty()) {
-				item.add(new JavascriptLink(componentId, summary, "概要"));
+				item.add(new JavascriptLink(componentId, summary, "略歴"));
 				item.setOutputMarkupId(true);
 				item.setMarkupId(componentId);
 			} else {
