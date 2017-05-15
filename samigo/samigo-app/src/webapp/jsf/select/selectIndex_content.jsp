@@ -113,7 +113,7 @@ sorting actions for table:
           <h:outputText  value="#{selectIndexMessages.title} " />
       </f:facet>
 
-      <h:commandLink title="#{selectIndexMessages.t_takeAssessment}" id="takeAssessment" action="beginAssessment" onmouseup="disableLinks(this);">
+      <h:commandLink title="#{selectIndexMessages.t_takeAssessment}" id="takeAssessment" action="#{navBean.invokeRedirect}" onmouseup="disableLinks(this);">
         <f:param name="publishedId" value="#{takeable.assessmentId}" />
         <f:param name="actionString" value="takeAssessment"/>
         <f:actionListener

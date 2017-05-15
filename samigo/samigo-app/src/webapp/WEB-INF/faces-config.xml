@@ -18,6 +18,14 @@
  		<value>org.sakaiproject.tool.assessment.bundle.CommonMessages</value>
  	</managed-property>
  </managed-bean>
+ 
+ <managed-bean>
+        <managed-bean-name>navBean</managed-bean-name>
+        <managed-bean-class>
+            org.sakaiproject.tool.assessment.ui.bean.navigation.BeginAssessmentNavigationBean
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
  <managed-bean>
  	<description>
@@ -776,6 +784,7 @@
     <navigation-case>
       <from-outcome>beginAssessment</from-outcome>
       <to-view-id>/jsf/delivery/beginTakingAssessment.jsp</to-view-id>
+      <redirect/>
     </navigation-case>
     <navigation-case>
       <from-outcome>takeAssessment</from-outcome>
