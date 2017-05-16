@@ -762,6 +762,7 @@
     <navigation-case>
       <from-outcome>select</from-outcome>
       <to-view-id>/jsf/select/selectIndex.jsp</to-view-id>
+      <redirect/>
     </navigation-case>
     <navigation-case>
       <from-outcome>view</from-outcome>
