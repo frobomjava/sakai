@@ -11,7 +11,7 @@ import javax.faces.context.FacesContext;
 public class BeginAssessmentNavigationBean implements Serializable {
 
 	private String getView() {
-		String viewId = "../delivery/beginTakingAssessment.jsf"; // or look
+		String viewId = "../delivery/beginTakingAssessment"; // or look
 																	// this up
 																	// somewhere
 		return viewId;
