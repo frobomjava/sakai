@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" %>
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" 
+   import="org.sakaiproject.tool.assessment.ui.listener.delivery.BeginDeliveryActionListener" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://www.sakaiproject.org/samigo" prefix="samigo" %>
@@ -29,7 +30,11 @@
 --%>
 -->
   <f:view>
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<%
+	BeginDeliveryActionListener deliveryActionListener = new BeginDeliveryActionListener();
+	deliveryActionListener.processAction(null);
+	%>
+	<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
       <head><%= request.getAttribute("html.head") %>
       <title>
       <h:outputText value="#{delivery.assessmentTitle}"/>
