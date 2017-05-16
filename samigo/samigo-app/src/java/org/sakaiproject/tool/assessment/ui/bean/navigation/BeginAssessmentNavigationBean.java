@@ -59,6 +59,20 @@ public class BeginAssessmentNavigationBean implements Serializable {
 		}
 		return null;
 	}
+
+	public String redirectToMainView() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext extContext = context.getExternalContext();
+		try {
+			String viewId = "../index/mainIndex";
+			String urlLink = context.getExternalContext().encodeActionURL(viewId);
+			extContext.redirect(urlLink);
+		} catch (IOException e) {
+			extContext.log(getClass().getName() + ".invokeRedirect", e);
+		}
+
+		return null;
+	}
 	
 
 }
