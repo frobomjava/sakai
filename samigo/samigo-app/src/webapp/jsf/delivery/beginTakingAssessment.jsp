@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" 
    import="org.sakaiproject.tool.assessment.ui.listener.delivery.BeginDeliveryActionListener,
              org.sakaiproject.tool.assessment.ui.listener.util.ContextUtil,
-             org.sakaiproject.tool.assessment.ui.bean.navigation.BeginAssessmentNavigationBean,
-             javax.faces.event.AbortProcessingException" %>
+             org.sakaiproject.tool.assessment.ui.bean.navigation.BeginAssessmentNavigationBean" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://www.sakaiproject.org/samigo" prefix="samigo" %>
@@ -37,7 +36,7 @@
 	BeginDeliveryActionListener deliveryActionListener = new BeginDeliveryActionListener();
 	try {
 		deliveryActionListener.processAction(null);
-	} catch (AbortProcessingException e) {
+	} catch (Exception e) {
 		BeginAssessmentNavigationBean navBean = (BeginAssessmentNavigationBean) ContextUtil.lookupBean("navBean");
 		navBean.redirectToMainView();
 	}
