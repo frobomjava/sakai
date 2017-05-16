@@ -51,9 +51,9 @@ public class BeginAssessmentNavigationBean implements Serializable {
 			String valuePublishedId = URLEncoder.encode(publishedId, charEncoding);
 			String keyActionString = URLEncoder.encode("actionString", charEncoding);
 			String valueActionString = URLEncoder.encode(actionString, charEncoding);
-			viewId = extContext.getRequestContextPath() + viewId + '?' + keyPublishedId + "=" + valuePublishedId + "&" + keyActionString + "=" + valueActionString;
+			viewId = viewId + '?' + keyPublishedId + "=" + valuePublishedId + "&" + keyActionString + "=" + valueActionString;
 			String urlLink = context.getExternalContext().encodeActionURL(viewId);
-			extContext.redirect(getView()+ '?' + keyPublishedId + "=" + valuePublishedId);
+			extContext.redirect(urlLink);
 		} catch (IOException e) {
 			extContext.log(getClass().getName() + ".invokeRedirect", e);
 		}
