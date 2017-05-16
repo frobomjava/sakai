@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" 
-   import="org.sakaiproject.tool.assessment.ui.listener.delivery.BeginDeliveryActionListener" %>
+   import="org.sakaiproject.tool.assessment.ui.listener.delivery.BeginDeliveryActionListener,
+             org.sakaiproject.tool.assessment.ui.listener.util.ContextUtil,
+             org.sakaiproject.tool.assessment.ui.bean.navigation.BeginAssessmentNavigationBean,
+             javax.faces.event.AbortProcessingException" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://www.sakaiproject.org/samigo" prefix="samigo" %>
@@ -32,7 +35,12 @@
   <f:view>
 	<%
 	BeginDeliveryActionListener deliveryActionListener = new BeginDeliveryActionListener();
-	deliveryActionListener.processAction(null);
+	try {
+		deliveryActionListener.processAction(null);
+	} catch (AbortProcessingException e) {
+		BeginAssessmentNavigationBean navBean = (BeginAssessmentNavigationBean) ContextUtil.lookupBean("navBean");
+		navBean.redirectToMainView();
+	}
 	%>
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
       <head><%= request.getAttribute("html.head") %>
@@ -248,7 +256,7 @@
 
 
 <!-- CANCEL BUTTON -->
-  <h:commandButton id="cancel1" value="#{commonMessages.cancel_action}"  action="select" type="submit"
+  <h:commandButton id="cancel1" value="#{commonMessages.cancel_action}"  action="#{navBean.redirectToMainView}" type="submit"
      rendered="#{delivery.actionString=='previewAssessment'
              || delivery.actionString=='takeAssessment'}"
      disabled="#{delivery.actionString=='previewAssessment'}">
