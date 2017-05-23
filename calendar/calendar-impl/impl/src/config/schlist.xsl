@@ -53,7 +53,7 @@
 	  
   <fo:static-content flow-name="xsl-region-after">
 	<!--	<fo:block text-align="end" 
-			font-size="7pt" font-family="verdana,sans-serif" line-height="1em + 2pt">
+			font-size="7pt" font-family="VL Gothic" line-height="1em + 2pt">
 			<xsl:value-of select="ResourceLoader:getString($rb, 'sched.for')"/><xsl:text> </xsl:text><xsl:value-of select="uid"/> - <fo:page-number/>
       </fo:block> -->
   </fo:static-content>

@@ -24,7 +24,7 @@
 			<!-- actual layout -->
 			<fo:page-sequence master-reference="roster">
 				<fo:static-content flow-name="xsl-region-before">
-					<fo:block font-size="12pt" font-family="sans-serif" line-height="1cm" space-after.optimum="1pt" color="black" text-align="right" padding-top="0pt">
+					<fo:block font-size="12pt" font-family="VL Gothic" line-height="1cm" space-after.optimum="1pt" color="black" text-align="right" padding-top="0pt">
 						<xsl:value-of select="PARTICIPANTS/SITE_TITLE" /> - <fo:page-number />
 					</fo:block>
 				</fo:static-content>
