@@ -558,7 +558,7 @@
 <!-- end scheduleUtil templates -->
 
 <xsl:template match="schedule">
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VlGothic">  
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VL Gothic">  
   <!-- defines page layout -->
   <fo:layout-master-set>
 
@@ -595,7 +595,7 @@
     <fo:static-content flow-name="xsl-region-before">
    		<xsl:variable name="frm-len" select="$frmlen"/>
 		<fo:block font-size="12pt" 
-            font-family="VlGothic"
+            font-family="VL Gothic"
             font-weight="bold" 
             line-height="0.5cm"
             space-after.optimum="1pt"

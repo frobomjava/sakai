@@ -15,7 +15,7 @@
 <xsl:param name="from"/>
         
 <xsl:template match="schedule">
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VlGothic">
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VL Gothic">
 
   <fo:layout-master-set>
     <!-- page layout -->
@@ -41,7 +41,7 @@
    
 	
 	<fo:block font-size="12pt" 
-            font-family="VlGothic" 
+            font-family="VL Gothic" 
             line-height="1cm"
             space-after.optimum="1pt"
             color="black"
@@ -91,7 +91,7 @@
         <fo:list-item>
           <!-- insert a bullet -->
           <fo:list-item-label end-indent="label-end()">
-          	<fo:block><fo:inline   font-size="7pt" font-family="VlGothic">
+          	<fo:block><fo:inline   font-size="7pt" font-family="VL Gothic">
 			    <xsl:value-of select="@dt"/></fo:inline></fo:block>
           </fo:list-item-label>
           <!-- list text --> 
