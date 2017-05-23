@@ -17,7 +17,7 @@
 	<xsl:param name="titleStatus"/>
 	
 	<xsl:template match="/">
-		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="DEFAULT_FONT">
+		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VL Gothic">
 			<fo:layout-master-set>
 				<!-- page layout -->
 				<!-- layout for the first page -->
