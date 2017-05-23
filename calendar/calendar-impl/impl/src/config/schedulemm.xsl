@@ -33,7 +33,7 @@
 <xsl:variable name="cols" select="7"/>
 <xsl:template match="/">
 
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="DejaVuSans">
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="VlGothic">
 
   <fo:layout-master-set>
     <!-- page layout -->
@@ -60,7 +60,7 @@
 
   <fo:static-content flow-name="xsl-region-before">
 	<fo:block font-size="18pt" 
-            font-family="DejaVuSans" 
+            font-family="VlGothic" 
             line-height="1cm"
             space-after.optimum="1pt"
             color="black"
@@ -76,7 +76,7 @@
    
    <fo:static-content flow-name="xsl-region-after">
 		<fo:block text-align="end" 
-			font-size="10pt" font-family="DejaVuSans" line-height="1em + 2pt">
+			font-size="10pt" font-family="VlGothic" line-height="1em + 2pt">
 			- <fo:page-number/> -
       </fo:block>
   </fo:static-content>

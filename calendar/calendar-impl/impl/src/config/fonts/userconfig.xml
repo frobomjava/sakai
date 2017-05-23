@@ -11,5 +11,11 @@
 			kerning="yes">
 		    	<font-triplet name="DejaVuSans" style="normal" weight="bold"/>
 		</font>
+		
+		<font metrics-file="fonts/vlgothic.xml" 
+			embed-file="fonts/dejavu-fonts-ttf-2.25/ttf/VL-Gothic-Regular.ttf"
+			kerning="yes">
+		    	<font-triplet name="VlGothic" style="regular" weight="normal"/>
+		</font>
 	</fonts>
 </configuration>
