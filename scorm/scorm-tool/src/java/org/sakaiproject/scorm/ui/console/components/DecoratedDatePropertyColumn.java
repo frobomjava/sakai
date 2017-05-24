@@ -33,7 +33,8 @@ public class DecoratedDatePropertyColumn extends DecoratedPropertyColumn {
 	
 	public DecoratedDatePropertyColumn(IModel displayModel, String sortProperty, String propertyExpression) {
 		super(displayModel, sortProperty, propertyExpression);
-		this.dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm a");
+		//this.dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm a");
+		this.dateFormat = new SimpleDateFormat("yyyy,mm,dd a hh:mm");
 	}
 
 	@Override
