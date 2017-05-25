@@ -62,6 +62,14 @@
 								
 	}
 	
+	function showDetails2(imageFolderName1,imagefolderName2,ContentTagName){
+		var image1 = document.getElementById(imageFolderName1);	
+		var image2 = document.getElementById(imagefolderName2);
+		var detailsTag = document.getElementById(ContentTagName);
+		hideOneAndShowOne(image1, image2);
+		switchShowOrHide(detailsTag);
+    }
+	
 	function handleDropDownAndInput(labelAdd, labelClose, inputTagName, dropdownTagName){
 		var labelAddTag = document.getElementById(labelAdd);
 		switchShowOrHide(labelAddTag);
@@ -115,6 +123,18 @@
 				tag.style.display="";
 			else
 				tag.style.display="none";
+		}
+	}
+	
+	function hideOneAndShowOne(tag1, tag2) {
+		if (tag1 && tag2) {
+			if(tag1.style.display !=="none") {
+				tag1.style.display="none";
+				tag2.style.display="";
+			} else {
+				tag2.style.display="none";
+				tag1.style.display="";
+			}
 		}
 	}
 	

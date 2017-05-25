@@ -376,11 +376,11 @@
 								<h:outputText value="#{msgs.event_publish_to}" escape="false"  styleClass="titleText"/>
 								<h:panelGrid columns="1" styleClass="published_siteGroupTable">
 										<h:panelGroup >	
-						   	    				<h:outputLabel  id="imageOpen_publishedSiteGroup" style="display:none" styleClass="activeTag" onclick="showDetails('meeting:imageOpen_publishedSiteGroup','meeting:imageClose_publishedSiteGroup','meeting:publishedSiteGroups');">
+						   	    				<h:outputLabel  id="imageOpen_publishedSiteGroup" style="display:none" styleClass="activeTag" onclick="showDetails2('meeting:imageOpen_publishedSiteGroup','meeting:imageClose_publishedSiteGroup','meeting:publishedSiteGroups');">
 							   	    				<h:graphicImage value="/images/open.gif"  alt="open" title="Click to hide details." style="border:none" styleClass="openCloseImageIcon"/>
 							   	    				<h:outputText value="#{msgs.event_hide_site_group_detail}" escape="false" />
 						   	    				</h:outputLabel>
-						   	    				<h:outputLabel id="imageClose_publishedSiteGroup" styleClass="activeTag" onclick="showDetails('meeting:imageOpen_publishedSiteGroup','meeting:imageClose_publishedSiteGroup','meeting:publishedSiteGroups');">
+						   	    				<h:outputLabel id="imageClose_publishedSiteGroup" styleClass="activeTag" onclick="showDetails2('meeting:imageOpen_publishedSiteGroup','meeting:imageClose_publishedSiteGroup','meeting:publishedSiteGroups');">
 						   	    					<h:graphicImage value="/images/closed.gif" alt="close" title="Click to show details." style="border:none" styleClass="openCloseImageIcon"/>
 						   	    					<h:outputText value="#{msgs.event_show_site_group_detail}" escape="false" />
 						   	    				</h:outputLabel>
