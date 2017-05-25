@@ -505,3 +505,11 @@ table.emailTable td.valueColumn {
 	color: #888;
 	margin-left: 10px;
 }
+
+#meeting:imageOpen_publishedSiteGroup.activeTag {
+	padding-top: 10px;
+}
+
+#meeting:imageClose_publishedSiteGroup.activeTag {
+	padding-top: 10px;
+}
