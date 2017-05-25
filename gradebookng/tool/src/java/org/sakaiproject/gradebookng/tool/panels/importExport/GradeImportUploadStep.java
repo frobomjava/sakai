@@ -56,7 +56,7 @@ public class GradeImportUploadStep extends Panel {
 		super.onInitialize();
 
 		add(new ExportPanel("export"));
-		add(new UploadForm("form"));
+		//add(new UploadForm("form"));
 	}
 
 	/*
