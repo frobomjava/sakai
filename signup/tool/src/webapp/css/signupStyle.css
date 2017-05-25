@@ -506,10 +506,10 @@ table.emailTable td.valueColumn {
 	margin-left: 10px;
 }
 
-#meeting:imageOpen_publishedSiteGroup.activeTag {
+#meeting\:imageOpen_publishedSiteGroup.activeTag {
 	padding-top: 10px;
 }
 
-#meeting:imageClose_publishedSiteGroup.activeTag {
+#meeting\:imageClose_publishedSiteGroup.activeTag {
 	padding-top: 10px;
 }
