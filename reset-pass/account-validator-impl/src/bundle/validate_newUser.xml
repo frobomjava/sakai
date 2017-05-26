@@ -1,52 +1,5 @@
 <?xml version="1.0"?>
-<emailTemplates>
-	<!--<emailTemplate>
-		<subject>Welcome To ${localSakaiName}!</subject>
-		<message>You have been invited to one or more sites in ${localSakaiName}.
-
-Accept this invitation:
-
-${url}
-
-What is ${localSakaiName}?
-${localSakaiName} is the ${institution}'s web-based learning management system. It is home to many course sites, 
-as well as a host of other sites including those used for administration, research and project groups, libraries, 
-and student societies. As a guest user, you have been invited to join a ${localSakaiName} site. On the site, you 
-will have rights to read content. You may also be able to create and/or edit content (depending on your assigned role).
-
-What if I already have a ${localSakaiName} account?
-If you have used ${localSakaiName} in the past, then you already have an account on ${localSakaiName}.
-We strongly suggest that you accept the above invitation and then
-transfer your memberships to your existing ${localSakaiName} account. This
-will help prevent you from having multiple accounts, each with a different set of
-associated sites.
-
-If you do not choose to associate this site with an existing account, 
-a new guest account will be activated for you, and its login ID will be ${userEid}. 
-Afterwards, you may log in to ${localSakaiName} using ${userEid} as your login ID and its associated password. </message>
-               <messagehtml>&lt;p&gt;You have been invited to one or more sites in ${localSakaiName}.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="${url}"&gt;Accept this invitation&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;What is ${localSakaiName}?&lt;/h2&gt;
-&lt;p&gt;${localSakaiName} is the ${institution}'s web-based learning management system. It is home to many course sites, 
-as well as a host of other sites including those used for administration, research and project groups, libraries, 
-and student societies. As a guest user, you have been invited to join a ${localSakaiName} site. On the site, you will 
-have rights to read content but you also may be able to create and/or edit content (depending on your assigned role).&lt;/p&gt;
-
-&lt;h2&gt;What if I already have a ${localSakaiName} account?&lt;/h2&gt;
-&lt;p&gt;If you have used ${localSakaiName} in the past, then you already have an account on ${localSakaiName}.
-We strongly suggest that you accept the above invitation and then
-transfer your memberships to your existing ${localSakaiName} account. This
-will help prevent you from having multiple accounts, each with a different set of
-associated sites. &lt;/p&gt;
-
-&lt;p&gt;If you do not choose to associate this site with an existing account, 
-a new guest account will be activated for you, and its login ID will be ${userEid}. 
-Afterwards you may log in to ${localSakaiName} using ${userEid} as your login ID and its associated password. &lt;/p&gt;</messagehtml>
-               <locale></locale>
-               </emailTemplate>-->
-               
+<emailTemplates> 
                <emailTemplate>
 		<subject>${localSakaiName}へようこそ！</subject>
 		<message>${localSakaiName}の1つ以上のサイトに招待されました。
