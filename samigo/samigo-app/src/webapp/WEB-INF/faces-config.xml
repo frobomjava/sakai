@@ -788,6 +788,10 @@
       <redirect/>
     </navigation-case>
     <navigation-case>
+      <from-outcome>beginPreview</from-outcome>
+      <to-view-id>/jsf/delivery/beginPreviewAssessment.jsp</to-view-id>
+    </navigation-case>
+    <navigation-case>
       <from-outcome>takeAssessment</from-outcome>
       <to-view-id>/jsf/delivery/deliverAssessment.jsp</to-view-id>
     </navigation-case>

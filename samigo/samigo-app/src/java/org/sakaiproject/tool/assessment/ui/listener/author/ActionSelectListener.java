@@ -74,7 +74,7 @@ public class ActionSelectListener implements ValueChangeListener {
 			person.setPreviewFromPage("author");
 			BeginDeliveryActionListener beginDeliveryActionListener = new BeginDeliveryActionListener();
 			beginDeliveryActionListener.processAction(null);
-			author.setOutcome("beginAssessment");
+			author.setOutcome("beginPreview");
 			author.setJustPublishedAnAssessment(false);
 		}
 		else if ("print_pending".equals(newValue) || "print_published".equals(newValue)) {
