@@ -24,6 +24,7 @@ package org.sakaiproject.tool.assessment.ui.bean.shared;
 
 import org.sakaiproject.util.ResourceLoader;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,8 @@ import org.sakaiproject.tool.assessment.services.assessment.AssessmentService;
 import org.sakaiproject.authz.cover.SecurityService;
 import org.sakaiproject.tool.assessment.ui.listener.util.ContextUtil;
 import org.sakaiproject.tool.assessment.ui.bean.delivery.DeliveryBean;
+import org.sakaiproject.tool.assessment.ui.bean.navigation.ExternalContext;
+import org.sakaiproject.tool.assessment.ui.bean.navigation.FacesContext;
 import org.sakaiproject.tool.assessment.facade.AgentFacade;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -130,7 +133,17 @@ private static Logger log = LoggerFactory.getLogger(PersonBean.class);
     service.deleteResources(resourceIdList);
     if (previewFromPage != null && previewFromPage.equals("author")) {
     	previewFromPage = null;
-    	return "author";
+        //return "author";
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext extContext = context.getExternalContext();
+		try {
+			String viewId = "../index/mainIndex";
+			String urlLink = context.getExternalContext().encodeActionURL(viewId);
+			extContext.redirect(urlLink);
+		} catch (IOException e) {
+			extContext.log(getClass().getName() + ".invokeRedirect", e);
+		}
+		return null;
     }
     return "editAssessment";
   }  
