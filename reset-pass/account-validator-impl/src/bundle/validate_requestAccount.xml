@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <emailTemplates>
-   <emailTemplate>
+   <!--<emailTemplate>
        <subject>Welcome To ${localSakaiName}!</subject>
        <message>Thank you for requesting an account for ${localSakaiName}, ${institution}'s learning management system. You're almost done!
 
@@ -8,6 +8,17 @@ To create an account, click on the following link or paste it into your favourit
 ${url}
 
 If you haven't requested this account, you can safely ignore this message.
+        </message>
+       <locale></locale>
+   </emailTemplate>-->
+   <emailTemplate>
+       <subject>${localSakaiName}へようこそ！</subject>
+       <message>${institution}の学習管理システム${localSakaiName}のアカウントをリクエストしていただきありがとうございます。ほぼ終わりです！
+
+アカウントを作成するには、以下のリンクをクリックするか、お気に入りのWebブラウザに貼り付けて、フォームに記入してください。
+${url}
+
+このアカウントをリクエストしていない場合は、このメッセージを無視しても問題ありません。
         </message>
        <locale></locale>
    </emailTemplate>

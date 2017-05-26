@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <emailTemplates>
-	<emailTemplate>
+	<!--<emailTemplate>
 		<subject>Welcome To ${localSakaiName}!</subject>
 		<message>You have been invited to one or more sites in ${localSakaiName}.
 
@@ -44,6 +44,55 @@ associated sites. &lt;/p&gt;
 &lt;p&gt;If you do not choose to associate this site with an existing account, 
 a new guest account will be activated for you, and its login ID will be ${userEid}. 
 Afterwards you may log in to ${localSakaiName} using ${userEid} as your login ID and its associated password. &lt;/p&gt;</messagehtml>
+               <locale></locale>
+               </emailTemplate>-->
+               
+               <emailTemplate>
+		<subject>${localSakaiName}へようこそ！</subject>
+		<message>${localSakaiName}の1つ以上のサイトに招待されました。
+
+この招待を受け入れる：
+
+${url}
+
+${localSakaiName}とは何ですか？
+${localSakaiName}は${institution}のWebベースの学習管理システムです。それは多くのコースのサイトの本拠地であり、
+また、管理、研究およびプロジェクトグループ、図書館などに使用されるサイトを含む多数のサイトがあります。
+学生団体。ゲストユーザーとして${localSakaiName}サイトに招待されました。サイトでは、あなた
+コンテンツを読む権利があります。また、（割り当てられた役割に応じて）コンテンツを作成および/または編集することもできます。
+
+既に${localSakaiName}アカウントをお持ちの場合はどうなりますか？
+過去に${localSakaiName}を使用していた場合、${localSakaiName}には既にアカウントがあります。
+上記の招待状を受け入れることを強くお勧めします。
+メンバーシップを既存の${localSakaiName}アカウントに転送します。この
+あなたが複数のアカウントを持つのを防ぐのに役立ちます。
+関連サイト。
+
+このサイトを既存のアカウントに関連付けることを選択しなかった場合は、
+新しいゲストアカウントがアクティブになり、ログインIDは${userEid}になります。
+その後、ログインIDとその関連パスワードとして${userEid}を使用して${localSakaiName}にログインすることができます。 </message>
+               <messagehtml>&lt;p&gt;${localSakaiName}の1つ以上のサイトに招待されました。
+               	&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="${url}"&gt;この招待を受け入れる&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;${localSakaiName}とは何ですか？&lt;/h2&gt;
+&lt;p&gt;${localSakaiName}は、${institution}のウェブベースの学習管理システムです。それは多くのコースのサイトの本拠地であり、
+また、管理、研究およびプロジェクトグループ、図書館などに使用されるサイトを含む多数のサイトがあります。
+学生団体。ゲストユーザーとして${localSakaiName}サイトに招待されました。サイトでは、
+コンテンツを読む権利はありますが、コンテンツを作成したり編集したりすることもできます（割り当てられた役割に応じて）。&lt;/p&gt;
+
+&lt;h2&gt;既に${localSakaiName}アカウントをお持ちの場合はどうなりますか？&lt;/h2&gt;
+&lt;p&gt;過去に${localSakaiName}を使用していた場合、${localSakaiName}には既にアカウントがあります。
+
+上記の招待状を受け入れることを強くお勧めします。
+メンバーシップを既存の${localSakaiName}アカウントに転送します。この
+あなたが複数のアカウントを持つのを防ぐのに役立ちます。
+関連サイト。&lt;/p&gt;
+
+&lt;p&gt;このサイトを既存のアカウントに関連付けることを選択しなかった場合は、
+新しいゲストアカウントがアクティブになり、ログインIDは${userEid}になります。
+その後、${userEid}を使用してログインIDとその関連パスワードとして${localSakaiName}にログインすることができます。 &lt;/p&gt;</messagehtml>
                <locale></locale>
                </emailTemplate>
 

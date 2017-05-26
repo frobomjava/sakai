@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <emailTemplates>
-	<emailTemplate>
+	<!--<emailTemplate>
 		<subject>Please verify your details for ${localSakaiName}</subject>
 		<message>
 Dear ${displayName},	
@@ -22,31 +22,31 @@ address. In the future, login to ${localSakaiName} using the guest account usern
 		</message>
 		
 		<locale></locale>
-	</emailTemplate>
+	</emailTemplate>-->
 	
 	<emailTemplate>
 		<subject>${localSakaiName}の詳細を確認してください。</subject>
 		<message>
 親愛なる ${displayName},	
 
-${addedBy}（$ {addedByEmail}）さんがあなたを${localSakaiName}に招待しました。
+${addedBy}（${addedByEmail}）さんがあなたを${localSakaiName}に招待しました。
 
 
 ${url}であなたの詳細を確認してください
 
 ${localSakaiName}とは何ですか？
-${localSakaiName}は$ {institution}のWebベースの学習管理システムです。それは多くのコースのサイトだけでなく、それらを含む他のサイトのホストです
+${localSakaiName}は${institution}のWebベースの学習管理システムです。それは多くのコースのサイトだけでなく、それらを含む他のサイトのホストです
 管理、研究およびプロジェクトグループ、図書館、および学生社会に使用されます。ゲストユーザーとして${localSakaiName}サイトに招待されました。
 サイトではコンテンツを読む権利がありますが、割り当てられた役割に応じてコンテンツの作成や編集ができる場合もあります。
 
 別の${localSakaiName}アカウントをすでにお持ちの場合はどうなりますか？
 別の${localSakaiName}アカウントで${localSakaiName}を使用した場合は、上記の招待状を受け入れてから
-このサイトにアクセスするために使用する既存の$ {localSakaiName}アカウントを示します。これにより、複数のアカウントを持つことを避けることができます。
+このサイトにアクセスするために使用する既存の${localSakaiName}アカウントを示します。これにより、複数のアカウントを持つことを避けることができます。
 関連サイト。このサイトを既存のアカウントに関連付けることを選択しないと、このメールを使用して新しいゲストアカウントが作成されます
 住所。将来はゲストアカウントのユーザー名とそれに関連するパスワードを使用して${localSakaiName}にログインしてください。
 		</message>
 		
-		<locale>ja_JP</locale>
+		<locale></locale>
 	</emailTemplate>
 	<emailTemplate>
 		<subject>请确认您的相关信息</subject>

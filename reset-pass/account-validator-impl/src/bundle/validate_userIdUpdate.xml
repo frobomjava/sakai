@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <emailTemplates>
-	<emailTemplate>
+	<!-- <emailTemplate>
 		<subject>Please Validate your ${localSakaiName} Account</subject>
 		<message>Dear ${displayName},
 
@@ -24,6 +24,36 @@
 &lt;/p&gt;If you do not wish to change your username to match your email address then simply ignore this email, however, we would *strongly* recommend that you do *not* follow this course of action.If you have any questions about this then please contact ${localSupportMail} &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: Accounts that have been deactivated for longer than 90 days will be deleted.&lt;/p&gt;</messagehtml>
+		<locale></locale>
+	</emailTemplate>-->
+	<emailTemplate>
+		<subject>${localSakaiName}アカウントを確認してください</subject>
+		<message>${displayName}様、
+
+
+			${localSakaiName}にアカウントがあり、最近あなたのメールアドレスを${newUserId}に更新しました。
+
+			${localSakaiName}に簡単にアクセスできるようにするため、この新しいメールアドレスに合わせてユーザー名が更新されます。変更に満足している場合は、この${url}に従ってプロセスを完了してください。
+			あなたのメールアドレスに一致するようにユーザー名を変更したくない場合は、このメールを無視してください。ただし、この手順を守らない*ことを強くお勧めします。
+			
+			これについてご不明な点がございましたら、${localSupportMail}までご連絡ください。
+			*ご注意ください：* 90日以上休止したアカウントは削除されます。
+
+		</message>
+		<messagehtml>&lt;p&gt;親愛なる ${displayName}&lt;p&gt;
+
+&lt;p&gt;${localSakaiName}にアカウントがあり、最近あなたのメールアドレスを${newUserId}に更新しました。&lt;br/&gt;
+			
+&lt;/p&gt;
+
+&lt;p&gt;${localSakaiName}に簡単にアクセスできるようにするため、この新しいメールアドレスに合わせてユーザー名が更新されます。
+変更に満足している場合は、&lt;a href=&quot;${url}&quot;&gt;link&lt;/a&gt;&lt;/p&gt; プロセスを完了します。
+
+&lt;/p&gt;あなたのメールアドレスと一致するようにユーザー名を変更したくない場合は、このメールを無視してください。ただし、この行動方針に従わない*ことを強くお勧めします。 ${localSupportMail}
+ &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: 90日を超えて無効化されたアカウントは削除されます。
+&lt;/p&gt;</messagehtml>
 		<locale></locale>
 	</emailTemplate>
 

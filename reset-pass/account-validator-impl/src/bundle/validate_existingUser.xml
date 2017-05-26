@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <emailTemplates>
-	<emailTemplate>
+	<!--<emailTemplate>
 		<subject>Please Validate your ${localSakaiName} Account</subject>
 		<message>Dear ${displayName},
 
@@ -30,7 +30,7 @@ ${memberSites}
 
 &lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: Accounts that have been deactivated for longer than 90 days will be deleted.&lt;/p&gt;</messagehtml>
 		<locale></locale>
-	</emailTemplate>
+	</emailTemplate>-->
 	<emailTemplate>
 		<subject>${localSakaiName}アカウントを確認してください</subject>
 		<message>親愛なる ${displayName},
@@ -39,7 +39,7 @@ ${memberSites}
 
 ${memberSites}
 
-現在のログイン詳細$ {userEid}を使用してこれらのサイトにアクセスする必要がある場合は、
+現在のログイン詳細${userEid}を使用してこれらのサイトにアクセスする必要がある場合は、
 スタッフ/学生アカウントまたは他のゲストからこれらのサイトにアクセスしたい場合は、次のリンクにアクセスしてください：${url}
 
 このログインを使用して${localSakaiName}にアクセスする必要がなくなった場合は、このメールを無視してアカウントを無効にしてください。
@@ -59,7 +59,7 @@ ${memberSites}
  &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: 90日間を超えて非アクティブ化されたアカウントは削除されます。&lt;/p&gt;</messagehtml>
-		<locale>ja_JP</locale>
+		<locale></locale>
 	</emailTemplate>
 	<emailTemplate>
 		<subject>请验证您的 ${localSakaiName} 帐号</subject>
