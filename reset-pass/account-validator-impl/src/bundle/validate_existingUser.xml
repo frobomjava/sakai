@@ -32,6 +32,36 @@ ${memberSites}
 		<locale></locale>
 	</emailTemplate>
 	<emailTemplate>
+		<subject>${localSakaiName}アカウントを確認してください</subject>
+		<message>親愛なる ${displayName},
+
+現在${localSakaiName}にゲストアカウントがあり、以下のサイトにアクセスできます：
+
+${memberSites}
+
+現在のログイン詳細$ {userEid}を使用してこれらのサイトにアクセスする必要がある場合は、
+スタッフ/学生アカウントまたは他のゲストからこれらのサイトにアクセスしたい場合は、次のリンクにアクセスしてください：${url}
+
+このログインを使用して${localSakaiName}にアクセスする必要がなくなった場合は、このメールを無視してアカウントを無効にしてください。
+アカウントを再度有効にする場合は、${localSupportMail}までご連絡ください。
+
+		</message>
+		<messagehtml>&lt;p&gt;親愛なる ${displayName}&lt;p&gt;
+
+&lt;p&gt;現在${localSakaiName}にゲストアカウントがあり、以下のサイトにアクセスできます： &lt;br/&gt;
+
+${memberSites}
+&lt;/p&gt;
+
+&lt;p&gt;現在のログイン詳細${userEid}を使用してこれらのサイトにアクセスする必要がある場合や、スタッフ/学生アカウントまたは他のゲストからこれらのサイトにアクセスする場合は、&lt;a href=&quot;${url}&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;/p&gt;このログインを使用して${localSakaiName}にアクセスする必要がなくなった場合は、このメールを無視してアカウントを無効にしてください。アカウントを再開するには、${supportemail}にご連絡ください。
+ &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: 90日間を超えて非アクティブ化されたアカウントは削除されます。&lt;/p&gt;</messagehtml>
+		<locale>ja_JP</locale>
+	</emailTemplate>
+	<emailTemplate>
 		<subject>请验证您的 ${localSakaiName} 帐号</subject>
 		<message>${displayName}，您好：
 

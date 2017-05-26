@@ -18,4 +18,22 @@ ${institution}
         </message>
         <locale></locale>
     </emailTemplate>
+     <emailTemplate>
+        <subject>${localSakaiName}: 削除されたアカウント</subject>
+        <message>
+親愛なる$ {creatorName},
+
+${localSakaiName}に参加するように招待された以下のアカウントは、${deleteDays}日後に確認されていません。
+
+${userList}
+
+期限切れのアカウントは$ {localSakaiName}から削除されました。これらの個人が${localSakaiName}にアクセスすることを希望する場合は、再度招待してください。
+
+Regards,
+
+${localSakaiName} の管理者
+${institution}
+        </message>
+        <locale>ja_JP</locale>
+    </emailTemplate>
     </emailTemplates>
