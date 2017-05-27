@@ -128,7 +128,7 @@ $(window).load( function() {
 
       <h:outputText value=" #{authorMessages.separator} " rendered="#{assessmentBean.showPrintLink eq 'true'}"/>
 
-      <h:commandLink  title="#{commonMessages.action_preview}" action="beginAssessment" rendered="#{assessmentBean.assessmentId > 0}">
+      <h:commandLink  title="#{commonMessages.action_preview}" action="beginPreview" rendered="#{assessmentBean.assessmentId > 0}">
         <h:outputText value="#{commonMessages.action_preview}"/>
         <f:param name="assessmentId" value="#{assessmentBean.assessmentId}"/>
         <f:param name="publishedId" value="#{author.editPublishedAssessmentID}"/>
