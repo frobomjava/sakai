@@ -114,9 +114,7 @@ public class AttendeeSignupOwnEmail extends AttendeeEmailBase {
 
 	@Override
 	public String getSubject() {
-		//return MessageFormat.format(rb.getString("subject.attendee.signup.own.field"), new Object[] { getAbbreviatedMeetingTitle(), getSiteTitle()});
-	    String subject = getSiteTitle() + "のイベント" + "\"" + getAbbreviatedMeetingTitle() + "\"" + " にサインアップしました．";
-	    return subject;
+		return MessageFormat.format(rb.getString("subject.attendee.signup.own.field"), new Object[] { getAbbreviatedMeetingTitle(), getSiteTitle()});
 	}
 	
 }
