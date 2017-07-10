@@ -599,8 +599,8 @@ public class BasicEmailService implements EmailService
 			charset = CharacterSet.UTF_8;
 		}
 
-		if ((subject != null) && (msg.getHeader(EmailHeaders.SUBJECT) == null))
-			msg.setSubject(subject, "utf-8"); // manually setting encoding since subject in Japanese language are garbled.
+		//if ((subject != null) && (msg.getHeader(EmailHeaders.SUBJECT) == null))
+		msg.setSubject(subject, "utf-8"); // manually setting encoding since subject in Japanese language are garbled.
 
 		// extract just the content type value from the header
 		String contentType = null;

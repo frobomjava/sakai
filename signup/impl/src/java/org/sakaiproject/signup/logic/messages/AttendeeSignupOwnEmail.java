@@ -59,7 +59,7 @@ public class AttendeeSignupOwnEmail extends AttendeeEmailBase {
 	public List<String> getHeader() {
 		List<String> rv = new ArrayList<String>();
 		rv.add("Content-Type: text/html; charset=UTF-8");
-		rv.add("Subject: " + getSubject());
+		//rv.add("Subject: " + getSubject());
 		rv.add("From: " + getFromAddress());
 		rv.add("To: " + attendee.getEmail());
 
