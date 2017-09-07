@@ -64,11 +64,17 @@
 			function confirmFormSubmitting(event, message) {
 				// user click
 				if (event.which) {
+					var contentMessage;
+					if (message) {
+						contentMessage = message;
+					} else {
+						contentMessage = 'Are you sure?';
+					}
 					event.preventDefault();
 					var button = jQuery(event.target);
 					jQuery.confirm({
-					    title: 'Confirmation',
-					    content: 'Are you sure?',
+					    title: '確認',
+					    content: contentMessage,
 					    type: 'green',
 					    buttons: {
 					        ok: {
@@ -82,7 +88,8 @@
 					            }
 					        },
 					        cancel: function(){
-					                console.log('the user clicked cancel');
+					        	text: "キャンセル",
+					            console.log('the user clicked cancel');
 					        }
 					    }
 					});
@@ -423,12 +430,12 @@
 						</f:facet>
 						<h:commandButton id="addMe" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeSignup}" value="#{msgs.event_button_signup}"
-                            onclick="confirmFormSubmitting(event)"
+                            onclick="confirmFormSubmitting(event, 'サインアップしてもよろしいですか')"
 							rendered="#{timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}"
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || AttendeeSignupMBean.currentUserSignedup || timeSlotWrapper.currentUserSignedUp ||timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}" />
 						<h:commandButton id="Cancel" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeCancelSignup}" value="#{msgs.participant_cancel_button}"
-                            onclick="confirmFormSubmitting(event)"
+                            onclick="confirmFormSubmitting(event, 'キャンセルしてもよろしいですか')"
 							rendered="#{timeSlotWrapper.currentUserSignedUp }" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 						<h:commandButton id="addMeOnWaitingList" styleClass="actButton"
