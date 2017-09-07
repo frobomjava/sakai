@@ -42,16 +42,16 @@ ${includeLatestJQuery}
 			#end
 			#if (!$isValidatedWithAccountValidator)
 				<div class="shorttext">
-					<label for="first-name">
-						$tlang.getString("usecre.firnam")
-					</label>
-					<input type="text" name="first-name" id="first-name" #if($user)value="$validator.escapeHtml($user.FirstName)"#elseif($valueFirstName)value="$validator.escapeHtml($valueFirstName)"#end/>
-				</div>
-				<div class="shorttext">
 					<label for="last-name">
 						$tlang.getString("usecre.lasnam")
 					</label>
 					<input type="text" name="last-name" id="last-name" #if($user)value="$validator.escapeHtml($user.LastName)"#elseif($valueLastName)value="$validator.escapeHtml($valueLastName)"#end/>
+				</div>
+				<div class="shorttext">
+					<label for="first-name">
+						$tlang.getString("usecre.firnam")
+					</label>
+					<input type="text" name="first-name" id="first-name" #if($user)value="$validator.escapeHtml($user.FirstName)"#elseif($valueFirstName)value="$validator.escapeHtml($valueFirstName)"#end/>
 				</div>
 			#end
 			<div class="shorttext required">
