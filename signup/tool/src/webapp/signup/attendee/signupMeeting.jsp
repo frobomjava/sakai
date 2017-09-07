@@ -61,19 +61,16 @@
 				}
 			}
 
-			function confirmFormSubmitting(event, message) {
+			function confirmFormSubmitting(event, message, confirmationTitle, cancelButton) {
 				// user click
 				if (event.which) {
-					var contentMessage;
-					if (message) {
-						contentMessage = message;
-					} else {
-						contentMessage = 'Are you sure?';
-					}
+					var contentMessage = message || 'Are you sure?';
+					var confirmationTitleMessage = confirmationTitle || 'Confirmation';
+					var cancelButtonText = cancelButton || 'cancel';
 					event.preventDefault();
 					var button = jQuery(event.target);
 					jQuery.confirm({
-					    title: 'Confirmation',
+					    title: confirmationTitleMessage,
 					    content: contentMessage,
 					    type: 'green',
 					    buttons: {
@@ -88,6 +85,7 @@
 					            }
 					        },
 					        cancel: function(){
+					        	text: cancelButtonText,
 					            console.log('the user clicked cancel');
 					        }
 					    }
@@ -429,12 +427,12 @@
 						</f:facet>
 						<h:commandButton id="addMe" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeSignup}" value="#{msgs.event_button_signup}"
-                            onclick="confirmFormSubmitting(event, '#{msgs.signup_confirm_message}')"
+                            onclick="confirmFormSubmitting(event, '#{msgs.signup_confirm_message}', '#{msgs.confirmation_title}', '#{msgs.cancel_button}')"
 							rendered="#{timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}"
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || AttendeeSignupMBean.currentUserSignedup || timeSlotWrapper.currentUserSignedUp ||timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}" />
 						<h:commandButton id="Cancel" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeCancelSignup}" value="#{msgs.participant_cancel_button}"
-                            onclick="confirmFormSubmitting(event, '#{msgs.cancel_confirm_message}')"
+                            onclick="confirmFormSubmitting(event, '#{msgs.cancel_confirm_message}', '#{msgs.confirmation_title}', '#{msgs.cancel_button}')"
 							rendered="#{timeSlotWrapper.currentUserSignedUp }" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 						<h:commandButton id="addMeOnWaitingList" styleClass="actButton"
