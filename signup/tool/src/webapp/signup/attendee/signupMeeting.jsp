@@ -73,7 +73,7 @@
 					event.preventDefault();
 					var button = jQuery(event.target);
 					jQuery.confirm({
-					    title: '確認',
+					    title: '#{msgs.confirmation_title}',
 					    content: contentMessage,
 					    type: 'green',
 					    buttons: {
@@ -88,7 +88,7 @@
 					            }
 					        },
 					        cancel: function(){
-					        	text: "キャンセル",
+					        	text: "#{msgs.calcel_button}",
 					            console.log('the user clicked cancel');
 					        }
 					    }
@@ -430,12 +430,12 @@
 						</f:facet>
 						<h:commandButton id="addMe" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeSignup}" value="#{msgs.event_button_signup}"
-                            onclick="confirmFormSubmitting(event, 'サインアップしてもよろしいですか')"
+                            onclick="confirmFormSubmitting(event, '#{msgs.signup_confirm_message}')"
 							rendered="#{timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}"
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || AttendeeSignupMBean.currentUserSignedup || timeSlotWrapper.currentUserSignedUp ||timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}" />
 						<h:commandButton id="Cancel" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeCancelSignup}" value="#{msgs.participant_cancel_button}"
-                            onclick="confirmFormSubmitting(event, 'キャンセルしてもよろしいですか')"
+                            onclick="confirmFormSubmitting(event, '#{msgs.cancel_confirm_message}')"
 							rendered="#{timeSlotWrapper.currentUserSignedUp }" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 						<h:commandButton id="addMeOnWaitingList" styleClass="actButton"
