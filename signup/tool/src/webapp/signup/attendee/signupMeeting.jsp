@@ -73,7 +73,7 @@
 					event.preventDefault();
 					var button = jQuery(event.target);
 					jQuery.confirm({
-					    title: '#{msgs.confirmation_title}',
+					    title: 'Confirmation',
 					    content: contentMessage,
 					    type: 'green',
 					    buttons: {
@@ -88,7 +88,6 @@
 					            }
 					        },
 					        cancel: function(){
-					        	text: "#{msgs.calcel_button}",
 					            console.log('the user clicked cancel');
 					        }
 					    }
