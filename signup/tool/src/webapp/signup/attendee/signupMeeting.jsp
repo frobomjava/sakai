@@ -62,28 +62,31 @@
 			}
 
 			function confirmFormSubmitting(event, message) {
-				event.preventDefault();
-				var button = jQuery(event.target);
-				var form = button.parent('form').get(0);
-				jQuery.confirm({
-				    title: 'Confirmation',
-				    content: 'Are you sure?',
-				    type: 'green',
-				    buttons: {
-				        ok: {
-				            text: "ok!",
-				            btnClass: 'btn-primary',
-				            keys: ['enter'],
-				            action: function(){
-				                 console.log('the user clicked confirm');
-				                 form.submit();
-				            }
-				        },
-				        cancel: function(){
-				                console.log('the user clicked cancel');
-				        }
-				    }
-				});
+				// user click
+				if (event.which) {
+					event.preventDefault();
+					var button = jQuery(event.target);
+					jQuery.confirm({
+					    title: 'Confirmation',
+					    content: 'Are you sure?',
+					    type: 'green',
+					    buttons: {
+					        ok: {
+					            text: "ok!",
+					            btnClass: 'btn-primary',
+					            keys: ['enter'],
+					            action: function(){
+					                 console.log('the user clicked confirm');
+					                 // programatically click
+					                 button.click();
+					            }
+					        },
+					        cancel: function(){
+					                console.log('the user clicked cancel');
+					        }
+					    }
+					});
+				}
 			}
 		</script>
 			
