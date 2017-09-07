@@ -84,9 +84,11 @@
 					                 button.click();
 					            }
 					        },
-					        cancel: function(){
+					        cancel: {
 					        	text: cancelButtonText,
-					            console.log('the user clicked cancel');
+					        	action: function() {
+					        		console.log('the user clicked cancel');
+					        	}
 					        }
 					    }
 					});
