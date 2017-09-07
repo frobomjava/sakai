@@ -394,18 +394,22 @@
 						</f:facet>
 						<h:commandButton id="addMe" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeSignup}" value="#{msgs.event_button_signup}"
+                            onclick="return confirm('Are you sure?')"
 							rendered="#{timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}"
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || AttendeeSignupMBean.currentUserSignedup || timeSlotWrapper.currentUserSignedUp ||timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}" />
 						<h:commandButton id="Cancel" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeCancelSignup}" value="#{msgs.participant_cancel_button}"
+                            onclick="return confirm('Are you sure?')"
 							rendered="#{timeSlotWrapper.currentUserSignedUp }" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 						<h:commandButton id="addMeOnWaitingList" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeAddToWaitingList}" value="#{msgs.add_waitlist_button}" title="#{msgs.tool_tip_add_waitlist}"
+                            onclick="return confirm('Are you sure?')"
 							rendered="#{!timeSlotWrapper.currentUserOnWaitingList && !timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}" 
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.allowWaitList || !AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}"/>
 						<h:commandButton id="CancelWaitingList" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeRemoveFromWaitingList}" value="#{msgs.remove_waitlist_button}"
+                            onclick="return confirm('Are you sure?')"
 							rendered="#{timeSlotWrapper.currentUserOnWaitingList}" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 					</h:column>
