@@ -3,7 +3,7 @@
 <![endif]-->
 <link href="${pageSkinRepo}/${pageSkin}/tool.css$!{portalCDNQuery}" rel="stylesheet" media="screen, tty, tv, handheld, projection">
 <link href="${pageSkinRepo}/${pageSkin}/print.css$!{portalCDNQuery}" rel="stylesheet" media="print">
- #if (!$contentPackageId)
+ #if ($contentPackageId)
         <style>
             .Mrphs-portalWrapper {
               position: absolute;
