@@ -9,7 +9,6 @@
         <noscript>
             <span id="portal_js_warn" class="Mrphs-noJs js-warn-no-js">${rloader.sit_noscript_message}</span>
         </noscript>
-        <span id="contentPackageId">${contentPackageId}</span>
         #if ( ${bufferedResponse} && ${responseHead} )
         #else 
             ${sakai_html_head_js}
@@ -37,7 +36,9 @@
             </div>
             #end
 
-            #parse("/vm/morpheus/moresites.vm")
+            #if (!$contentPackageId)
+                #parse("/vm/morpheus/moresites.vm")
+            #end
 
             #parse("/vm/morpheus/includePageWithNav.vm")
 
@@ -195,6 +196,5 @@
         #parse("/vm/morpheus/includeGoogleTagManager.vm")
 
         ${includeExtraHead}
-        ${contentPackageId}
     </body>
 </html>
