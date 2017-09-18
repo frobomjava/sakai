@@ -16,10 +16,10 @@
 
         <div #if( ${roleSwitchState} ) class="Mrphs-portalWrapper swapped-view" #else class="Mrphs-portalWrapper"#end>
 
+            #if (!$contentPackageId)
             ## Skip Nav
             #parse("/vm/morpheus/snippets/skipNav-snippet.vm")
 
-            #if (!$contentPackageId)
             <div #if ( ${tabsSites} ) class="Mrphs-mainHeader is-maximized" #else class="Mrphs-mainHeader is-minimized" #end>
 
                 ## Header
@@ -197,4 +197,17 @@
 
         ${includeExtraHead}
     </body>
+    #if (!$contentPackageId)
+        <style>
+            .Mrphs-portalWrapper {
+              position: absolute;
+              width: 95%;
+              height: 100%;
+              left: 0px;
+              right: 0px;
+              bottom: 0px;
+              top: 0px;
+            }
+        </style>
+    #end
 </html>
