@@ -20,6 +20,7 @@
             ## Skip Nav
             #parse("/vm/morpheus/snippets/skipNav-snippet.vm")
 
+            #if (!$contentPackageId)
             <div #if ( ${tabsSites} ) class="Mrphs-mainHeader is-maximized" #else class="Mrphs-mainHeader is-minimized" #end>
 
                 ## Header
@@ -34,6 +35,7 @@
                 </div>
                 
             </div>
+            #end
 
             #parse("/vm/morpheus/moresites.vm")
 
