@@ -193,5 +193,6 @@
         #parse("/vm/morpheus/includeGoogleTagManager.vm")
 
         ${includeExtraHead}
+        ${contentPackageId}
     </body>
 </html>
