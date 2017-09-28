@@ -24,8 +24,10 @@ function initResizing() {
 function onResize() {
 	if (document.getElementById("scormContent")) {
 		var windowHeight = getInnerHeight();
-		var headerHeight = document.getElementById("scormButtonPanel").offsetHeight;
-		var footerHeight = document.getElementById("scormFooter").offsetHeight;
+		//var headerHeight = document.getElementById("scormButtonPanel").offsetHeight;
+		var headerHeight = 0;
+		//var footerHeight = document.getElementById("scormFooter").offsetHeight;
+		var footerHeight = 0;
 		var mainHeight = windowHeight - (headerHeight + footerHeight) -4;
 		
 		var windowWidth = getInnerWidth();
