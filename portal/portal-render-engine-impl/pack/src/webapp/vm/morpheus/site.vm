@@ -125,7 +125,7 @@
         #if (!$contentPackageId)
         <script src="${pageSkinRepo}/${pageSkin}/js/morpheus.scripts.min.js$!{portalCDNQuery}"></script>
         #else
-        <script src="${pageSkinRepo}/${pageSkin}/js/morpheus.scripts.min.scorm.js$!{portalCDNQuery}"></script>
+        <script src="${pageSkinRepo}/${pageSkin}/js/morpheus.scripts.min.scorm.js"></script>
         #end
         <script src="${pageWebjarsPath}/pnotify/2.1.0/pnotify.core.min.js$!{portalCDNQuery}"></script>
         <script src="${pageScriptPath}jquery/qtip/jquery.qtip-latest.min.js$!{portalCDNQuery}"></script>
