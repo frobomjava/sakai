@@ -76,10 +76,10 @@
 
 #user-create_edit #noMatchMsg{
     display: block;
-    margin: -0.2em 0 0.5em 15.2em;
+    margin: 0.2em 0 0.5em 15.2em;
     padding-left: 1.5em;
     vertical-align: top;
-    line-height: 1em;
+    line-height: 1.3em;
 }
 
 #user-create_edit #noMatchMsg, #user-create_edit #failMsg, #useredit #noMatchMsg, #useredit #failMsg,

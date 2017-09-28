@@ -3,6 +3,7 @@
 ##
 <!-- START VM includePageWithNav.vm -->
 
+    #if (!$contentPackageId)
     <nav class="Mrphs-siteHierarchy">
 
         #if ( $portalBreadCrumbs or $portalPwd ) 
@@ -71,12 +72,15 @@
             #end
         #end
     </nav>
+    #end
 
     <div id="pageBody">
     
 	#if ( ${loggedIn} && ($sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle) )
     
-            #parse("/vm/morpheus/includePageNav.vm")
+            #if (!$contentPackageId)
+                #parse("/vm/morpheus/includePageNav.vm")
+            #end
     
         #else
 

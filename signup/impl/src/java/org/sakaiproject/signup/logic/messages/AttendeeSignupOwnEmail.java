@@ -93,7 +93,8 @@ public class AttendeeSignupOwnEmail extends AttendeeEmailBase {
 					+ MessageFormat.format(rb.getString("body.attendee.meeting.crossdays.timeslot"), paramsTimeframe));
 
 		}
-		
+		message.append(newline + MessageFormat.format(rb.getString("body.meeting.location"), new Object[] { meeting.getLocation() }));
+		message.append(newline + MessageFormat.format(rb.getString("body.meeting.description"), new Object[] { meeting.getDescription() }));
 		//attendee's comment
 		if(timeslot.getAttendee(attendee.getId()) !=null && timeslot.getAttendee(attendee.getId()).getComments() !=null
 				&& timeslot.getAttendee(attendee.getId()).getComments().length()> 0

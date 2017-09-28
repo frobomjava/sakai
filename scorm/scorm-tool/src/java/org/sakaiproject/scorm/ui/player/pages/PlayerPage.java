@@ -58,7 +58,7 @@ public class PlayerPage extends BaseToolPage {
 	// Components
 	private LazyLaunchPanel lazyLaunchPanel;
 	private ActivityAjaxEventBehavior closeWindowBehavior;
-	private ButtonForm buttonForm;
+	//private ButtonForm buttonForm;
 	
 	public PlayerPage() {
 		this(new PageParameters());
@@ -79,8 +79,8 @@ public class PlayerPage extends BaseToolPage {
 		final SessionBean sessionBean = scormSequencingService.newSessionBean(contentPackage);
 		sessionBean.setCompletionUrl(getCompletionUrl());
 		
-		buttonForm = new ButtonForm("buttonForm", sessionBean, this);
-		add(buttonForm);
+		//buttonForm = new ButtonForm("buttonForm", sessionBean, this);
+		//add(buttonForm);
 				
 		add(lazyLaunchPanel = new LazyLaunchPanel("actionPanel", sessionBean, userNavRequest, this));
 		
@@ -110,7 +110,7 @@ public class PlayerPage extends BaseToolPage {
 	}
 			
 	public void synchronizeState(SessionBean sessionBean, AjaxRequestTarget target) {
-		buttonForm.synchronizeState(sessionBean, target);
+		//buttonForm.synchronizeState(sessionBean, target);
 	}
 	
 	@Override
@@ -120,7 +120,8 @@ public class PlayerPage extends BaseToolPage {
 	}
 	
 	public ButtonForm getButtonForm() {
-		return buttonForm;
+		//return buttonForm;
+	    return null;
 	}
 	
 	public LaunchPanel getLaunchPanel() {

@@ -80,16 +80,6 @@ alert("checkValidation");
 				#end
 			</div>	
 			<div class="shorttext">
-				<label for="first-name">
-					$tlang.getString("usecre.firnam")
-				</label>	
-			#if ($service.allowUpdateUserName($user.Id) || !$user)
-				<input type="text" name="first-name" id="first-name" #if($user)value="$validator.escapeHtml($user.FirstName)"#elseif($valueFirstName)value="$validator.escapeHtml($valueFirstName)"#end />
-			#else
-				#if($user)$validator.escapeHtml($user.FirstName)#elseif($valueFirstName)$validator.escapeHtml($valueFirstName)#end
-			#end
-			</div>
-			<div class="shorttext">
 				<label for="last-name">
 					$tlang.getString("usecre.lasnam")
 				</label>
@@ -97,6 +87,16 @@ alert("checkValidation");
 				<input type="text" name="last-name" id="last-name" #if($user)value="$validator.escapeHtml($user.LastName)"#elseif($valueLastName)value="$validator.escapeHtml($valueLastName)"#end />
 			#else
 				#if($user)$validator.escapeHtml($user.LastName)#elseif($valueLastName)$validator.escapeHtml($valueLastName)#end
+			#end
+			</div>
+			<div class="shorttext">
+				<label for="first-name">
+					$tlang.getString("usecre.firnam")
+				</label>
+			#if ($service.allowUpdateUserName($user.Id) || !$user)
+				<input type="text" name="first-name" id="first-name" #if($user)value="$validator.escapeHtml($user.FirstName)"#elseif($valueFirstName)value="$validator.escapeHtml($valueFirstName)"#end />
+			#else
+				#if($user)$validator.escapeHtml($user.FirstName)#elseif($valueFirstName)$validator.escapeHtml($valueFirstName)#end
 			#end
 			</div>
 			

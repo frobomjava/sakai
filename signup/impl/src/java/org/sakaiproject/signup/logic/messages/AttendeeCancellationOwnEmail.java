@@ -112,7 +112,8 @@ public class AttendeeCancellationOwnEmail extends SignupEmailBase implements Sig
 			message.append(MessageFormat.format(rb.getString("body.meeting.crossdays.timeslot.timeframe"),
 					paramsTimeframe));
 		}
-
+		message.append(newline + MessageFormat.format(rb.getString("body.meeting.location"), new Object[] { meeting.getLocation() }));
+        message.append(newline + MessageFormat.format(rb.getString("body.meeting.description"), new Object[] { meeting.getDescription() }));
 		message.append(newline + getFooter(newline));
 
 		return message.toString();

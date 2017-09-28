@@ -9,7 +9,6 @@
         <noscript>
             <span id="portal_js_warn" class="Mrphs-noJs js-warn-no-js">${rloader.sit_noscript_message}</span>
         </noscript>
-        
         #if ( ${bufferedResponse} && ${responseHead} )
         #else 
             ${sakai_html_head_js}
@@ -17,6 +16,7 @@
 
         <div #if( ${roleSwitchState} ) class="Mrphs-portalWrapper swapped-view" #else class="Mrphs-portalWrapper"#end>
 
+            #if (!$contentPackageId)
             ## Skip Nav
             #parse("/vm/morpheus/snippets/skipNav-snippet.vm")
 
@@ -34,8 +34,11 @@
                 </div>
                 
             </div>
+            #end
 
-            #parse("/vm/morpheus/moresites.vm")
+            #if (!$contentPackageId)
+                #parse("/vm/morpheus/moresites.vm")
+            #end
 
             #parse("/vm/morpheus/includePageWithNav.vm")
 

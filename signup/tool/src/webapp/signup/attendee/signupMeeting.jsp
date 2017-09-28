@@ -17,7 +17,8 @@
 		</style>
 <h:outputText value="#{Portal.latestJQuery}" escape="false"/>
 		<script TYPE="text/javascript" LANGUAGE="JavaScript" src="/sakai-signup-tool/js/signupScript.js"></script>
-		
+		 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 		<script type="text/javascript">
 			var hiddenInputCollapeMInfo;
 			var showMInfoTitleTag;
@@ -58,7 +59,41 @@
 					else
 						jQuery(tag).slideUp("fast");
 				}
-			}								
+			}
+
+			function confirmFormSubmitting(event, message, confirmationTitle, cancelButton) {
+				// user click
+				if (event.which) {
+					var contentMessage = message || 'Are you sure?';
+					var confirmationTitleMessage = confirmationTitle || 'Confirmation';
+					var cancelButtonText = cancelButton || 'cancel';
+					event.preventDefault();
+					var button = jQuery(event.target);
+					jQuery.confirm({
+					    title: confirmationTitleMessage,
+					    content: contentMessage,
+					    type: 'green',
+					    buttons: {
+					        ok: {
+					            text: "ok!",
+					            btnClass: 'btn-primary',
+					            keys: ['enter'],
+					            action: function(){
+					                 console.log('the user clicked confirm');
+					                 // programatically click
+					                 button.click();
+					            }
+					        },
+					        cancel: {
+					        	text: cancelButtonText,
+					        	action: function() {
+					        		console.log('the user clicked cancel');
+					        	}
+					        }
+					    }
+					});
+				}
+			}
 		</script>
 			
 		<h:form id="signupMeeting">
@@ -394,18 +429,22 @@
 						</f:facet>
 						<h:commandButton id="addMe" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeSignup}" value="#{msgs.event_button_signup}"
+                            onclick="confirmFormSubmitting(event, '#{msgs.signup_confirm_message}', '#{msgs.confirmation_title}', '#{msgs.cancel_button}')"
 							rendered="#{timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}"
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || AttendeeSignupMBean.currentUserSignedup || timeSlotWrapper.currentUserSignedUp ||timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}" />
 						<h:commandButton id="Cancel" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeCancelSignup}" value="#{msgs.participant_cancel_button}"
+                            onclick="confirmFormSubmitting(event, '#{msgs.cancel_confirm_message}', '#{msgs.confirmation_title}', '#{msgs.cancel_button}')"
 							rendered="#{timeSlotWrapper.currentUserSignedUp }" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 						<h:commandButton id="addMeOnWaitingList" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeAddToWaitingList}" value="#{msgs.add_waitlist_button}" title="#{msgs.tool_tip_add_waitlist}"
+                            onclick="confirmFormSubmitting(event)"
 							rendered="#{!timeSlotWrapper.currentUserOnWaitingList && !timeSlotWrapper.availableForSignup && !timeSlotWrapper.currentUserSignedUp}" 
 							disabled="#{!AttendeeSignupMBean.meetingWrapper.meeting.allowWaitList || !AttendeeSignupMBean.meetingWrapper.meeting.startToSignUp || timeSlotWrapper.timeSlot.locked || timeSlotWrapper.timeSlot.canceled ||AttendeeSignupMBean.meetingWrapper.meeting.passedDeadline}"/>
 						<h:commandButton id="CancelWaitingList" styleClass="actButton"
 							action="#{AttendeeSignupMBean.attendeeRemoveFromWaitingList}" value="#{msgs.remove_waitlist_button}"
+                            onclick="confirmFormSubmitting(event)"
 							rendered="#{timeSlotWrapper.currentUserOnWaitingList}" 
 							disabled="#{timeSlotWrapper.timeSlot.canceled}"/>
 					</h:column>
