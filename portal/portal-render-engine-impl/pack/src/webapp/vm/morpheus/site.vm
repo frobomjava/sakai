@@ -138,12 +138,14 @@
         #parse("/vm/morpheus/snippets/styleable-snippet.vm")
 
         #if ($pageTop)
+        #if(!$contentPackageId)
             <script>
                 var sakaiPortalWindow = "";
                 ${d}PBJQ(document).ready(function() {
                     setupSkipNav();
                 });
             </script>
+            #end
         #end ## END of IF ($pageTop)
 
         <script>
