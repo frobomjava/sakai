@@ -2,7 +2,9 @@
 ## Create a variable that is a dollar sign for later
 #set ( $d = "$")
 
+	#if (!$contentPackageId)
     #parse("/vm/morpheus/includeStandardHead.vm")
+    #end
 
     <body #if( !${loggedIn} ) class="Mrphs-portalBody is-logged-out" #else class="Mrphs-portalBody ${logoSiteClass}" #end $pageSiteType>
 
