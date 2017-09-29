@@ -1,9 +1,7 @@
 <!--[if (lt IE 9)]>
   <link href="${pageSkinRepo}/${pageSkin}/tool-ie.css$!{portalCDNQuery}" rel="stylesheet">
 <![endif]-->
-#if (!$contentPackageId)
 <link href="${pageSkinRepo}/${pageSkin}/tool.css$!{portalCDNQuery}" rel="stylesheet" media="screen, tty, tv, handheld, projection">
-#end
 <link href="${pageSkinRepo}/${pageSkin}/print.css$!{portalCDNQuery}" rel="stylesheet" media="print">
  #if ($contentPackageId)
         <style>
