@@ -36,7 +36,6 @@ function onResize() {
 
         document.getElementById( "scormNavPanel" ).style.height = mainHeight + "px";
         document.getElementById( "scormContentPanel" ).style.height = mainHeight + "px";
-
     }
 }
 
