@@ -639,7 +639,7 @@
                                                             
                             
                        </h:dataTable>
-                       
+                       <br/><br/>
 					<%-- show title only when collapsed --%>
 					<h:panelGrid id="showMeetingTitleOnly" columns="2" columnClasses="titleColumn,valueColumn" styleClass="orgShowTitleOnly">
 								<h:outputText value="#{msgs.event_name}" styleClass="titleText" escape="false"/>
