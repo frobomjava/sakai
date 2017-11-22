@@ -36,6 +36,8 @@ function onResize() {
 
         document.getElementById( "scormNavPanel" ).style.height = (mainHeight - 10) + "px";
         document.getElementById( "scormContentPanel" ).style.height = (mainHeight - 10) + "px";
+
+        document.getElementById( "scormNavPanel" ).style.paddingBottom = "20px";
     }
 }
 
