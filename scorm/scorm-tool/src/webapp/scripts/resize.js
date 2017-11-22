@@ -34,7 +34,7 @@ function onResize() {
         var navWidth = document.getElementById( "scormNavPanel" ).offsetWidth;
         var mainWidth = windowWidth - navWidth - 130;
 
-        var scormNavPanelHeight = mainHeight + 50;
+        var scormNavPanelHeight = mainHeight - 100;
         document.getElementById( "scormNavPanel" ).style.height = scormNavPanelHeight + "px";
         document.getElementById( "scormContentPanel" ).style.height = mainHeight + "px";
     }
