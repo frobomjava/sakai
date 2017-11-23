@@ -216,9 +216,11 @@
 		var attr = el.getAttribute('onclick');
 		if (attr) {
 		  console.log("Attribute exists");
-		  el.setAttribute('onclick', attr.replace(
+		  attr = attr.replace(
 						'scrollbars=no,location=no,menuBar=no,resizable=yes,status=no,toolbar=no,width=1020,height=740',
-						params));
+						params);
+		  attr = attr.replace("if(w.blur) w.focus();", "if(w.blur) w.focus(); w.resizeTo(screen.width, screen.height);");
+		  el.setAttribute('onclick', attr);
 		}
 	}
     })();
