@@ -202,5 +202,26 @@
         #parse("/vm/morpheus/includeGoogleTagManager.vm")
 
         ${includeExtraHead}
+
+        <script>
+    (function() {
+    console.log("SCORM function called.");
+	var params = [ 'scrollbars=no', 'location=no', 'menuBar=no',
+			'resizable=no', 'toolbar=no', 'height=' + screen.height,
+			'width=' + screen.width, 'fullscreen=yes' ].join(',');
+	var els = document.querySelectorAll("a");
+	for (var i = 0, l = els.length; i < l; i++) {
+	    console.log("replacing link attributes");
+		var el = els[i];
+		var attr = el.getAttribute('onclick');
+		if (attr) {
+		  console.log("Attribute exists");
+		  el.setAttribute('onclick', attr.replace(
+						'scrollbars=no,location=no,menuBar=no,resizable=yes,status=no,toolbar=no,width=1020,height=740',
+						params));
+		}
+	}
+    })();
+    </script>
     </body>
 </html>
