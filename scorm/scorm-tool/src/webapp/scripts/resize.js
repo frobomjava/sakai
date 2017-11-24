@@ -36,8 +36,9 @@ function onResize() {
 	
 		var scormHeight = mainHeight - 10;
 		if (mainWidth < 440 && navigator.userAgent.search("Firefox") >= 0) {
-			document.getElementById( "scormNavPanel" ).style.height = (scormHeight - 10) + "px";
-			document.getElementById("scormContent").style.height = (scormHeight - 10) +"px";
+			console.log("Adjusting speciall for firefox.");
+			document.getElementById( "scormNavPanel" ).style.height = (scormHeight - 20) + "px";
+			document.getElementById("scormContent").style.height = (scormHeight - 20) +"px";
 		} else {
 			document.getElementById( "scormNavPanel" ).style.height = scormHeight + "px";
 			document.getElementById("scormContent").style.height = scormHeight +"px";
