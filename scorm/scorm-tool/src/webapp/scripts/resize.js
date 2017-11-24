@@ -34,8 +34,14 @@ function onResize() {
 		var navWidth = document.getElementById("scormNavPanel").offsetWidth;
 		var mainWidth = windowWidth - navWidth - 80;
 	
-		document.getElementById( "scormNavPanel" ).style.height = (mainHeight - 10) + "px";
-		document.getElementById("scormContent").style.height = (mainHeight - 10) +"px";
+		var scormHeight = mainHeight - 10;
+		if (scormHeight < 440 && navigator.userAgent.search("Firefox") >= 0) {
+			document.getElementById( "scormNavPanel" ).style.height = (scormHeight - 10) + "px";
+			document.getElementById("scormContent").style.height = (scormHeight - 10) +"px";
+		} else {
+			document.getElementById( "scormNavPanel" ).style.height = scormHeight + "px";
+			document.getElementById("scormContent").style.height = scormHeight +"px";
+		}
 		document.getElementById("scormContent").style.width = mainWidth + "px";
 
 		document.getElementById( "scormNavPanel" ).style.paddingBottom = "20px";
