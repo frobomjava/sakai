@@ -35,7 +35,7 @@ function onResize() {
 		var mainWidth = windowWidth - navWidth - 80;
 	
 		var scormHeight = mainHeight - 10;
-		if (scormHeight < 440 && navigator.userAgent.search("Firefox") >= 0) {
+		if (mainWidth < 440 && navigator.userAgent.search("Firefox") >= 0) {
 			document.getElementById( "scormNavPanel" ).style.height = (scormHeight - 10) + "px";
 			document.getElementById("scormContent").style.height = (scormHeight - 10) +"px";
 		} else {
