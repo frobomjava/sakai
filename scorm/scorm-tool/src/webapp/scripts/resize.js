@@ -36,7 +36,6 @@ function onResize() {
 	
 		var scormHeight = mainHeight - 10;
 		if (mainWidth < 440 && navigator.userAgent.search("Firefox") >= 0) {
-			console.log("Adjusting speciall for firefox.");
 			document.getElementById( "scormNavPanel" ).style.height = (scormHeight - 50) + "px";
 			document.getElementById("scormContent").style.height = (scormHeight - 50) +"px";
 		} else {
@@ -54,15 +53,12 @@ function getInnerHeight() {
 	if( typeof( window.innerHeight ) == 'number' ) {
 		//Non-IE
 		innerHeight = window.innerHeight;
-		console.log("window.innerHeight " + innerHeight);
 	} else if( document.documentElement && document.documentElement.clientHeight ) {
 		//IE 6+ in 'standards compliant mode'
 		innerHeight = document.documentElement.clientHeight;
-		console.log("document.documentElement.clientHeight " + innerHeight);
 	} else if( document.body && document.body.clientHeight ) {
 		//IE 4 compatible
 		innerHeight = document.body.clientHeight;
-		console.log("document.body.clientHeight " + innerHeight);
 	}
 	return innerHeight;
 }
