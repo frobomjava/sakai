@@ -1,4 +1,4 @@
-#if($pageId == "787690ca-df85-4db9-ae38-7018c1d80264")
+#if($pageId == "787690ca-df85-4db9-ae38-7018c1d80264" || $contentPackageId)
 #else
 <div class="Mrphs-container Mrphs-container--footer">
 
